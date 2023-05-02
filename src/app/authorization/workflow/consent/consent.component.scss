@@ -1,0 +1,22 @@
+@import '../../../../assets/stylesheets/variables';
+.consent-container {
+    display: flex;
+
+    @media (max-width: $screen-desktop) {
+        flex-direction: column;
+    }
+
+    .consent-step {
+      margin-right: 5em;
+
+        @media (max-width: $screen-desktop) {
+            width: auto;
+            margin-right: 0;
+            flex: 1;
+        }
+    }
+
+    .consent-form {
+        flex: 1;
+    }
+}

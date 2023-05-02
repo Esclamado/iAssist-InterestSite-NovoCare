@@ -1,0 +1,27 @@
+<div class="pricing-benefit-container" fxLayoutAlign="space-between start" fxLayoutAlign.lt-lg="center start" fxLayout="row" fxLayout.lt-md="column">
+  <div class="pricing-benefit-step">
+    <app-step
+      [title]="stepContent?.header"
+      [description]="stepContent?.description"
+      [requiredText]="stepContent?.requiredText"
+      [backText]="stepContent?.back"
+      [showBackLink]="false"
+      [importantDrugUrl]="drugUrl"
+      [showRequired]="true"
+      [supportSubtitle]="stepContent?.supportSubtitle"
+      [supportDescription]="stepContent?.supportDescription"
+      [supportLink]="stepContent?.supportLink"
+      [supportLinkURL]="supportLinkURL"
+      [supportSubDescription]="stepContent?.supportSubDescription"
+      [showSupportOption]="true"
+    ></app-step>
+  </div>
+  <div class="services-main">
+    <div class="services-bg-block" fxHide fxShow.gt-sm></div>
+    <div class="p-2 services-rectangle">
+      <div>
+        <app-flex-start-container></app-flex-start-container>
+      </div>
+    </div>
+  </div>
+</div>

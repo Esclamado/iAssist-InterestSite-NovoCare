@@ -1,0 +1,1115 @@
+<div
+    class="patient-authorization-container"
+    fxLayoutAlign="space-between start"
+    fxLayoutAlign.lt-lg="center start"
+    fxLayout="row"
+    fxLayout.lt-md="column"
+>
+    <app-throbber *ngIf="isSubmitting"></app-throbber>
+    <div class="patient-authorization-step">
+        <app-step
+            [showBackLink]="true"
+            [showRequired]="true"
+            [backText]="stepContent?.back"
+            [title]="stepContent?.header"
+            [description]="stepContent?.description"
+            [requiredText]="stepContent?.requiredText"
+            [importantDrugUrl]="drugUrl"
+        >
+        </app-step>
+        <div fxHide fxShow.gt-sm class="need-assistance-container" fxLayoutAlign="start end">
+            <app-need-assistance [title]="translateService.needAssistanceView.title" [body]="translateService.needAssistanceView.body" [footer]="translateService.needAssistanceView.footer"></app-need-assistance>
+        </div>
+    </div>
+
+    <div class="services-main">
+        <div class="services-bg-block" fxHide fxShow.gt-sm></div>
+        <div class="new-container">
+          <div class="services-rectangle">
+              <app-stepper [activeStep]="'patient-authorization'"></app-stepper>
+              <form [formGroup]="patientAuthorizationGroup">
+                  <div class="patient-authorization">
+                      <div *ngIf="showSkip" class="skip-continue-text" [innerHTML]="skipContinueText"></div>
+                          <div class="form-container">
+                            <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="space-between start" fxFlexFill>
+                                <div class="input-container authorization">
+                                    <app-form-radio
+                                        [formItem]="whoIsAuthorizingConfig"
+                                        [formGroup]="patientAuthorizationGroup"
+                                        [inline]="false"
+                                        (valueChanges)="onAuthorizeChanges($event)"
+                                        [radioNobg]="true"
+                                    >
+                                    </app-form-radio>
+                                </div>
+                            </div>
+
+                            <div *ngIf="rbTherapy || growthTherapy">
+                                <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="space-between start" fxFlexFill class="">
+                                    <div class="input-container-authorization-option mat-css-parent">
+                                        <span class="tooltip-container authorization-mat" *ngIf="asstProgAuthContent.tooltip">
+                                          <img
+                                              [matTooltip]="asstProgAuthContent.tooltip"
+                                              matTooltipPosition="above"
+                                              (click)="tooltip.toggle()"
+                                              (hover)="tooltip.toggle()"
+                                              #tooltip="matTooltip"
+                                              src="../../../../assets/images/icon-tooltip-info.svg" />
+                                        </span>
+                                        <app-form-radio
+                                            [formItem]="authorizationOptionConfig"
+                                            [formGroup]="patientAuthorizationGroup"
+                                            [inline]="false"
+                                            (valueChanges)="onAuthorizationOption($event)"
+                                            [radioNobg]="true"
+                                        >
+                                        </app-form-radio>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div *ngIf="showIsPatient && isPresentTouched">
+                                <!-- for rare blood therapy -->
+                                <div *ngIf="rbTherapy">
+                                    <div *ngIf="patientAuthOnly">
+                                        <div fxLayout="column" fxLayout.lt-sm="column"fxLayoutAlign="space-between start" fxFlexFill>
+                                            <label [innerHTML]="hipaaContent.label" class="content-label">
+                                                <span class="tooltip-container" *ngIf="hipaaContent.tooltip">
+                                                    <img
+                                                        [matTooltip]="hipaaContent.tooltip"
+                                                        matTooltipPosition="above"
+                                                        (click)="tooltip.toggle()"
+                                                        (hover)="tooltip.toggle()"
+                                                        #tooltip="matTooltip"
+                                                        src="../../../../assets/images/icon-tooltip-info.svg" />
+                                                </span>
+                                            </label>
+                                            <div #consentLanguageDiv class="mat-typography content patient-hipaa-content" infinite-scroll
+                                                (scroll)="onScrollDown($event)" [innerHTML]="hipaaContent.rareBloodContent">
+                                            </div>
+                                            <span class="disclaimer-container" [ngClass]="{ 'scroll-required': hipaaChecked }" [innerHTML]="hipaaContent.disclaimer"></span>
+                                            <div class="ml-2" fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="space-between start" fxFlexFill>
+                                                <div class="form-section" (click)="onCheckboxClick(hipaaContentConfig)">
+                                                    <app-form-checkbox
+                                                        [formItem]="hipaaContentConfig"
+                                                        [formGroup]="patientAuthorizationGroup"
+                                                        [disableCheckbox]="isScrolledHipaaConsent ? isScrolledEnabled : true">
+                                                    </app-form-checkbox>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div fxLayout="column" fxLayout.lt-sm="column" fxLayoutAlign="space-between start" fxFlexFill>
+                                            <label [innerHTML]="smsContent.label" class="content-label">
+                                                <span class="tooltip-container" *ngIf="smsContent.tooltip"
+                                                    ><img
+                                                        [matTooltip]="smsContent.tooltip"
+                                                        matTooltipPosition="above"
+                                                        (click)="tooltip.toggle()"
+                                                        (hover)="tooltip.toggle()"
+                                                        #tooltip="matTooltip"
+                                                        src="../../../../assets/images/icon-tooltip-info.svg" />
+                                                </span>
+                                            </label>
+                                            <div #consentLanguageDiv id='textMessage' class="mat-typography content text-message-content" infinite-scroll
+                                                (scroll)="onScrollDown($event)" [innerHTML]="smsContent.content">
+                                            </div>
+                                            <span class="disclaimer-container" [ngClass]="{ 'scroll-required': textMessageChecked }" [innerHTML]="smsContent.disclaimer"></span>
+                                            <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="space-between start" fxFlexFill>
+                                                <div class="form-section" (click)="onCheckboxClick(smsContentConfig, 'textMessage')">
+                                                    <app-form-checkbox
+                                                        [formItem]="smsContentConfig"
+                                                        [formGroup]="patientAuthorizationGroup"
+                                                        [disableCheckbox]="isScrolledTextMessage || !checkIfHasScrollBar('textMessage') ? isScrolledEnabled : true">
+                                                    </app-form-checkbox>
+                                                <div class="terms-of-use-link">
+                                                    <a [href]="smsContent.termsOfUseLink" target="_blank" [innerHTML]="smsContent.termsOfUseLinkText"></a>
+                                                </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div fxLayout="column" fxLayout.lt-sm="column" fxLayoutAlign="space-between start" fxFlexFill>
+                                            <label [innerHTML]="marketingMsgContent.label" class="content-label">
+                                                <span class="tooltip-container" *ngIf="marketingMsgContent.tooltip"
+                                                    ><img
+                                                        [matTooltip]="marketingMsgContent.tooltip"
+                                                        matTooltipPosition="above"
+                                                        (click)="tooltip.toggle()"
+                                                        (hover)="tooltip.toggle()"
+                                                        #tooltip="matTooltip"
+                                                        src="../../../../assets/images/icon-tooltip-info.svg" />
+                                                </span>
+                                            </label>
+                                            <div #consentLanguageDiv id='marketingConsent' class="mat-typography content marketing-content" infinite-scroll
+                                                (scroll)="onScrollDown($event)" [innerHTML]="marketingMsgContent.rareBloodContent">
+                                            </div>
+                                            <span class="disclaimer-container" [ngClass]="{ 'scroll-required': marketingConsentChecked }" [innerHTML]="marketingMsgContent.disclaimer"></span>
+                                            <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="space-between start" fxFlexFill>
+                                                <div class="form-section" (click)="onCheckboxClick(marketingMsgContentConfig, 'marketingConsent')">
+                                                    <app-form-checkbox
+                                                        [formItem]="marketingMsgContentConfig"
+                                                        [formGroup]="patientAuthorizationGroup"
+                                                        [disableCheckbox]="isScrolledMarketingConsent || !checkIfHasScrollBar('marketingConsent') ? isScrolledEnabled : true">
+                                                    </app-form-checkbox>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div fxLayout="column" fxLayout.lt-sm="column" fxLayoutAlign="space-between start" fxFlexFill>
+                                            <div fxLayout="row ma" fxLayoutAlign="start start" class="mat-css-parent">
+                                                <label [innerHTML]="fcraContent.label" class="content-label"> </label>
+                                                    <span class="tooltip-container fcra-mat" *ngIf="fcraContent.tooltip">
+                                                        <img
+                                                            [matTooltip]="fcraContent.tooltip"
+                                                            matTooltipPosition="above"
+                                                            (click)="tooltip.toggle()"
+                                                            (hover)="tooltip.toggle()"
+                                                            #tooltip="matTooltip"
+                                                            src="../../../../assets/images/icon-tooltip-info.svg" />
+                                                    </span>
+                                            </div>
+                                            <div #consentLanguageDiv id='fcraConsent' class="mat-typography content fcra-content" infinite-scroll
+                                                (scroll)="onScrollDown($event)" [innerHTML]="fcraContent.content">
+                                            </div>
+                                            <span class="disclaimer-container" [ngClass]="{ 'scroll-required': fcraConsentChecked }" [innerHTML]="fcraContent.disclaimer"></span>
+                                            <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="space-between start" fxFlexFill>
+                                                <div class="fcra-section" (click)="onCheckboxClick(fcraContentConfig, 'fcraConsent')">
+                                                    <app-form-checkbox
+                                                        [formItem]="fcraContentConfig"
+                                                        [formGroup]="patientAuthorizationGroup"
+                                                        [disableCheckbox]="isScrolledFcraConsent || !checkIfHasScrollBar('fcraConsent') ? isScrolledEnabled : true">
+                                                    </app-form-checkbox>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div *ngIf="patientAuthOnly && patientAssitProgOnly">
+                                        <hr class="patient-auth-and-pap-division">
+                                        <div fxLayout="column" fxLayout.lt-sm="column"fxLayoutAlign="space-between start" fxFlexFill>
+                                            <label class="pap-auth-title" [innerHTML]="PapAuthContent.label" ></label>
+                                            <label class="pap-auth-subtext" [innerHTML]="PapAuthContent.subText" ></label>
+                                        </div>
+                                    </div>
+
+                                    <div *ngIf="patientAssitProgOnly">
+                                        <div fxLayout="column" fxLayout.lt-sm="column"fxLayoutAlign="space-between start" fxFlexFill>
+                                            <div fxLayout="row ma" fxLayoutAlign="start start" class="mat-css-parent">
+                                                <label [innerHTML]="asstProgAuthContent.label" class="content-label mat-css-parent"></label>
+                                                <span class="tooltip-container assistance-papa-mat" *ngIf="asstProgAuthContent.tooltip">
+                                                    <img
+                                                        [matTooltip]="asstProgAuthContent.tooltip"
+                                                        matTooltipPosition="above"
+                                                        (click)="tooltip.toggle()"
+                                                        (hover)="tooltip.toggle()"
+                                                        #tooltip="matTooltip"
+                                                        src="../../../../assets/images/icon-tooltip-info.svg" />
+                                                </span>
+                                            </div>
+                                            <div #consentLanguageDiv class="mat-typography content patient-asst-auth-content" infinite-scroll
+                                                (scroll)="onScrollDown($event)" [innerHTML]="asstProgAuthContent.rareBloodContent">
+                                            </div>
+                                            <span class="disclaimer-container" [ngClass]="{ 'scroll-required': asstProgAuthChecked }" [innerHTML]="asstProgAuthContent.disclaimer"></span>
+                                            <div class="ml-2" fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="space-between start" fxFlexFill>
+                                                <div class="form-section" (click)="onCheckboxClick(asstProgAuthContentConfig)">
+                                                    <app-form-checkbox
+                                                        [formItem]="asstProgAuthContentConfig"
+                                                        [formGroup]="patientAuthorizationGroup"
+                                                        [disableCheckbox]="isScrolledAsstProgAuthConsent ? isScrolledEnabled : true">
+                                                    </app-form-checkbox>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div *ngIf="patientFcraConsentOnly" fxLayout="column" fxLayout.lt-sm="column" fxLayoutAlign="space-between start" fxFlexFill>
+                                            <div fxLayout="row ma" fxLayoutAlign="start start" class="mat-css-parent">
+                                                <label [innerHTML]="fcraContent.label" class="content-label"></label>
+                                                <span class="tooltip-container fcra-mat" *ngIf="fcraContent.tooltip">
+                                                    <img
+                                                        [matTooltip]="fcraContent.tooltip"
+                                                        matTooltipPosition="above"
+                                                        (click)="tooltip.toggle()"
+                                                        (hover)="tooltip.toggle()"
+                                                        #tooltip="matTooltip"
+                                                        src="../../../../assets/images/icon-tooltip-info.svg" />
+                                                </span>
+                                            </div>
+                                            <div #consentLanguageDiv id='fcraConsent' class="mat-typography content fcra-content" infinite-scroll
+                                                (scroll)="onScrollDown($event)" [innerHTML]="fcraContent.content">
+                                            </div>
+                                            <span class="disclaimer-container" [ngClass]="{ 'scroll-required': fcraConsentChecked }" [innerHTML]="fcraContent.disclaimer"></span>
+                                            <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="space-between start" fxFlexFill>
+                                                <div class="fcra-section" (click)="onCheckboxClick(fcraContentConfig, 'fcraConsent')">
+                                                    <app-form-checkbox
+                                                        [formItem]="fcraContentConfig"
+                                                        [formGroup]="patientAuthorizationGroup"
+                                                        [disableCheckbox]="isScrolledFcraConsent || !checkIfHasScrollBar('fcraConsent') ? isScrolledEnabled : true">
+                                                    </app-form-checkbox>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div fxLayout="column" fxLayout.lt-sm="column"fxLayoutAlign="space-between start" fxFlexFill>
+                                            <div fxLayout="row" fxLayoutAlign="start start">
+                                                <label [innerHTML]="medEnrollAuthContent.label" class="last-content-label"></label>
+                                            </div>
+                                            <div #consentLanguageDiv id='medEnrollAuthConsent' class="mat-typography content patient-med-enroll-content" infinite-scroll
+                                                (scroll)="onScrollDown($event)" [innerHTML]="medEnrollAuthContent.content">
+                                            </div>
+                                            <span class="disclaimer-container" [ngClass]="{ 'scroll-required': medEnrollAuthChecked }" [innerHTML]="medEnrollAuthContent.disclaimer"></span>
+                                            <div class="ml-2" fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="space-between start" fxFlexFill>
+                                                <div class="form-section" (click)="onCheckboxClick(medEnrollAuthContentConfig, 'medEnrollAuthConsent')">
+                                                        <app-form-checkbox
+                                                            [formItem]="medEnrollAuthContentConfig"
+                                                            [formGroup]="patientAuthorizationGroup"
+                                                            [disableCheckbox]="isScrolledMedEnrollAuthConsent || !checkIfHasScrollBar('medEnrollAuthConsent') ? isScrolledEnabled : true">
+                                                        </app-form-checkbox>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- for obes therapy -->
+                                <div *ngIf="obesTherapy">
+                                    <div fxLayout="column" fxLayout.lt-sm="column"fxLayoutAlign="space-between start" fxFlexFill>
+                                        <label [innerHTML]="hipaaContent.label" class="first-content-label">
+                                            <span class="tooltip-container" *ngIf="hipaaContent.tooltip">
+                                                <img
+                                                    [matTooltip]="hipaaContent.tooltip"
+                                                    matTooltipPosition="above"
+                                                    (click)="tooltip.toggle()"
+                                                    (hover)="tooltip.toggle()"
+                                                    #tooltip="matTooltip"
+                                                    src="../../../../assets/images/icon-tooltip-info.svg" />
+                                            </span>
+                                        </label>
+                                        <div #consentLanguageDiv class="mat-typography content patient-hipaa-content" infinite-scroll
+                                            (scroll)="onScrollDown($event)" [innerHTML]="hipaaContent.obesityContent">
+                                        </div>
+                                        <span class="disclaimer-container" [ngClass]="{ 'scroll-required': hipaaChecked }" [innerHTML]="hipaaContent.disclaimer"></span>
+                                        <div class="ml-2" fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="space-between start" fxFlexFill>
+                                            <div class="form-section" (click)="onCheckboxClick(hipaaContentConfig)">
+                                                <app-form-checkbox
+                                                    [formItem]="hipaaContentConfig"
+                                                    [formGroup]="patientAuthorizationGroup"
+                                                    [disableCheckbox]="isScrolledHipaaConsent ? isScrolledEnabled : true">
+                                                </app-form-checkbox>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div fxLayout="column" fxLayout.lt-sm="column" fxLayoutAlign="space-between start" fxFlexFill>
+                                        <label [innerHTML]="smsContent.label" class="content-label">
+                                            <span class="tooltip-container" *ngIf="smsContent.tooltip"
+                                                ><img
+                                                    [matTooltip]="smsContent.tooltip"
+                                                    matTooltipPosition="above"
+                                                    (click)="tooltip.toggle()"
+                                                    (hover)="tooltip.toggle()"
+                                                    #tooltip="matTooltip"
+                                                    src="../../../../assets/images/icon-tooltip-info.svg" />
+                                            </span>
+                                        </label>
+                                        <div #consentLanguageDiv id='textMessage' class="mat-typography content text-message-content" infinite-scroll
+                                            (scroll)="onScrollDown($event)" [innerHTML]="smsContent.content">
+                                        </div>
+                                        <span class="disclaimer-container" [ngClass]="{ 'scroll-required': textMessageChecked }" [innerHTML]="smsContent.disclaimer"></span>
+                                        <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="space-between start" fxFlexFill>
+                                            <div class="form-section" (click)="onCheckboxClick(smsContentConfig, 'textMessage')">
+                                                <app-form-checkbox
+                                                    [formItem]="smsContentConfig"
+                                                    [formGroup]="patientAuthorizationGroup"
+                                                    [disableCheckbox]="isScrolledTextMessage || !checkIfHasScrollBar('textMessage') ? isScrolledEnabled : true">
+                                                </app-form-checkbox>
+                                            <div class="terms-of-use-link">
+                                                <a [href]="smsContent.termsOfUseLink" target="_blank" [innerHTML]="smsContent.termsOfUseLinkText"></a>
+                                            </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div fxLayout="column" fxLayout.lt-sm="column" fxLayoutAlign="space-between start" fxFlexFill>
+                                        <label [innerHTML]="marketingMsgContent.label" class="content-label">
+                                            <span class="tooltip-container" *ngIf="marketingMsgContent.tooltip"
+                                                ><img
+                                                    [matTooltip]="marketingMsgContent.tooltip"
+                                                    matTooltipPosition="above"
+                                                    (click)="tooltip.toggle()"
+                                                    (hover)="tooltip.toggle()"
+                                                    #tooltip="matTooltip"
+                                                    src="../../../../assets/images/icon-tooltip-info.svg" />
+                                            </span>
+                                        </label>
+                                        <div #consentLanguageDiv id='marketingConsent' class="mat-typography content marketing-content" infinite-scroll
+                                            (scroll)="onScrollDown($event)" [innerHTML]="marketingMsgContent.obesityContent">
+                                        </div>
+                                        <span class="disclaimer-container" [ngClass]="{ 'scroll-required': marketingConsentChecked }" [innerHTML]="marketingMsgContent.disclaimer"></span>
+                                        <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="space-between start" fxFlexFill>
+                                            <div class="form-section" (click)="onCheckboxClick(marketingMsgContentConfig, 'marketingConsent')">
+                                                <app-form-checkbox
+                                                    [formItem]="marketingMsgContentConfig"
+                                                    [formGroup]="patientAuthorizationGroup"
+                                                    [disableCheckbox]="isScrolledMarketingConsent || !checkIfHasScrollBar('marketingConsent') ? isScrolledEnabled : true">
+                                                </app-form-checkbox>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- for growth therapy -->
+                                <div *ngIf="growthTherapy">
+                                    <div *ngIf="patientAuthOnly">
+                                        <div fxLayout="column" fxLayout.lt-sm="column"fxLayoutAlign="space-between start" fxFlexFill>
+                                            <label [innerHTML]="hipaaContent.label" class="content-label"></label>
+                                            <div #consentLanguageDiv class="mat-typography content patient-hipaa-content" infinite-scroll
+                                                (scroll)="onScrollDown($event)" [innerHTML]="hipaaContent.growthContent">
+                                            </div>
+                                            <span class="disclaimer-container" [ngClass]="{ 'scroll-required': hipaaChecked }" [innerHTML]="hipaaContent.disclaimer"></span>
+                                            <div class="ml-2" fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="space-between start" fxFlexFill>
+                                                <div class="form-section" (click)="onCheckboxClick(hipaaContentConfig)">
+                                                    <app-form-checkbox
+                                                        [formItem]="hipaaContentConfig"
+                                                        [formGroup]="patientAuthorizationGroup"
+                                                        [disableCheckbox]="isScrolledHipaaConsent ? isScrolledEnabled : true">
+                                                    </app-form-checkbox>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div fxLayout="column" fxLayout.lt-sm="column" fxLayoutAlign="space-between start" fxFlexFill>
+                                            <label [innerHTML]="smsContent.label" class="content-label"></label>
+                                            <div #consentLanguageDiv id='textMessage' class="mat-typography content text-message-content" infinite-scroll
+                                                (scroll)="onScrollDown($event)" [innerHTML]="smsContent.content">
+                                            </div>
+                                            <span class="disclaimer-container" [ngClass]="{ 'scroll-required': textMessageChecked }" [innerHTML]="smsContent.disclaimer"></span>
+                                            <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="space-between start" fxFlexFill>
+                                                <div class="form-section" (click)="onCheckboxClick(smsContentConfig, 'textMessage')">
+                                                    <app-form-checkbox
+                                                        [formItem]="smsContentConfig"
+                                                        [formGroup]="patientAuthorizationGroup"
+                                                        [disableCheckbox]="isScrolledTextMessage || !checkIfHasScrollBar('textMessage') ? isScrolledEnabled : true">
+                                                    </app-form-checkbox>
+                                                <div class="terms-of-use-link">
+                                                    <a [href]="smsContent.termsOfUseLink" target="_blank" [innerHTML]="smsContent.termsOfUseLinkText"></a>
+                                                </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div fxLayout="column" fxLayout.lt-sm="column" fxLayoutAlign="space-between start" fxFlexFill>
+                                            <label [innerHTML]="marketingMsgContent.label" class="content-label"></label>
+                                            <div #consentLanguageDiv id='marketingConsent' class="mat-typography content marketing-content" infinite-scroll
+                                                (scroll)="onScrollDown($event)" [innerHTML]="marketingMsgContent.growthContent">
+                                            </div>
+                                            <span class="disclaimer-container" [ngClass]="{ 'scroll-required': marketingConsentChecked }" [innerHTML]="marketingMsgContent.disclaimer"></span>
+                                            <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="space-between start" fxFlexFill>
+                                                <div class="form-section" (click)="onCheckboxClick(marketingMsgContentConfig, 'marketingConsent')">
+                                                    <app-form-checkbox
+                                                        [formItem]="marketingMsgContentConfig"
+                                                        [formGroup]="patientAuthorizationGroup"
+                                                        [disableCheckbox]="isScrolledMarketingConsent || !checkIfHasScrollBar('marketingConsent') ? isScrolledEnabled : true">
+                                                    </app-form-checkbox>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div fxLayout="column" fxLayout.lt-sm="column" fxLayoutAlign="space-between start" fxFlexFill>
+                                            <div fxLayout="row" fxLayoutAlign="start start">
+                                                <label [innerHTML]="fcraContent.label" class="content-label"></label>
+                                                <span class="tooltip-container" *ngIf="fcraContent.tooltip">
+                                                    <img
+                                                        [matTooltip]="fcraContent.tooltip"
+                                                        matTooltipPosition="above"
+                                                        (click)="tooltip.toggle()"
+                                                        (hover)="tooltip.toggle()"
+                                                        #tooltip="matTooltip"
+                                                        src="../../../../assets/images/icon-tooltip-info.svg" />
+                                                </span>
+                                            </div>
+                                            <div #consentLanguageDiv id='fcraConsent' class="mat-typography content fcra-content" infinite-scroll
+                                                (scroll)="onScrollDown($event)" [innerHTML]="fcraContent.content">
+                                            </div>
+                                            <span class="disclaimer-container" [ngClass]="{ 'scroll-required': fcraConsentChecked }" [innerHTML]="fcraContent.disclaimer"></span>
+                                            <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="space-between start" fxFlexFill>
+                                                <div class="fcra-section" (click)="onCheckboxClick(fcraContentConfig, 'fcraConsent')">
+                                                    <app-form-checkbox
+                                                        [formItem]="fcraContentConfig"
+                                                        [formGroup]="patientAuthorizationGroup"
+                                                        [disableCheckbox]="isScrolledFcraConsent || !checkIfHasScrollBar('fcraConsent') ? isScrolledEnabled : true">
+                                                    </app-form-checkbox>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div *ngIf="patientAuthOnly && patientAssitProgOnly">
+                                        <hr class="patient-auth-and-pap-division">
+                                        <div fxLayout="column" fxLayout.lt-sm="column"fxLayoutAlign="space-between start" fxFlexFill>
+                                            <label class="pap-auth-title" [innerHTML]="PapAuthContent.label" ></label>
+                                            <label class="pap-auth-subtext" [innerHTML]="PapAuthContent.subText" ></label>
+                                        </div>
+                                    </div>
+
+                                    <div *ngIf="patientAssitProgOnly">
+                                        <div fxLayout="column" fxLayout.lt-sm="column"fxLayoutAlign="space-between start" fxFlexFill>
+                                            <div fxLayout="row" fxLayoutAlign="start start" class="mat-css-parent">
+                                                <label [innerHTML]="asstProgAuthContent.label" class="content-label"></label>
+                                                <span class="tooltip-container assistance-papa-mat" *ngIf="asstProgAuthContent.tooltip">
+                                                    <img
+                                                        [matTooltip]="asstProgAuthContent.tooltip"
+                                                        matTooltipPosition="above"
+                                                        (click)="tooltip.toggle()"
+                                                        (hover)="tooltip.toggle()"
+                                                        #tooltip="matTooltip"
+                                                        src="../../../../assets/images/icon-tooltip-info.svg" />
+                                                </span>
+                                            </div>
+                                            <div #consentLanguageDiv class="mat-typography content patient-asst-auth-content" infinite-scroll
+                                                (scroll)="onScrollDown($event)" [innerHTML]="asstProgAuthContent.growthContent">
+                                            </div>
+                                            <span class="disclaimer-container" [ngClass]="{ 'scroll-required': asstProgAuthChecked }" [innerHTML]="asstProgAuthContent.disclaimer"></span>
+                                            <div class="ml-2" fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="space-between start" fxFlexFill>
+                                                <div class="form-section" (click)="onCheckboxClick(asstProgAuthContentConfig)">
+                                                    <app-form-checkbox
+                                                        [formItem]="asstProgAuthContentConfig"
+                                                        [formGroup]="patientAuthorizationGroup"
+                                                        [disableCheckbox]="isScrolledAsstProgAuthConsent ? isScrolledEnabled : true">
+                                                    </app-form-checkbox>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div *ngIf="patientFcraConsentOnly" fxLayout="column" fxLayout.lt-sm="column" fxLayoutAlign="space-between start" fxFlexFill>
+                                            <div fxLayout="row" fxLayoutAlign="start start">
+                                                <label [innerHTML]="fcraContent.label" class="content-label"></label>
+                                                <span class="tooltip-container" *ngIf="fcraContent.tooltip">
+                                                    <img
+                                                        [matTooltip]="fcraContent.tooltip"
+                                                        matTooltipPosition="above"
+                                                        (click)="tooltip.toggle()"
+                                                        (hover)="tooltip.toggle()"
+                                                        #tooltip="matTooltip"
+                                                        src="../../../../assets/images/icon-tooltip-info.svg" />
+                                                </span>
+                                            </div>
+                                            <div #consentLanguageDiv id='fcraConsent' class="mat-typography content fcra-content" infinite-scroll
+                                                (scroll)="onScrollDown($event)" [innerHTML]="fcraContent.content">
+                                            </div>
+                                            <span class="disclaimer-container" [ngClass]="{ 'scroll-required': fcraConsentChecked }" [innerHTML]="fcraContent.disclaimer"></span>
+                                            <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="space-between start" fxFlexFill>
+                                                <div class="fcra-section" (click)="onCheckboxClick(fcraContentConfig, 'fcraConsent')">
+                                                    <app-form-checkbox
+                                                        [formItem]="fcraContentConfig"
+                                                        [formGroup]="patientAuthorizationGroup"
+                                                        [disableCheckbox]="isScrolledFcraConsent || !checkIfHasScrollBar('fcraConsent') ? isScrolledEnabled : true">
+                                                    </app-form-checkbox>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div fxLayout="column" fxLayout.lt-sm="column"fxLayoutAlign="space-between start" fxFlexFill>
+                                            <div fxLayout="row" fxLayoutAlign="start start">
+                                                <label [innerHTML]="medEnrollAuthContent.label" class="last-content-label"></label>
+                                            </div>
+                                            <div #consentLanguageDiv id='medEnrollAuthConsent' class="mat-typography content patient-med-enroll-content" infinite-scroll
+                                                (scroll)="onScrollDown($event)" [innerHTML]="medEnrollAuthContent.content">
+                                            </div>
+                                            <span class="disclaimer-container" [ngClass]="{ 'scroll-required': medEnrollAuthChecked }" [innerHTML]="medEnrollAuthContent.disclaimer"></span>
+                                            <div class="ml-2" fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="space-between start" fxFlexFill>
+                                                <div class="form-section" (click)="onCheckboxClick(medEnrollAuthContentConfig, 'medEnrollAuthConsent')">
+                                                        <app-form-checkbox
+                                                            [formItem]="medEnrollAuthContentConfig"
+                                                            [formGroup]="patientAuthorizationGroup"
+                                                            [disableCheckbox]="isScrolledMedEnrollAuthConsent || !checkIfHasScrollBar('medEnrollAuthConsent') ? isScrolledEnabled : true">
+                                                        </app-form-checkbox>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div *ngIf="!showIsLegal && (patientAuthOnly || patientAssitProgOnly || obesTherapy)">
+                                    <label [innerHTML]="signatureContent.label" class="signature-label"></label>
+                                    <hr class="thick-hr-breakpoint">
+                                    <hr class="hr-breakpoint">
+                                    <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="space-between start" fxFlexFill>
+                                        <div class="signature-field">
+                                            <app-form-input
+                                                [formItem]="fullNameConfig"
+                                                [formGroup]="patientAuthorizationGroup"
+                                                (valueChanges)="onFullNameValueChange($event)"
+                                            ></app-form-input>
+                                        </div>
+                                    </div>
+
+                                    <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="space-between start" fxFlexFill>
+                                        <div class="signature-field-body-patient">
+                                            <app-form-signature
+                                                [formItem]="signatureConfig"
+                                                [formGroup]="patientAuthorizationGroup"
+                                                [name]="fullName"
+                                            >
+                                            </app-form-signature>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div *ngIf="!showIsPatient && isPresentTouched">
+                                <div *ngIf="showIsLegal && (patientAuthOnly || patientAssitProgOnly || obesTherapy)">
+                                    <div class="legal-discloser" [innerHTML]="legalDiscloser"></div>
+                                    <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="space-between start" fxFlexFill>
+                                        <div class="legal-input-container">
+                                            <app-form-input
+                                                [formItem]="legalRepFullNameConfig"
+                                                [formGroup]="patientAuthorizationGroup"
+                                            ></app-form-input>
+                                        </div>
+                                    </div>
+                                    <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="space-between start" fxFlexFill>
+                                        <div class="legal-input-container">
+                                            <app-form-input
+                                                [formItem]="relationToPatientConfig"
+                                                [formGroup]="patientAuthorizationGroup"
+                                            ></app-form-input>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- for rare blood therapy -->
+                                <div *ngIf="rbTherapy">
+                                    <div *ngIf="patientAuthOnly">
+                                        <div fxLayout="column" fxLayout.lt-sm="column"fxLayoutAlign="space-between start" fxFlexFill>
+                                            <label [innerHTML]="hipaaContent.label" class="content-label">
+                                                <span class="tooltip-container" *ngIf="hipaaContent.tooltip">
+                                                    <img
+                                                        [matTooltip]="hipaaContent.tooltip"
+                                                        matTooltipPosition="above"
+                                                        (click)="tooltip.toggle()"
+                                                        (hover)="tooltip.toggle()"
+                                                        #tooltip="matTooltip"
+                                                        src="../../../../assets/images/icon-tooltip-info.svg" />
+                                                </span>
+                                            </label>
+                                            <div #consentLanguageDiv class="mat-typography content patient-hipaa-content" infinite-scroll
+                                                (scroll)="onScrollDown($event)" [innerHTML]="hipaaContent.rareBloodContent">
+                                            </div>
+                                            <span class="disclaimer-container" [ngClass]="{ 'scroll-required': hipaaChecked }" [innerHTML]="hipaaContent.disclaimer"></span>
+                                            <div class="ml-2" fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="space-between start" fxFlexFill>
+                                                <div class="form-section" (click)="onCheckboxClick(hipaaContentConfig)">
+                                                    <app-form-checkbox
+                                                        [formItem]="hipaaContentConfig"
+                                                        [formGroup]="patientAuthorizationGroup"
+                                                        [disableCheckbox]="isScrolledHipaaConsent ? isScrolledEnabled : true">
+                                                    </app-form-checkbox>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div fxLayout="column" fxLayout.lt-sm="column" fxLayoutAlign="space-between start" fxFlexFill>
+                                            <label [innerHTML]="smsContent.label" class="content-label">
+                                                <span class="tooltip-container" *ngIf="smsContent.tooltip"
+                                                    ><img
+                                                        [matTooltip]="smsContent.tooltip"
+                                                        matTooltipPosition="above"
+                                                        (click)="tooltip.toggle()"
+                                                        (hover)="tooltip.toggle()"
+                                                        #tooltip="matTooltip"
+                                                        src="../../../../assets/images/icon-tooltip-info.svg" />
+                                                </span>
+                                            </label>
+                                            <div #consentLanguageDiv id='textMessage' class="mat-typography content text-message-content" infinite-scroll
+                                                (scroll)="onScrollDown($event)" [innerHTML]="smsContent.content">
+                                            </div>
+                                            <span class="disclaimer-container" [ngClass]="{ 'scroll-required': textMessageChecked }" [innerHTML]="smsContent.disclaimer"></span>
+                                            <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="space-between start" fxFlexFill>
+                                                <div class="form-section" (click)="onCheckboxClick(smsContentConfig, 'textMessage')">
+                                                    <app-form-checkbox
+                                                        [formItem]="smsContentConfig"
+                                                        [formGroup]="patientAuthorizationGroup"
+                                                        [disableCheckbox]="isScrolledTextMessage || !checkIfHasScrollBar('textMessage') ? isScrolledEnabled : true">
+                                                    </app-form-checkbox>
+                                                <div class="terms-of-use-link">
+                                                    <a [href]="smsContent.termsOfUseLink" target="_blank" [innerHTML]="smsContent.termsOfUseLinkText"></a>
+                                                </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div fxLayout="column" fxLayout.lt-sm="column" fxLayoutAlign="space-between start" fxFlexFill>
+                                            <label [innerHTML]="marketingMsgContent.label" class="content-label">
+                                                <span class="tooltip-container" *ngIf="marketingMsgContent.tooltip"
+                                                    ><img
+                                                        [matTooltip]="marketingMsgContent.tooltip"
+                                                        matTooltipPosition="above"
+                                                        (click)="tooltip.toggle()"
+                                                        (hover)="tooltip.toggle()"
+                                                        #tooltip="matTooltip"
+                                                        src="../../../../assets/images/icon-tooltip-info.svg" />
+                                                </span>
+                                            </label>
+                                            <div #consentLanguageDiv id='marketingConsent' class="mat-typography content marketing-content" infinite-scroll
+                                                (scroll)="onScrollDown($event)" [innerHTML]="marketingMsgContent.rareBloodContent">
+                                            </div>
+                                            <span class="disclaimer-container" [ngClass]="{ 'scroll-required': marketingConsentChecked }" [innerHTML]="marketingMsgContent.disclaimer"></span>
+                                            <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="space-between start" fxFlexFill>
+                                                <div class="form-section" (click)="onCheckboxClick(marketingMsgContentConfig, 'marketingConsent')">
+                                                    <app-form-checkbox
+                                                        [formItem]="marketingMsgContentConfig"
+                                                        [formGroup]="patientAuthorizationGroup"
+                                                        [disableCheckbox]="isScrolledMarketingConsent || !checkIfHasScrollBar('marketingConsent') ? isScrolledEnabled : true">
+                                                    </app-form-checkbox>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div fxLayout="column" fxLayout.lt-sm="column" fxLayoutAlign="space-between start" fxFlexFill>
+                                            <div fxLayout="row ma" fxLayoutAlign="start start" class="mat-css-parent">
+                                                <label [innerHTML]="fcraContent.label" class="content-label"></label>
+                                                <span class="tooltip-container fcra-mat" *ngIf="fcraContent.tooltip">
+                                                    <img
+                                                        [matTooltip]="fcraContent.tooltip"
+                                                        matTooltipPosition="above"
+                                                        (click)="tooltip.toggle()"
+                                                        (hover)="tooltip.toggle()"
+                                                        #tooltip="matTooltip"
+                                                        src="../../../../assets/images/icon-tooltip-info.svg" />
+                                                </span>
+                                            </div>
+                                            <div #consentLanguageDiv id='fcraConsent' class="mat-typography content fcra-content" infinite-scroll
+                                                (scroll)="onScrollDown($event)" [innerHTML]="fcraContent.content">
+                                            </div>
+                                            <span class="disclaimer-container" [ngClass]="{ 'scroll-required': fcraConsentChecked }" [innerHTML]="fcraContent.disclaimer"></span>
+                                            <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="space-between start" fxFlexFill>
+                                                <div class="form-section" (click)="onCheckboxClick(fcraContentConfig, 'fcraConsent')">
+                                                    <app-form-checkbox
+                                                        [formItem]="fcraContentConfig"
+                                                        [formGroup]="patientAuthorizationGroup"
+                                                        [disableCheckbox]="isScrolledFcraConsent || !checkIfHasScrollBar('fcraConsent') ? isScrolledEnabled : true">
+                                                    </app-form-checkbox>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div *ngIf="patientAuthOnly && patientAssitProgOnly">
+                                        <hr class="patient-auth-and-pap-division">
+                                        <div fxLayout="column" fxLayout.lt-sm="column"fxLayoutAlign="space-between start" fxFlexFill>
+                                            <label class="pap-auth-title" [innerHTML]="PapAuthContent.label" ></label>
+                                            <label class="pap-auth-subtext" [innerHTML]="PapAuthContent.subText" ></label>
+                                        </div>
+                                    </div>
+
+                                    <div *ngIf="patientAssitProgOnly">
+                                        <div fxLayout="column" fxLayout.lt-sm="column"fxLayoutAlign="space-between start" fxFlexFill>
+                                            <div fxLayout="row ma" fxLayoutAlign="start start" class="mat-css-parent">
+                                                <label [innerHTML]="asstProgAuthContent.label" class="content-label"></label>
+                                                <span class="tooltip-container assistance-papa-mat" *ngIf="asstProgAuthContent.tooltip">
+                                                    <img
+                                                        [matTooltip]="asstProgAuthContent.tooltip"
+                                                        matTooltipPosition="above"
+                                                        (click)="tooltip.toggle()"
+                                                        (hover)="tooltip.toggle()"
+                                                        #tooltip="matTooltip"
+                                                        src="../../../../assets/images/icon-tooltip-info.svg" />
+                                                </span>
+                                            </div>
+                                            <div #consentLanguageDiv class="mat-typography content patient-asst-auth-content" infinite-scroll
+                                                (scroll)="onScrollDown($event)" [innerHTML]="asstProgAuthContent.rareBloodContent">
+                                            </div>
+                                            <span class="disclaimer-container" [ngClass]="{ 'scroll-required': asstProgAuthChecked }" [innerHTML]="asstProgAuthContent.disclaimer"></span>
+                                            <div class="ml-2" fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="space-between start" fxFlexFill>
+                                                <div class="form-section" (click)="onCheckboxClick(asstProgAuthContentConfig)">
+                                                    <app-form-checkbox
+                                                        [formItem]="asstProgAuthContentConfig"
+                                                        [formGroup]="patientAuthorizationGroup"
+                                                        [disableCheckbox]="isScrolledAsstProgAuthConsent ? isScrolledEnabled : true">
+                                                    </app-form-checkbox>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div *ngIf="patientFcraConsentOnly" fxLayout="column" fxLayout.lt-sm="column" fxLayoutAlign="space-between start" fxFlexFill>
+                                            <div fxLayout="row ma" fxLayoutAlign="start start" class="mat-css-parent">
+                                                <label [innerHTML]="fcraContent.label" class="content-label"></label>
+                                                <span class="tooltip-container fcra-mat" *ngIf="fcraContent.tooltip">
+                                                    <img
+                                                        [matTooltip]="fcraContent.tooltip"
+                                                        matTooltipPosition="above"
+                                                        (click)="tooltip.toggle()"
+                                                        (hover)="tooltip.toggle()"
+                                                        #tooltip="matTooltip"
+                                                        src="../../../../assets/images/icon-tooltip-info.svg" />
+                                                </span>
+                                            </div>
+                                            <div #consentLanguageDiv id='fcraConsent' class="mat-typography content fcra-content" infinite-scroll
+                                                (scroll)="onScrollDown($event)" [innerHTML]="fcraContent.content">
+                                            </div>
+                                            <span class="disclaimer-container" [ngClass]="{ 'scroll-required': fcraConsentChecked }" [innerHTML]="fcraContent.disclaimer"></span>
+                                            <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="space-between start" fxFlexFill>
+                                                <div class="fcra-section" (click)="onCheckboxClick(fcraContentConfig, 'fcraConsent')">
+                                                    <app-form-checkbox
+                                                        [formItem]="fcraContentConfig"
+                                                        [formGroup]="patientAuthorizationGroup"
+                                                        [disableCheckbox]="isScrolledFcraConsent || !checkIfHasScrollBar('fcraConsent') ? isScrolledEnabled : true">
+                                                    </app-form-checkbox>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div fxLayout="column" fxLayout.lt-sm="column"fxLayoutAlign="space-between start" fxFlexFill>
+                                            <div fxLayout="row" fxLayoutAlign="start start">
+                                                <label [innerHTML]="medEnrollAuthContent.label" class="last-content-label"></label>
+                                            </div>
+                                            <div #consentLanguageDiv id='medEnrollAuthConsent' class="mat-typography content patient-med-enroll-content" infinite-scroll
+                                                (scroll)="onScrollDown($event)" [innerHTML]="medEnrollAuthContent.content">
+                                            </div>
+                                            <span class="disclaimer-container" [ngClass]="{ 'scroll-required': medEnrollAuthChecked }" [innerHTML]="medEnrollAuthContent.disclaimer"></span>
+                                            <div class="ml-2" fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="space-between start" fxFlexFill>
+                                                <div class="form-section" (click)="onCheckboxClick(medEnrollAuthContentConfig, 'medEnrollAuthConsent')">
+                                                        <app-form-checkbox
+                                                            [formItem]="medEnrollAuthContentConfig"
+                                                            [formGroup]="patientAuthorizationGroup"
+                                                            [disableCheckbox]="isScrolledMedEnrollAuthConsent || !checkIfHasScrollBar('medEnrollAuthConsent') ? isScrolledEnabled : true">
+                                                        </app-form-checkbox>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- for obes therapy -->
+                                <div *ngIf="obesTherapy">
+                                    <div fxLayout="column" fxLayout.lt-sm="column"fxLayoutAlign="space-between start" fxFlexFill>
+                                        <label [innerHTML]="hipaaContent.label" class="first-content-label">
+                                            <span class="tooltip-container" *ngIf="hipaaContent.tooltip">
+                                                <img
+                                                    [matTooltip]="hipaaContent.tooltip"
+                                                    matTooltipPosition="above"
+                                                    (click)="tooltip.toggle()"
+                                                    (hover)="tooltip.toggle()"
+                                                    #tooltip="matTooltip"
+                                                    src="../../../../assets/images/icon-tooltip-info.svg" />
+                                            </span>
+                                        </label>
+                                        <div #consentLanguageDiv class="mat-typography content patient-hipaa-content" infinite-scroll
+                                            (scroll)="onScrollDown($event)" [innerHTML]="hipaaContent.obesityContent">
+                                        </div>
+                                        <span class="disclaimer-container" [ngClass]="{ 'scroll-required': hipaaChecked }" [innerHTML]="hipaaContent.disclaimer"></span>
+                                        <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="space-between start" fxFlexFill>
+                                            <div class="form-section" (click)="onCheckboxClick(hipaaContentConfig)">
+                                                <app-form-checkbox
+                                                    [formItem]="hipaaContentConfig"
+                                                    [formGroup]="patientAuthorizationGroup"
+                                                    [disableCheckbox]="isScrolledHipaaConsent ? isScrolledEnabled : true">
+                                                </app-form-checkbox>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div fxLayout="column" fxLayout.lt-sm="column" fxLayoutAlign="space-between start" fxFlexFill>
+                                        <label [innerHTML]="smsContent.label" class="content-label">
+                                            <span class="tooltip-container" *ngIf="smsContent.tooltip"
+                                                ><img
+                                                    [matTooltip]="smsContent.tooltip"
+                                                    matTooltipPosition="above"
+                                                    (click)="tooltip.toggle()"
+                                                    (hover)="tooltip.toggle()"
+                                                    #tooltip="matTooltip"
+                                                    src="../../../../assets/images/icon-tooltip-info.svg" />
+                                            </span>
+                                        </label>
+                                        <div #consentLanguageDiv id='textMessage' class="mat-typography content text-message-content" infinite-scroll
+                                            (scroll)="onScrollDown($event)" [innerHTML]="smsContent.content">
+                                        </div>
+                                        <span class="disclaimer-container" [ngClass]="{ 'scroll-required': textMessageChecked }" [innerHTML]="smsContent.disclaimer"></span>
+                                        <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="space-between start" fxFlexFill>
+                                            <div class="form-section" (click)="onCheckboxClick(smsContentConfig, 'textMessage')">
+                                                <app-form-checkbox
+                                                    [formItem]="smsContentConfig"
+                                                    [formGroup]="patientAuthorizationGroup"
+                                                    [disableCheckbox]="isScrolledTextMessage || !checkIfHasScrollBar('textMessage') ? isScrolledEnabled : true">
+                                                </app-form-checkbox>
+                                            <div class="terms-of-use-link">
+                                                <a [href]="smsContent.termsOfUseLink" target="_blank" [innerHTML]="smsContent.termsOfUseLinkText"></a>
+                                            </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div fxLayout="column" fxLayout.lt-sm="column" fxLayoutAlign="space-between start" fxFlexFill>
+                                        <label [innerHTML]="marketingMsgContent.label" class="content-label">
+                                            <span class="tooltip-container" *ngIf="marketingMsgContent.tooltip"
+                                                ><img
+                                                    [matTooltip]="marketingMsgContent.tooltip"
+                                                    matTooltipPosition="above"
+                                                    (click)="tooltip.toggle()"
+                                                    (hover)="tooltip.toggle()"
+                                                    #tooltip="matTooltip"
+                                                    src="../../../../assets/images/icon-tooltip-info.svg" />
+                                            </span>
+                                        </label>
+                                        <div #consentLanguageDiv id='marketingConsent' class="mat-typography content marketing-content" infinite-scroll
+                                            (scroll)="onScrollDown($event)" [innerHTML]="marketingMsgContent.obesityContent">
+                                        </div>
+                                        <span class="disclaimer-container" [ngClass]="{ 'scroll-required': marketingConsentChecked }" [innerHTML]="marketingMsgContent.disclaimer"></span>
+                                        <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="space-between start" fxFlexFill>
+                                            <div class="form-section" (click)="onCheckboxClick(marketingMsgContentConfig, 'marketingConsent')">
+                                                <app-form-checkbox
+                                                    [formItem]="marketingMsgContentConfig"
+                                                    [formGroup]="patientAuthorizationGroup"
+                                                    [disableCheckbox]="isScrolledMarketingConsent || !checkIfHasScrollBar('marketingConsent') ? isScrolledEnabled : true">
+                                                </app-form-checkbox>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- for growth therapy -->
+                                <div *ngIf="growthTherapy">
+                                    <div *ngIf="patientAuthOnly">
+                                        <div fxLayout="column" fxLayout.lt-sm="column"fxLayoutAlign="space-between start" fxFlexFill>
+                                            <label [innerHTML]="hipaaContent.label" class="content-label"></label>
+                                            <div #consentLanguageDiv class="mat-typography content patient-hipaa-content" infinite-scroll
+                                                (scroll)="onScrollDown($event)" [innerHTML]="hipaaContent.growthContent">
+                                            </div>
+                                            <span class="disclaimer-container" [ngClass]="{ 'scroll-required': hipaaChecked }" [innerHTML]="hipaaContent.disclaimer"></span>
+                                            <div class="ml-2" fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="space-between start" fxFlexFill>
+                                                <div class="form-section" (click)="onCheckboxClick(hipaaContentConfig)">
+                                                    <app-form-checkbox
+                                                        [formItem]="hipaaContentConfig"
+                                                        [formGroup]="patientAuthorizationGroup"
+                                                        [disableCheckbox]="isScrolledHipaaConsent ? isScrolledEnabled : true">
+                                                    </app-form-checkbox>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div fxLayout="column" fxLayout.lt-sm="column" fxLayoutAlign="space-between start" fxFlexFill>
+                                            <label [innerHTML]="smsContent.label" class="content-label"></label>
+                                            <div #consentLanguageDiv id='textMessage' class="mat-typography content text-message-content" infinite-scroll
+                                                (scroll)="onScrollDown($event)" [innerHTML]="smsContent.content">
+                                            </div>
+                                            <span class="disclaimer-container" [ngClass]="{ 'scroll-required': textMessageChecked }" [innerHTML]="smsContent.disclaimer"></span>
+                                            <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="space-between start" fxFlexFill>
+                                                <div class="form-section" (click)="onCheckboxClick(smsContentConfig, 'textMessage')">
+                                                    <app-form-checkbox
+                                                        [formItem]="smsContentConfig"
+                                                        [formGroup]="patientAuthorizationGroup"
+                                                        [disableCheckbox]="isScrolledTextMessage || !checkIfHasScrollBar('textMessage') ? isScrolledEnabled : true">
+                                                    </app-form-checkbox>
+                                                <div class="terms-of-use-link">
+                                                    <a [href]="smsContent.termsOfUseLink" target="_blank" [innerHTML]="smsContent.termsOfUseLinkText"></a>
+                                                </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div fxLayout="column" fxLayout.lt-sm="column" fxLayoutAlign="space-between start" fxFlexFill>
+                                            <label [innerHTML]="marketingMsgContent.label" class="content-label"></label>
+                                            <div #consentLanguageDiv id='marketingConsent' class="mat-typography content marketing-content" infinite-scroll
+                                                (scroll)="onScrollDown($event)" [innerHTML]="marketingMsgContent.growthContent">
+                                            </div>
+                                            <span class="disclaimer-container" [ngClass]="{ 'scroll-required': marketingConsentChecked }" [innerHTML]="marketingMsgContent.disclaimer"></span>
+                                            <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="space-between start" fxFlexFill>
+                                                <div class="form-section" (click)="onCheckboxClick(marketingMsgContentConfig, 'marketingConsent')">
+                                                    <app-form-checkbox
+                                                        [formItem]="marketingMsgContentConfig"
+                                                        [formGroup]="patientAuthorizationGroup"
+                                                        [disableCheckbox]="isScrolledMarketingConsent || !checkIfHasScrollBar('marketingConsent') ? isScrolledEnabled : true">
+                                                    </app-form-checkbox>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div fxLayout="column" fxLayout.lt-sm="column" fxLayoutAlign="space-between start" fxFlexFill>
+                                            <div fxLayout="row" fxLayoutAlign="start start">
+                                                <label [innerHTML]="fcraContent.label" class="content-label"></label>
+                                                <span class="tooltip-container" *ngIf="fcraContent.tooltip">
+                                                    <img
+                                                        [matTooltip]="fcraContent.tooltip"
+                                                        matTooltipPosition="above"
+                                                        (click)="tooltip.toggle()"
+                                                        (hover)="tooltip.toggle()"
+                                                        #tooltip="matTooltip"
+                                                        src="../../../../assets/images/icon-tooltip-info.svg" />
+                                                </span>
+                                            </div>
+                                            <div #consentLanguageDiv id='fcraConsent' class="mat-typography content fcra-content" infinite-scroll
+                                                (scroll)="onScrollDown($event)" [innerHTML]="fcraContent.content">
+                                            </div>
+                                            <span class="disclaimer-container" [ngClass]="{ 'scroll-required': fcraConsentChecked }" [innerHTML]="fcraContent.disclaimer"></span>
+                                            <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="space-between start" fxFlexFill>
+                                                <div class="fcra-section" (click)="onCheckboxClick(fcraContentConfig, 'fcraConsent')">
+                                                    <app-form-checkbox
+                                                        [formItem]="fcraContentConfig"
+                                                        [formGroup]="patientAuthorizationGroup"
+                                                        [disableCheckbox]="isScrolledFcraConsent || !checkIfHasScrollBar('fcraConsent') ? isScrolledEnabled : true">
+                                                    </app-form-checkbox>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div *ngIf="patientAuthOnly && patientAssitProgOnly">
+                                        <hr class="patient-auth-and-pap-division">
+                                        <div fxLayout="column" fxLayout.lt-sm="column"fxLayoutAlign="space-between start" fxFlexFill>
+                                            <label class="pap-auth-title" [innerHTML]="PapAuthContent.label" ></label>
+                                            <label class="pap-auth-subtext" [innerHTML]="PapAuthContent.subText" ></label>
+                                        </div>
+                                    </div>
+
+                                    <div *ngIf="patientAssitProgOnly">
+                                        <div fxLayout="column" fxLayout.lt-sm="column"fxLayoutAlign="space-between start" fxFlexFill>
+                                            <div fxLayout="row" fxLayoutAlign="start start" class="mat-css-parent">
+                                                <label [innerHTML]="asstProgAuthContent.label" class="content-label"></label>
+                                                <span class="tooltip-container assistance-papa-mat" *ngIf="asstProgAuthContent.tooltip">
+                                                    <img
+                                                        [matTooltip]="asstProgAuthContent.tooltip"
+                                                        matTooltipPosition="above"
+                                                        (click)="tooltip.toggle()"
+                                                        (hover)="tooltip.toggle()"
+                                                        #tooltip="matTooltip"
+                                                        src="../../../../assets/images/icon-tooltip-info.svg" />
+                                                </span>
+                                            </div>
+                                            <div #consentLanguageDiv class="mat-typography content patient-asst-auth-content" infinite-scroll
+                                                (scroll)="onScrollDown($event)" [innerHTML]="asstProgAuthContent.growthContent">
+                                            </div>
+                                            <span class="disclaimer-container" [ngClass]="{ 'scroll-required': asstProgAuthChecked }" [innerHTML]="asstProgAuthContent.disclaimer"></span>
+                                            <div class="ml-2" fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="space-between start" fxFlexFill>
+                                                <div class="form-section" (click)="onCheckboxClick(asstProgAuthContentConfig)">
+                                                    <app-form-checkbox
+                                                        [formItem]="asstProgAuthContentConfig"
+                                                        [formGroup]="patientAuthorizationGroup"
+                                                        [disableCheckbox]="isScrolledAsstProgAuthConsent ? isScrolledEnabled : true">
+                                                    </app-form-checkbox>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div *ngIf="patientFcraConsentOnly" fxLayout="column" fxLayout.lt-sm="column" fxLayoutAlign="space-between start" fxFlexFill>
+                                            <div fxLayout="row" fxLayoutAlign="start start">
+                                                <label [innerHTML]="fcraContent.label" class="content-label"></label>
+                                                <span class="tooltip-container" *ngIf="fcraContent.tooltip">
+                                                    <img
+                                                        [matTooltip]="fcraContent.tooltip"
+                                                        matTooltipPosition="above"
+                                                        (click)="tooltip.toggle()"
+                                                        (hover)="tooltip.toggle()"
+                                                        #tooltip="matTooltip"
+                                                        src="../../../../assets/images/icon-tooltip-info.svg" />
+                                                </span>
+                                            </div>
+                                            <div #consentLanguageDiv id='fcraConsent' class="mat-typography content fcra-content" infinite-scroll
+                                                (scroll)="onScrollDown($event)" [innerHTML]="fcraContent.content">
+                                            </div>
+                                            <span class="disclaimer-container" [ngClass]="{ 'scroll-required': fcraConsentChecked }" [innerHTML]="fcraContent.disclaimer"></span>
+                                            <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="space-between start" fxFlexFill>
+                                                <div class="fcra-section" (click)="onCheckboxClick(fcraContentConfig, 'fcraConsent')">
+                                                    <app-form-checkbox
+                                                        [formItem]="fcraContentConfig"
+                                                        [formGroup]="patientAuthorizationGroup"
+                                                        [disableCheckbox]="isScrolledFcraConsent || !checkIfHasScrollBar('fcraConsent') ? isScrolledEnabled : true">
+                                                    </app-form-checkbox>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div fxLayout="column" fxLayout.lt-sm="column"fxLayoutAlign="space-between start" fxFlexFill>
+                                            <div fxLayout="row" fxLayoutAlign="start start">
+                                                <label [innerHTML]="medEnrollAuthContent.label" class="last-content-label"></label>
+                                            </div>
+                                            <div #consentLanguageDiv id='medEnrollAuthConsent' class="mat-typography content patient-med-enroll-content" infinite-scroll
+                                                (scroll)="onScrollDown($event)" [innerHTML]="medEnrollAuthContent.content">
+                                            </div>
+                                            <span class="disclaimer-container" [ngClass]="{ 'scroll-required': medEnrollAuthChecked }" [innerHTML]="medEnrollAuthContent.disclaimer"></span>
+                                            <div class="ml-2" fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="space-between start" fxFlexFill>
+                                                <div class="form-section" (click)="onCheckboxClick(medEnrollAuthContentConfig, 'medEnrollAuthConsent')">
+                                                        <app-form-checkbox
+                                                            [formItem]="medEnrollAuthContentConfig"
+                                                            [formGroup]="patientAuthorizationGroup"
+                                                            [disableCheckbox]="isScrolledMedEnrollAuthConsent || !checkIfHasScrollBar('medEnrollAuthConsent') ? isScrolledEnabled : true">
+                                                        </app-form-checkbox>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div *ngIf="showIsLegal && (patientAuthOnly || patientAssitProgOnly || obesTherapy)">
+                                    <label [innerHTML]="signatureContent.label" class="signature-label"></label>
+                                    <hr class="thick-hr-breakpoint">
+                                    <hr class="hr-breakpoint">
+                                    <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="space-between start" fxFlexFill>
+                                        <div class="signature-field">
+                                            <app-form-input
+                                                [formItem]="legalFullNameConfig"
+                                                [formGroup]="patientAuthorizationGroup"
+                                                (valueChanges)="onFullNameValueChange($event)"
+                                            ></app-form-input>
+                                        </div>
+                                    </div>
+
+                                    <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="space-between start" fxFlexFill>
+                                        <div class="signature-field-body-legal">
+                                            <app-form-signature
+                                                [formItem]="legalSignatureConfig"
+                                                [formGroup]="patientAuthorizationGroup"
+                                                [name]="fullName"
+                                            >
+                                            </app-form-signature>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                          </div>
+
+                          <div class="button-container d-sm-block d-md-none d-lg-none" fxLayout="row" fxLayout.lt-sm="column-reverse" fxLayoutAlign="end space-between" fxLayoutAlign.lt-sm="space-evenly stretch" fxFlexFill>
+                            <button
+                                mat-flat-button color="accent"
+                                type="button"
+                                (click)="cancelBtnClick()"
+                            >
+                                {{ cancelButtonText }}
+                            </button>
+                            <button
+                                mat-flat-button
+                                color="primary"
+                                type="button"
+                                [disabled]="!enableContinueButton || continueButtonClicked"
+                                (click)="continueBtnClick()"
+                                class="continueButton"
+                            >
+                                {{ continueButtonText }}
+                            </button>
+                          </div>
+                  </div>
+              </form>
+          </div>
+
+          <div class="button-container bot d-none d-md-flex d-lg-flex" fxLayout="row" fxLayout.lt-sm="column-reverse" fxLayoutAlign="end space-between" fxLayoutAlign.lt-sm="space-evenly stretch" fxFlexFill>
+            <button
+                mat-flat-button color="accent"
+                type="button"
+                (click)="cancelBtnClick()"
+            >
+                {{ cancelButtonText }}
+            </button>
+            <button
+                mat-flat-button
+                color="primary"
+                type="button"
+                [disabled]="!enableContinueButton || continueButtonClicked"
+                (click)="continueBtnClick()"
+                class="continueButton"
+            >
+                {{ continueButtonText }}
+            </button>
+          </div>
+        </div>
+
+        <div fxHide fxShow.lt-md class="need-assistance-container" fxLayoutAlign="start end">
+            <app-need-assistance
+              [title]="translateService.needAssistanceView.title"
+              [body]="translateService.needAssistanceView.body"
+              [footer]="translateService.needAssistanceView.footer">
+            </app-need-assistance>
+        </div>
+    </div>
+</div>

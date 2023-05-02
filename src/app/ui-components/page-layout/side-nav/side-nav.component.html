@@ -1,0 +1,37 @@
+<!-- side bar main wrapper -->
+<div class="side-nav-bar" [ngClass]="{ 'side-nav-bar-collapsed': !(showSideNav | async) }">
+    <!-- overlay -->
+    <div
+        class="side-nav-bar-overlay"
+        [ngStyle]="{ transition: 'background-color ' + duration + 's, visibility ' + duration + 's' }"
+        [ngClass]="{ 'side-nav-bar-overlay-collapsed': !(showSideNav | async) }"
+        (click)="onSidebarClose()"
+    ></div>
+
+    <!-- side bar-->
+    <div class="side-nav-bar-menu-container" [ngStyle]="getSideNavBarStyle(showSideNav | async)">
+        <!-- close button -->
+        <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="onSidebarClose()" color="primary">
+            <mat-icon aria-label="Side nav toggle icon">clear</mat-icon>
+        </button>
+
+        <!-- side bar content -->
+        <div class="side-nav-bar-content-container">
+            <mat-nav-list>
+                <a mat-list-item href="https://www.dupixent.com" target="_blank">dupixent.com</a>
+                <button mat-button class="menu-dropdown-title" (click)="toDisplay = !toDisplay;">
+                    {{ translateContentService.header.dropdownMenuContent.title
+                    }} <img class="caret-down-solid" src="../../../../assets/images/down-arrow.svg" />
+                </button>
+                <div fxLayoutAlign="start start" fxLayout="column" class="list-containter" *ngIf="toDisplay">
+                    <div *ngFor="let section of translateContentService.header.dropdownMenuContent.sections">
+                        <div class="menu-section-title">{{ section.sectionTitle }}</div>
+                        <div *ngFor="let link of section.links">
+                            <a class="menu-item-link" [href]="link.link" target="_blank">{{ link.title }}</a>
+                        </div>
+                    </div>
+                </div>
+            </mat-nav-list>
+        </div>
+    </div>
+</div>

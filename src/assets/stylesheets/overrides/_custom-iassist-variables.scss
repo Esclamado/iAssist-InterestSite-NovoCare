@@ -1,0 +1,23 @@
+// BOOTSTRAP 3 variables
+
+// TODO: migrate to BOOTSTRAP 4
+
+//new buttons variables
+$btn-lg-min-width: 200px;
+$btn-md-min-width: 120px;
+$btn-sm-min-width: 90px;
+$btn-lg-height: 40px;
+$btn-md-height: 35px;
+$btn-sm-height: 25px;
+$btn-lg-margin-left-base: 15px;
+$btn-lg-margin-left: $btn-lg-margin-left-base;
+$btn-md-margin-left: $btn-lg-margin-left-base;
+$btn-sm-margin-left: $btn-lg-margin-left-base;
+$btn-lg-line-height: 0.333333;
+$btn-sm-line-height: 1;
+$btn-xs-line-height: 1.3333333;
+
+$btn-font-size-lg: 16px;
+$btn-font-size-base: 14px; //This is actually the default button
+$btn-font-size-sm: 13px;
+$btn-font-size-xs: 12px; // Here for reference only

@@ -1,0 +1,51 @@
+<form [formGroup]="insuranceFormGroup" class="insurance-form-container">
+    <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="16px" fxLayoutGap.lt-sm="0px" fxLayoutAlign="start" fxFlexFill>
+        <div class="input-container" fxFlex="50">
+            <app-form-select [formItem]="insurancePlanType" [formGroup]="insuranceFormGroup"> </app-form-select>
+        </div>
+    </div>
+    <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="16px" fxLayoutGap.lt-sm="0px" fxLayoutAlign="start" fxFlexFill>
+        <div class="input-container" fxFlex="50">
+            <app-form-input [formItem]="policyholderFirstName" [formGroup]="insuranceFormGroup"> </app-form-input>
+        </div>
+        <div class="input-container">
+            <app-form-input [formItem]="policyholderLastName" [formGroup]="insuranceFormGroup"> </app-form-input>
+        </div>
+    </div>
+    <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="16px" fxLayoutGap.lt-sm="0px" fxLayoutAlign="start" fxFlexFill>
+        <div class="input-container" fxFlex="50">
+            <app-form-datepicker [formItem]="policyholderDateOfBirth" [formGroup]="insuranceFormGroup"> </app-form-datepicker>
+        </div>
+        <div class="input-container">
+            <app-form-select
+                [formItem]="policyholderRelationshipToPatient"
+                [formGroup]="insuranceFormGroup"
+            >
+            </app-form-select>
+        </div>
+    </div>
+    <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="16px" fxLayoutGap.lt-sm="0px" fxLayoutAlign="start" fxFlexFill>
+        <div class="input-container" fxFlex="50">
+            <app-form-input [formItem]="pbmName" [formGroup]="insuranceFormGroup"> </app-form-input>
+        </div>
+        <div class="input-container">
+            <app-form-input [formItem]="pbmPhoneNumber" [formGroup]="insuranceFormGroup"> </app-form-input>
+        </div>
+    </div>
+    <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="16px" fxLayoutGap.lt-sm="0px" fxLayoutAlign="start" fxFlexFill>
+        <div class="input-container" fxFlex="50">
+            <app-form-input [formItem]="policyholderIdNumber" [formGroup]="insuranceFormGroup"> </app-form-input>
+        </div>
+        <div class="input-container">
+            <app-form-input [formItem]="groupNumber" [formGroup]="insuranceFormGroup"> </app-form-input>
+        </div>
+    </div>
+    <!-- <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="16px" fxLayoutGap.lt-sm="0px" fxLayoutAlign="start" fxFlexFill>
+        <div class="input-container" fxFlex="50">
+            <app-form-input [formItem]="binNumber" [formGroup]="insuranceFormGroup"> </app-form-input>
+        </div>
+        <div class="input-container">
+            <app-form-input [formItem]="pcnNumber" [formGroup]="insuranceFormGroup"> </app-form-input>
+        </div>
+    </div> -->
+</form>

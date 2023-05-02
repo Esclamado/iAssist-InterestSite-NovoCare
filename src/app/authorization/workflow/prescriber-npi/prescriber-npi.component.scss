@@ -1,0 +1,499 @@
+@import "../../../../assets/stylesheets/variables";
+@import "../workflow.component.scss";
+
+.prescriber-container {
+  display: flex;
+
+  @media (max-width: $screen-desktop) {
+    flex-direction: column;
+  }
+
+  .prescriber-step {
+    margin-right: 238px;
+    max-width: 570px;
+
+    @media (max-width: $screen-desktop) {
+      width: auto;
+      margin-right: 0;
+      flex: 1;
+    }
+
+    @media (max-width: $screen-tablet) {
+      width: 100%;
+      margin-right: 0;
+      flex: 1;
+      max-width: none;
+  }
+  }
+
+  .image {
+    position: static;
+    width: 106px;
+    height: 20px;
+    left: 29px;
+    top: 0px;
+
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: $font-copyright;
+    line-height: 20px;
+    /* identical to box height, or 143% */
+
+    text-transform: uppercase;
+
+    color: $app-text-color !important;
+    padding-bottom: 50px;
+
+  }
+
+  .checkboxconsent {
+    padding-left: 36px;
+  }
+
+  .navigation-buttons {
+    margin-top: 2rem;
+
+    @media (max-width: $screen-mobile) {
+      display: flex;
+      justify-content: flex-end;
+      flex-direction: column-reverse;
+      align-items: center;
+      padding: 16px 30px;
+
+      a {
+        color: $app-text-dark;
+        font-family: $font-family-open-sans;
+        font-weight: $fw-600;
+        font-size: $font-normal;
+        cursor: pointer;
+      }
+
+      @media (max-width: $screen-mobile) {
+        position: relative;
+        bottom: 0;
+        left: 0;
+        padding-top: 0;
+        flex-direction: column;
+      }
+    }
+
+    .question {
+      color: $app-text-description-color-1;
+      font-family: $font-family-open-sans;
+      font-size: $font-normal;
+      height: 25px;
+      margin-bottom: 0.75rem;
+
+      @media (max-width: $screen-mobile) {
+        margin-bottom: 2rem;
+      }
+    }
+
+    .prescriber-npi-search-message {
+      padding: 0;
+    }
+
+    .prescriber-npi-result-box {
+      background: $app-background-card;
+      border: 1px solid $app-background-input;
+      box-sizing: border-box;
+      border-radius: 8px;
+      padding: 10px !important;
+      font-family: $font-family-open-sans;
+      font-size: $app-form-label-font-size;
+      font-weight: $fw-700;
+      color: $app-form-label-font-color;
+      width: 100% !important;
+      height: calc(1.75em + 1rem + 2px);
+
+      @media (max-width: $screen-mobile) {
+        height: 100%;
+
+        strong {
+          width: calc(31vh - 2.5rem) !important;
+          overflow: hidden;
+          display: inline-block;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+      }
+    }
+
+    .form-control .input {
+      width: 215%;
+    }
+
+    .prescriber-npi {
+      flex-direction: column;
+    }
+
+
+    .validation-feedback {
+      color: $error;
+      font-family: $font-family-open-sans-semibold;
+      font-weight: $fw-600;
+      font-size: $font-normal;
+      margin-top: $font-sm;
+    }
+
+    .invalid-feedback {
+      position: absolute;
+      display: block;
+      width: 100%;
+      font-size: $font-sm;
+      margin-top: -10px;
+      margin-left: -10%;
+    }
+  }
+
+  .npi-number {
+    position: relative;
+  }
+
+  .link-text {
+    font-family: $font-family-open-sans;
+    font-style: normal;
+    font-weight: $fw-600;
+    font-size: $app-form-custom-label-font-size;
+    color: $slate;
+    margin-left: 0rem;
+    margin-top: 0.5rem;
+  }
+
+  .prescriber-search-by-name {
+    .field-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      position: relative;
+
+      .field-container {
+        width: 45%;
+        position: relative;
+      }
+    }
+  }
+}
+
+  .services-rectangle::ng-deep {
+    position: relative;
+    padding: 40px 95px 60px;
+
+    @media (max-width: $screen-tablet) {
+      min-height: 0;
+      padding: 40px !important;
+    }
+    @media (max-width: $screen-mobile) {
+      min-height: 0;
+      padding: 0.75rem !important;
+    }
+  }
+
+  .skip-button{
+    &:disabled{
+      background: $app-background-input !important;
+      opacity: 0.5;
+    }
+  }
+
+.skip_link {
+  display: flex;
+  justify-content: flex-end;
+  position: absolute;
+  bottom: 26px;
+  left: 10px;
+  flex-direction: row;
+  align-items: center;
+  padding: 16px 30px;
+
+  a {
+    color: $app-text-dark;
+    font-family: $font-family-open-sans;
+    font-weight: $fw-600;
+    font-size: $font-normal;
+    cursor: pointer;
+  }
+
+  @media (max-width: $screen-mobile) {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    padding-top: 0;
+    flex-direction: column;
+  }
+}
+
+.question {
+  color: $slate;
+  font-family: $font-family-open-sans;
+  font-size: $font-small;
+  margin-bottom: 0.75rem;
+  line-height: 140%;
+  font-weight: $fw-600;
+
+  @media (max-width: $screen-mobile) {
+    margin-bottom: 2rem;
+  }
+}
+
+.custom-radio {
+  position: relative;
+  width: 380px;
+  height: 20px;
+  left: 0px;
+  top: 0px;
+}
+
+.prescriber-npi-search-message {
+  padding: 0;
+
+  .prescriber-info::ng-deep {
+    .form-group {
+      margin-left: 0px;
+      margin-bottom: 0px;
+
+      .custom-control.custom-radio {
+        border: 1px solid $app-background-input;
+        box-sizing: border-box;
+        border-radius: 5px;
+        padding-left: 30px;
+        flex: none;
+        order: 0;
+        flex-grow: 0;
+        margin: 5px 0px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        background: $app-background-card;
+        position: static;
+        display: flex;
+        min-height: 35px;
+        font-weight: $fw-600;
+        line-height: 29px;
+      }
+
+      .custom-control-label.text-muted {
+        font-family: $font-family-open-sans !important;
+        font-style: normal !important;
+        font-weight: $fw-600 !important;
+        color: $slate !important;
+        font-size: $font-normal !important;
+      }
+
+      .required {
+        color: $slate !important;
+        font-family: $font-family-open-sans;
+        font-style: normal;
+        font-weight: bold;
+        font-size: $font-small;
+        padding-bottom: 6px;
+      }
+
+      .row::ng-deep {
+        margin-left: 0rem;
+        width: 100%;
+      }
+
+      .custom-radio {
+        padding: 16px 20px !important;
+        margin: 0 0 5px 0 !important;
+        position: relative;
+
+        .custom-control-label {
+            font-size: $font-normal;
+            color: $app-form-label-font-color;
+            font-weight: $fw-600;
+            left: 1.25rem;
+
+            @media screen and (max-width: $screen-mobile) {
+                line-height: 21px;
+            }
+
+            &::before {
+                left: -1.75rem;
+                height: 18px;
+                width: 18px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
+            &::after {
+                left: -1.75rem;
+                height: 18px;
+                width: 18px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+        }
+
+    }
+    }
+  }
+}
+
+.prescriber-npi-result-box {
+  background: $app-background-card;
+  border: 1px solid $app-background-input;
+  box-sizing: border-box;
+  border-radius: 8px;
+  padding: 10px !important;
+  font-family: $font-family-open-sans;
+  font-size: $app-form-label-font-size;
+  font-weight: $fw-700;
+  color: $app-form-label-font-color;
+  width: 100% !important;
+  height: calc(1.75em + 1rem + 2px);
+
+  @media (max-width: $screen-mobile) {
+    height: 100%;
+
+    strong {
+      width: calc(31vh - 2.5rem) !important;
+      overflow: hidden;
+      display: inline-block;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+}
+
+.form-control .input {
+  width: 215%;
+}
+
+.validation-feedback::ng-deep {
+  color: $app-text-dark;
+  font-family: $font-family-open-sans;
+  font-weight: $fw-700;
+  font-size: $font-normal;
+  margin-top: 0;
+  margin-bottom: 8.5625rem !important;
+  display: inline;
+
+  div {
+    display: inline;
+  }
+
+  .search-again {
+    color: $app-download-blue;
+    cursor: pointer;
+  }
+
+  @media (max-width: $screen-mobile) {
+    margin-bottom: 0 !important;
+  }
+}
+
+.invalid-feedback {
+  display: block;
+  width: 100%;
+  font-size: $font-sm;
+  transform: translateY(-110%);
+  left: 0;
+}
+
+.fa-circle-plus {
+  color: $red;
+}
+
+.link-text {
+  font-family: $font-family-open-sans;
+  font-style: normal;
+  font-weight: $fw-600;
+  font-size: $app-form-custom-label-font-size;
+  line-height: 140%;
+  color: $slate;
+  margin-bottom: 0.938rem;
+  margin-left: -15px;
+}
+
+.prescriber-name-link {
+  font-family: $font-family-open-sans;
+  font-style: normal;
+  cursor: pointer;
+  font-weight: $fw-600;
+  font-size: $app-form-custom-label-font-size;
+  line-height: 140%;
+  color: $primary !important;
+  margin-bottom: 0.938rem;
+}
+
+.row {
+  margin: 0;
+
+  .prescriber-npi::ng-deep {
+
+    .form-group {
+      margin-top: 0.625rem;
+
+      .custom-control.custom-checkbox {
+        padding-left: 15px !important;
+      }
+
+      .form-control {
+        width: 200%;
+      }
+
+    }
+  }
+}
+
+
+.mat-progress-spinner::ng-deep {
+  display: inline-block;
+
+  circle {
+    stroke: $primary !important;
+  }
+}
+
+label.floating.required {
+  padding: 0;
+}
+
+.as_buttons {
+
+  .make-pointer {
+    cursor: pointer;
+  }
+
+  .add-prescriber {
+   flex-grow: 1;
+  }
+
+  img {
+    height: 14px;
+    width: 14px;
+    margin-top: 5rem;
+
+    @media (max-width: $screen-mobile) {
+      margin-top: 2.125rem !important;
+    }
+  }
+
+  p.add-prescriber-link {
+    font-weight: $fw-700;
+    font-size: $font-small;
+    padding: 1rem 0;
+    margin: 3.75rem 0 0 0.5rem;
+    color: $primary;
+
+    @media (max-width: $screen-mobile) {
+      margin-top: 0.875rem !important;
+      margin-bottom: 0 !important;
+      padding-bottom: 0 !important;
+    }
+  }
+
+  @media (max-width: $screen-mobile) {
+    margin-top: 20px;
+  }
+
+  .mat-flat-button {
+    @media (max-width: $screen-mobile) {
+      margin: 10px 0px 10px 0px !important;
+    }
+  }
+}

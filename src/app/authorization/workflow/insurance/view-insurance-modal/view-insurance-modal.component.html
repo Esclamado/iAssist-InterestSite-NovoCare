@@ -1,0 +1,86 @@
+<div class="view-insurance-modal-container">
+    <div class="consent-container">
+        <div fxLayout="row" fxLayoutAlign="start" fxFlexFill class="content-row">
+            <div fxLayout="column" fxLayoutAlign="space-between start" fxFlexFill class="title-content">
+                {{ viewContent.viewInsuranceTitle }}
+            </div>
+            <a class="close-button" (click)="close()">
+                <mat-icon>close</mat-icon>
+            </a>
+        </div>
+        <div fxLayout="column" fxLayoutAlign="space-between start" fxFlexFill>
+            <div class="header">{{ viewContent.insurancePlanType }}:</div>
+            <div class="description">{{ insuranceData.insurancePlanType }}</div>
+        </div>
+        <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="space-between start" fxFlexFill class="content-row">
+            <div fxFlex>
+                <div class="header">{{ viewContent.pbmName }}:</div>
+                <div class="description">
+                    {{ insuranceData.pbmName }}
+                </div>
+            </div>
+            <div fxFlex>
+                <div class="header">{{ viewContent.pbmPhone }}:</div>
+                <div class="description">
+                    {{ insuranceData.pbmPhone }}
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="space-between start" fxFlexFill class="content-row">
+            <div fxFlex>
+                <div class="header">{{ viewContent.policyIDNumber }}:</div>
+                <div class="description">
+                    {{ insuranceData.policyIDNumber }}
+                </div>
+            </div>
+            <div fxFlex>
+                <div class="header">{{ viewContent.groupNumber }}:</div>
+                <div class="description">
+                    {{ insuranceData.groupNumber }}
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="space-between start" fxFlexFill class="content-row">
+            <div fxFlex>
+                <div class="header">{{ viewContent.binNumber }}:</div>
+                <div class="description">
+                    {{ insuranceData.binNumber }}
+                </div>
+            </div>
+            <div fxFlex>
+                <div class="header">{{ viewContent.pcnNumber }}:</div>
+                <div class="description">
+                    {{ insuranceData.pcnNumber }}
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="space-between start" fxFlexFill class="content-row">
+            <div fxFlex>
+                <div class="header">{{ viewContent.policyholderFirstName }}:</div>
+                <div class="description">
+                    {{ insuranceData.policyholderFirstName }}
+                </div>
+            </div>
+            <div fxFlex>
+                <div class="header">{{ viewContent.policyholderLastName }}:</div>
+                <div class="description">
+                    {{ insuranceData.policyholderLastName }}
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="space-between start" fxFlexFill class="content-row">
+            <div fxFlex>
+                <div class="header">{{ viewContent.policyholderRelationshipToPatient }}:</div>
+                <div class="description">
+                    {{ insuranceData.policyholderRelationshipToPatient }}
+                </div>
+            </div>
+            <div fxFlex>
+                <div class="header">{{ viewContent.policyholderDateOfBirth }}:</div>
+                <div class="description">
+                    {{ insuranceData.policyholderDateOfBirth }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

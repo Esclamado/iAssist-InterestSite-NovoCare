@@ -1,0 +1,79 @@
+<section class="upload-document-content">
+        <label class="label-desktop" fxHide fxShow.gt-sm>
+            {{ uploadDocumentContent.uploadLabel.label}}
+            <span class="" *ngIf="uploadDocumentContent.uploadLabel.tooltip">
+              <i
+              [matTooltip]="uploadDocumentContent.uploadLabel.tooltip"
+              matTooltipPosition="above"
+              (click)="tooltip.toggle()"
+              (hover)="tooltip.toggle()"
+              #tooltip="matTooltip"
+              class="fa helper"></i></span>
+        </label>
+
+        <label fxHide fxShow.lt-sm class="label-mobile">
+          <label>
+            {{ uploadDocumentContent.uploadLabel.label}}
+          </label>
+          <span class="" *ngIf="uploadDocumentContent.uploadLabel.tooltip">
+            <i
+            [matTooltip]="uploadDocumentContent.uploadLabel.tooltip"
+            matTooltipPosition="above"
+            (click)="tooltip.toggle()"
+            (hover)="tooltip.toggle()"
+            #tooltip="matTooltip"
+            class="fa helper tooltip-helper"></i></span>
+        </label>
+        <div fxHide fxShow.gt-sm class="description" *ngIf="uploadDocumentContent.description" [innerHTML]="uploadDocumentContent.description"></div>
+        <div fxHide fxShow.lt-sm class="descrip-mobile" *ngIf="uploadDocumentContent.description2" [innerHTML]="uploadDocumentContent.description2"></div>
+        <div class="description description-font" *ngIf="uploadDocumentContent.description1" [innerHTML]="uploadDocumentContent.description1"></div>
+    <div class="upload-bt">
+        <button type="button" class="btn btn-default upload-button" (click)="uploadDocument()">
+            <i class="fa upload"></i>{{ uploadDocumentContent?.uploadButtonText }}
+        </button>
+        <input
+            (change)="onFileSelect($any($event.target).files)"
+            style="display: none"
+            #fileUpload
+            class="form-control"
+            id="document"
+            type="file"
+        />
+    </div>
+    <div class="warning-label">{{uploadDocumentContent?.fileSize}}</div>
+
+    <div fxHide fxShow.gt-md class="important-notice" *ngIf="uploadDocumentContent?.important" [innerHTML]="uploadDocumentContent?.important"></div>
+    <div fxHide fxShow.lt-sm class="important-notice" *ngIf="uploadDocumentContent?.importantMobile" [innerHTML]="uploadDocumentContent?.importantMobile"></div>
+    <div class="important-notice d-none d-md-block d-lg-none"  *ngIf="uploadDocumentContent?.importantTablet" [innerHTML]="uploadDocumentContent?.importantTablet"></div>
+    <div class="col-sm-12 mb-2 uploaded-documents d-flex document-flex-direction" *ngFor="let document of uploadedDocuments; let i = index">
+        <div class="flex-direction: column col-sm-12">
+            <div class="flex-direction: row">
+                <div class="col-sm-7 d-flex justify-content-end align-self-center document-name">
+                    <i class="file" (click)="preview(document.documentId)"></i>
+                    <div class="file-container">{{ document.fileName }}</div>
+                </div>
+                <div class="col-sm-5 d-flex justify-content-end align-self-center action-button">
+                  <a *ngIf="document.isValidFile"  class="mr-2">
+                      <div *ngIf="document.isValidFile; else elseBlock">
+                          <i class="close hide-close"></i>
+                      </div>
+                      <ng-template #elseBlock>
+                          <i class="delete"></i>
+                      </ng-template>
+                  </a>
+                  <a *ngIf="!document.isValidFile" (click)="deleteDocument(document.documentId)"  class="mr-2 mouse-pointer">
+                    <div *ngIf="document.isValidFile; else elseBlock">
+                        <i class="close hide-close"></i>
+                    </div>
+                    <ng-template #elseBlock>
+                        <i class="delete"></i>
+                    </ng-template>
+                  </a>
+                </div>
+            </div>
+            <div style="margin-right: -25px !important; margin-left: -25px">
+                <app-progress-bar [barValue]="document.fileUploadProgress" [barColor]="document.fileUploadState" class="custom-progress-bar"></app-progress-bar>
+            </div>
+        </div>
+    </div>
+</section>

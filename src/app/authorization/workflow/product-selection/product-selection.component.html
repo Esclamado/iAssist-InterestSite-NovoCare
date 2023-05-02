@@ -1,0 +1,45 @@
+<div class="product-container" fxLayoutAlign="space-between start" fxLayoutAlign.lt-lg="center start" fxLayout="row" fxLayout.lt-md="column">
+    <div class="avse-step">
+        <app-step
+            [showBackLink]="false"
+            [showRequired]="true"
+            [title]="stepContent?.header"
+            [description]="stepContent?.description"
+            [requiredText]="stepContent?.requiredText"
+            [requiredText]=""
+        >
+        </app-step>
+    </div>
+    <div class="services-main">
+        <div class="services-bg-block" fxHide fxShow.gt-sm></div>
+        <div class="services-rectangle">
+            <form [formGroup]="productSelectionGroup">
+                <div class="product-info" >
+                    <div>
+                        <app-form-radio
+                            [formItem]="productSelectedConfig"
+                            [formGroup]="productSelectionGroup"
+                            [inline]="false"
+                            (valueChanges)="onProductSelected($event)"
+                        >
+                        </app-form-radio>
+                    </div>
+                    <div fxLayout="row" fxLayout.lt-sm="column-reverse" fxLayoutAlign="end space-between" fxLayoutAlign.lt-sm="space-evenly stretch" fxFlexFill>
+                      <button mat-flat-button color="accent" type="button" (click)="cancelBtnClick()">
+                          {{ cancelButtonText }}
+                        </button>
+                        <button
+                        mat-flat-button
+                        color="primary"
+                        type="button"
+                        [disabled]="productSelectionGroup.invalid"
+                        (click)="continueButtonClick()"
+                        >
+                        {{ continueButtonText }}
+                      </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

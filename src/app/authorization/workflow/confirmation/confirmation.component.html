@@ -1,0 +1,60 @@
+<div
+    class="confirmation-container"
+    fxLayoutAlign="space-between start"
+    fxLayoutAlign.lt-lg="center start"
+    fxLayout="row"
+    fxLayout.lt-md="column"
+>
+    <div class="confirmation-step">
+        <app-step fxShow fxHide.lt-md
+            [title]="stepContent?.patientAuthorizationHeader"
+            [description]="stepContent?.description">
+        </app-step>
+        <app-step fxHide fxShow.lt-sm
+            [title]="stepContent?.patientAuthorizationHeader"
+            [description]="stepContent?.description1">
+        </app-step>
+        <div fxHide fxShow.gt-sm class="need-assistance-container" fxLayoutAlign="start end">
+          <app-need-assistance [title]="translationService.needAssistanceView.title" [body]="translationService.needAssistanceView.body" [footer]="translationService.needAssistanceView.footer"></app-need-assistance>
+        </div>
+    </div>
+    <div class="services-main"
+    *ngIf="priorAuthDocId || patientAuthorizationId">
+        <div class="services-bg-block" fxHide fxShow.gt-sm></div>
+        <div class="p-2 services-rectangle">
+          <form [formGroup]="documentForm">
+            <div class="confirmation-info">
+              <div class="confirmation-font-label">
+                <span class="form-body" [innerHTML]="stepContent?.patientAuthorizationDownloadLabel"></span>
+                <div class="form-group">
+                  <div class="with-background" *ngIf="patientAuthorizationId || priorAuthDocId">
+                    <div class="custom-control custom-checkbox custom-control-inline custom-checkbox-two">
+                      <input
+                        class="custom-control-input"
+                        type="checkbox"
+                        [disabled]="false"
+                        formControlName="patientAuthorization"
+                        id="patientAuthorization"
+                      />
+                      <label for="patientAuthorization" class="custom-control-label">{{patientAuthorizationLabel}}</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+          <div class="mb-2">
+            <button class="btn-download" (click)="download()">
+              <i class="fa fa-download" aria-hidden="true">
+               </i>
+               {{downloadBtnLabel}}
+            </button>
+          </div>
+        </div>
+    </div>
+    <div class="confirmation-complete" *ngIf="!priorAuthDocId && !patientAuthorizationId ">
+    </div>
+    <div fxHide fxShow.lt-md class="need-assistance-container" fxLayoutAlign="start end">
+      <app-need-assistance [title]="translationService.needAssistanceView.title" [body]="translationService.needAssistanceView.body" [footer]="translationService.needAssistanceView.footer"></app-need-assistance>
+    </div>
+</div>

@@ -1,0 +1,353 @@
+@import "../../../../assets/stylesheets/variables";
+
+.upload-document-content {
+
+  > label {
+    display: block;
+    font-family: $font-family-open-sans;
+    font-size: $app-form-custom-label-font-size;
+    font-weight: $fw-700;
+    color: $app-form-label-font-color;
+    line-height: 1.1375rem;
+
+      @media screen and (max-width: $screen-mobile) {
+          font-size: $font-normal;
+          font-weight: $fw-600;
+          width: 13.6875rem;
+        }
+
+      &.required::before {
+          color: $app-form-required-asterisk;
+          content: "*";
+          margin-right: 3px;
+      }
+  }
+
+  h6 {
+    font-size: $font-smaller-3;
+    font-family: $font-family-open-sans-bold;
+  }
+
+  .description {
+    display: block;
+    width: 31.4375rem;
+    font-size: $app-form-custom-label-font-size;
+    font-weight: $fw-400;
+    font-family: $font-family-open-sans;
+    line-height: 1.4rem;
+    color: $app-text-color;
+
+    @media (max-width: $screen-laptop){
+      display: inline;
+    }
+  }
+
+  .restrictions {
+    display: block;
+    font-size: $font-smaller;
+    font-family: $font-family-open-sans;
+    font-weight: $fw-600;
+  }
+
+  .restrictions-error {
+      color: $app-form-validation-message;
+      margin-bottom: 10px;
+      font-size: $font-sm;
+      margin-top: 0;
+  }
+
+  .upload-button {
+    color: $secondary;
+    font-size: $app-form-custom-label-font-size;
+    border: none;
+    font-family: $font-family-open-sans;
+    font-weight: $fw-700;
+    line-height: 1.138rem;
+    padding: 0 0.22em 0.125rem 0;
+  }
+
+  .uploaded-documents {
+    background-color: $app-background-card;
+    text-align: left;
+    padding: 10px 10px 0 10px;
+    color: $app-mid-grey-font-color;
+    gap: 1rem;
+
+    .col-sm-7,
+    .col-sm-5,
+    .col-sm-12 {
+        @media screen and (max-width: $screen-mobile) {
+          padding: 0px;
+        }
+      }
+
+      .col-sm-5 {
+        @media screen and (max-width: $screen-mobile) {
+          top: -10px;
+        }
+      }
+
+
+    .document-name {
+      word-break: break-all;
+    }
+
+    .action-button .fa {
+        display: inline;
+    }
+  }
+
+  .file-container{
+    position: absolute;
+    left: 8.25rem;
+    top: -1rem;
+    width: 300px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: $font-family-open-sans;
+    font-weight: $fw-700;
+    color: $app-text-color;
+
+    @media screen and (max-width: $screen-mobile) {
+      max-width: 11rem;
+      left: 4.25rem;
+      top: -0.25rem;
+      overflow: hidden;
+      white-space: break-spaces;
+      line-height: 1rem;
+      letter-spacing: 0px;
+      text-align: left;
+    }
+
+    @media (max-width: $screen-laptop){
+      left: 2.5rem;
+      width: 220px;
+    }
+  }
+
+  .file{
+    position: absolute;
+    left: 5.25rem;
+    top: -1rem;
+    display: block;
+    height: 25px;
+    width: 25px;
+    background: url(../../../../assets/images/file.svg) no-repeat right;
+    margin-right: 5px;
+    cursor: pointer;
+    color:$red;
+
+    @media screen and (max-width: $screen-mobile) {
+      left: 1.25rem;
+      top: 0rem;
+      margin: 0rem;
+    }
+
+    @media (max-width: $screen-laptop){
+        left: 0rem;
+    }
+
+  }
+
+  .upload{
+    height: 0.75rem;
+    width: 0.75rem;
+    background: url(../../../../assets/images/upload1.svg) no-repeat right;
+    margin-right: 5px;
+    margin-bottom: -0.20em;
+    transform: translateY(-0.1rem);
+  }
+
+  i {
+    background-color: $secondary;
+  }
+
+  .delete{
+    height: 1rem;
+    width: 0.875rem;
+    background: url(../../../../assets/images/delete.svg) no-repeat right;
+    display: inline-block !important;
+
+    @media screen and (max-width: $screen-mobile) {
+      margin-right: 1rem;
+      transform: translateY(0.6rem);
+    }
+  }
+
+  .close{
+    height: 1rem;
+    width: 1rem;
+    background: url(../../../../assets/images/close.svg) no-repeat right;
+    display: inline-block !important;
+
+    @media screen and (max-width: $screen-mobile) {
+      margin-right: 1rem;
+      transform: translateY(0.6rem);
+      margin-bottom: 0.2813rem;
+      margin-top: 0.2813rem;
+    }
+  }
+
+  .warning-label{
+    font-family: $font-family-open-sans;
+    font-weight: $fw-600;
+    line-height: 1.3rem;
+    margin-bottom: 2.5rem !important;
+    color: $inactive;
+    font-size: $font-smaller;
+    @media (max-width: $screen-mobile) {
+      width: 18.4375rem;
+      margin-bottom: 0.625rem !important;
+    }
+  }
+
+  .document-flex-direction {
+    flex-direction: row;
+    border-radius: 5px;
+    justify-content: center;
+    align-items: center;
+    width: 38rem;
+    height: 4.25rem;
+    margin-top: 1.875rem;
+
+    @media (max-width: $screen-desktop) {
+      flex-direction: column;
+    }
+
+    @media (max-width: $screen-mobile) {
+      box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+      width: 302px;
+      flex-direction: column;
+      margin-top: 0.625rem !important;
+      margin-bottom: 0.625rem !important;
+    }
+  }
+
+  p {
+    font-size: $font-tooltip;
+    margin-bottom: .8rem;
+
+    &.required::before {
+      color: $app-form-validation-message;
+      content: '*';
+      margin-right: 1px;
+    }
+  }
+
+  .custom-progress-bar::ng-deep{
+    .mat-progress-bar.mat-accent {
+        .mat-progress-bar-fill::after {
+          background-color: $app-download-blue !important;
+        }
+      }
+  }
+
+}
+
+.description-font {
+  font-weight: $fw-700 !important;
+  font-style: italic;
+  margin-bottom: 0.8125rem;
+}
+
+.upload-bt{
+  width: 125px;
+  height: 18px;
+  margin-bottom: 0.625rem;
+  @media (max-width: $screen-mobile) {
+    margin-top: 1.625rem !important;
+  }
+}
+
+.helper{
+  height: 1rem;
+  width: 1rem;
+  background: url(../../../../assets/images/helper.svg) no-repeat right;
+  margin-right: 5px;
+  margin-bottom: -0.20em;
+  transform: translateY(-0.1rem);
+  background-color: $transparent !important;
+}
+
+.label-mobile{
+  width: 15rem;
+  height: 3.25rem;
+  position: relative;
+}
+
+.tooltip-helper{
+  position: absolute;
+  top: 0.3125rem;
+}
+
+.descrip-mobile{
+  font-weight: $fw-400;
+  font-size: $font-small;
+  font-family: $font-family-open-sans;
+  letter-spacing: 0.0063rem;
+  color: $app-text-color;
+  width: 19.75;
+  font-style: normal;
+}
+
+::ng-deep .mat-tooltip {
+  white-space: pre-line !important;
+  padding: 12px !important;
+  max-width: none !important;
+  font-family: $font-family-open-sans !important;
+  font-size: $font-tooltip !important;
+  font-style: normal;
+  color: $white !important;
+  height: unset !important;
+}
+
+.label-mobile{
+  width: 15rem;
+  height: 3.25rem;
+  position: relative;
+  font-size: $font-normal !important;
+  font-weight: $fw-700 !important;
+}
+
+.label-desktop{
+  font-size: $font-normal !important;
+  font-weight: $fw-600 !important;
+}
+
+.important-notice{
+  font-size: $font-small;
+  line-height: 1.1375rem;
+  font-family: $font-family-open-sans;
+  color: $text-important;
+  background-color: $bg-important;
+  height: unset;
+  @media (min-width: $screen-desktop-lg) {
+    padding: 15px 27px 16px 27px;
+    width: 38.7106rem;
+    font-weight: $fw-600;
+  }
+  @media (max-width: $screen-laptop) {
+    padding: 15px 27px 16px 27px;
+    width: 100%;
+    font-weight: $fw-600;
+  }
+  @media (max-width: $screen-tablet) {
+    padding: 15px 27px 16px 27px;
+    font-weight: $fw-600;
+  }
+  @media (max-width: $screen-mobile) {
+    padding: 24px 15px 24px 15px;
+    width: 19rem;
+    font-weight: $fw-600;
+  }
+}
+
+.hide-close{
+  display: none;
+  background: none !important;
+}
+
+.mouse-pointer{
+  cursor: pointer;
+}

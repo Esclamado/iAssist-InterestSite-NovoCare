@@ -1,0 +1,45 @@
+<div class="patient-demographic-container" fxLayoutAlign="space-between start" fxLayoutAlign.lt-lg="center start"
+    fxLayout="row" fxLayout.lt-md="column">
+    <div class="patient-demographic-step">
+        <app-step [showBackLink]="showPrevious" [backText]="stepContent?.back" [title]="stepContent?.header"
+            [description]="stepContent?.description" [requiredText]="stepContent?.requiredText" [showRequired]="true">
+        </app-step>
+    </div>
+
+    <div class="services-main">
+        <div class="services-bg-block" fxHide fxShow.gt-sm></div>
+        <div class="p-2 services-rectangle">
+            <app-stepper activeStep="income-verification"></app-stepper>
+            <form [formGroup]="incomeVerificationGroup" ngSubmit="submit();">
+
+                <div fxLayout="column" fxLayoutGap="0px">
+                    <div fxLayout.gt-sm="row" fxLayout.lt-sm="column" fxLayout.sm="row" fxLayoutGap.sm="16px" fxLayoutGap.gt-sm="16px">
+                        <div fxLayout="column" fxFlex>
+                            <app-form-input [formItem]="incomeVerificationHouseholdSizeConfig"
+                                [formGroup]="incomeVerificationGroup">
+                            </app-form-input>
+                            <p class="under-description">{{incomeVerificationHouseholdSizeDescription}}</p>
+                        </div>
+                        <div fxLayout="column" fxFlex>
+                            <app-form-input [formItem]="incomeVerificationAnnualHouseholdIncomeConfig"
+                                [formGroup]="incomeVerificationGroup">
+                            </app-form-input>
+                            <p class="under-description">{{incomeVerificationAnnualHouseholdIncomeDescription}}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="as_buttons" fxLayout="row" fxLayout.lt-sm="column-reverse" fxLayoutAlign="end space-between"
+                    fxLayoutAlign.lt-sm="space-evenly stretch" fxFlexFill>
+                    <button mat-flat-button color="accent" type="button" (click)="cancelBtnClick();">
+                        {{cancelButtonText}}
+                    </button>
+                    <button mat-flat-button color="primary" type="button" [disabled]="incomeVerificationGroup.invalid"
+                        (click)="submit();">
+                        {{continueButtonText}}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

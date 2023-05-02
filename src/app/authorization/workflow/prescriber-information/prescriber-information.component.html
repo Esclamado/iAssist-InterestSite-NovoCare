@@ -1,0 +1,77 @@
+<div
+    class="prescriber-container"
+    fxLayoutAlign="space-between start"
+    fxLayoutAlign.lt-lg="center start"
+    fxLayout="row"
+    fxLayout.lt-md="column"
+>
+    <div class="prescriber-step">
+        <app-step
+            [showBackLink]="true"
+            [showRequired]="true"
+            [backText]="stepContent?.back"
+            [title]="stepContent?.header"
+            [description]="stepContent?.description"
+            [importantDrugUrl]="drugUrl"
+        >
+        </app-step>
+    </div>
+
+    <div class="services-main">
+        <div class="services-bg-block" fxHide fxShow.gt-sm></div>
+        <div class="services-rectangle">
+            <app-stepper [activeStep]="'prescriber-information'"></app-stepper>
+            <form [formGroup]="prescriberInformationGroup">
+                <div class="prescriber-information">
+
+                    <div fxLayout.gt-sm="row" fxLayout.lt-sm="column" fxLayout.sm="row" fxLayoutGap.gt-xs="16px">
+                        <div fxLayout="column" fxFlex>
+                            <app-form-input [formItem]="prescriberNpiConfig" [formGroup]="prescriberInformationGroup"> </app-form-input>
+                        </div>
+                        <div fxLayout="column" fxFlex>
+                        </div>
+                    </div>
+
+                    
+                    <div fxLayout.gt-sm="row" fxLayout.lt-sm="column" fxLayout.sm="row" fxLayout.sm="row" fxLayoutGap.gt-xs="16px"  >
+                        <div fxLayout="column" fxFlex>
+                            <app-form-input [formItem]="prescriberFirstNameConfig" [formGroup]="prescriberInformationGroup">
+                            </app-form-input>
+                        </div>
+                        <div fxLayout="column" fxFlex>
+                            <app-form-input [formItem]="prescriberLastNameConfig" [formGroup]="prescriberInformationGroup">
+                            </app-form-input>
+                        </div>
+                    </div>
+
+                    <div fxLayout.gt-sm="row" fxLayout.lt-sm="column" fxLayout.sm="row" fxLayout.sm="row" fxLayoutGap.gt-xs="16px"  >
+                        <div fxLayout="column" fxFlex>
+                            <app-form-input [formItem]="prescriberSpecialtyConfig" [formGroup]="prescriberInformationGroup"> </app-form-input>
+                        </div>
+                        <div fxLayout="column" fxFlex>
+                            <app-form-input [formItem]="prescriberStateNumberConfig" [formGroup]="prescriberInformationGroup">
+                            </app-form-input>
+                        </div>
+                    </div>
+   
+                    <div fxLayout.gt-sm="row" fxLayout.lt-sm="column" fxLayout.sm="row" fxLayoutGap.gt-xs="16px">
+                        <div fxLayout="column" fxFlex>
+                            <app-form-input [formItem]="taxIdNumberConfig" [formGroup]="prescriberInformationGroup"> </app-form-input>
+                        </div>
+                        <div fxLayout="column" fxFlex>
+                        </div>
+                    </div>
+
+                    <div fxLayout="row" fxLayout.lt-sm="column-reverse" fxLayoutAlign="end space-between" fxLayoutAlign.lt-sm="space-evenly stretch" fxFlexFill>
+                        <button mat-flat-button color="accent" type="button" (click)="cancelBtnClick()">
+                            {{ cancelButtonText }}
+                        </button>
+                        <button mat-flat-button color="primary" type="button" [disabled]="prescriberInformationGroup.invalid" (click)="continueBtnClick()">
+                            {{ continueButtonText }}
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,51 @@
+@import "../../../../assets/stylesheets/_variables.scss";
+
+.cancel-modal-container {
+  position: relative;
+  .btn {
+    @media (max-width: $screen-mobile) {
+      margin-bottom: 10px !important;
+      margin-right: 0px !important;
+    }
+  }
+}
+
+b {
+  font-family: $font-family-open-sans-regular;
+  font-size: $font-title-lg;
+  font-weight: $fw-700;
+  line-height: 64px;
+  font-feature-settings: 'pnum' on, 'lnum' on;
+
+  @media (max-width: $screen-mobile) {
+    font-size: $font-larger;
+  }
+}
+
+h1{
+  color: $app-text-description-color-1;
+}
+
+p {
+  font-family: $font-family-open-sans-regular;
+  font-size: $font-assistance-title;
+  color: $slate;
+  @media (max-width: $screen-mobile) {
+    font-size: $font-normal;
+  }
+}
+
+.close-icon{
+  font-size: $font-title1-sm;
+  position: absolute;
+  top: -10%;
+  right: -5%;
+  color: $app-text-color;
+  cursor: pointer;
+}
+
+button{
+  font-weight: $fw-600;
+  width: 191px;
+  height: 56px;
+}

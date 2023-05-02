@@ -1,0 +1,793 @@
+@import '../../../../assets/stylesheets/variables';
+@import '../workflow.component.scss';
+
+.patient-authorization-container {
+    display: flex;
+    justify-content: space-between;
+
+    @media (max-width: $screen-desktop) {
+        flex-direction: column;
+    }
+
+    @media (max-width: $screen-tablet) {
+        gap: 12.25rem;
+    }
+
+    @media (max-width: $screen-mobile) {
+        width: 100%;
+    }
+
+    .patient-authorization-step::ng-deep {
+        margin-right: 14.875rem;
+        max-width: 35.625rem;
+
+        @media (max-width: $screen-desktop) {
+            width: auto;
+            margin-right: 0;
+            flex: 1;
+        }
+
+        @media (max-width: $screen-tablet) {
+            width: 100%;
+            margin-right: 0;
+            flex: 1;
+            max-width: none;
+        }
+
+        @media (max-width: $screen-laptop){
+            margin-right: 0;
+        }
+
+        width: 40%;
+        .info-section{
+            .back-text{
+                margin-bottom: 2.5rem;
+                padding: 0 !important;
+            }
+            .back-link{
+                color: $app-text-color !important
+            }
+            .step-text-primary{
+                margin-bottom: 2.5rem !important;
+                padding-right: 1.25rem !important;
+                @media (max-width: $screen-mobile) {
+                    margin-bottom: 1.25rem !important;
+                    padding-right: 0rem !important;
+                }
+            }
+            .description{
+                font-weight: $fw-600 !important;
+                margin-bottom: 2.5rem !important;
+                letter-spacing: 0.006rem;
+            }
+            .important{
+                display: none;
+            }
+            .docu-description-upload{
+                height: 7.125rem !important;
+                @media (max-width: $screen-desktop-sm) {
+                    height: 9.5rem !important;
+                }
+            }
+        }
+        @media (max-width: $screen-desktop) {
+            width: auto;
+            margin-right: 0;
+            flex: 1;
+        }
+    }
+
+    .need-assistance-container {
+        width:100%;
+
+        @media (max-width: $screen-tablet) {
+          margin-top: 2rem;
+        }
+
+        app-need-assistance {
+          width:100%;
+          position: relative;
+        }
+      }
+
+    .patient-authorization::ng-deep {
+        @media (max-width: $screen-mobile) {
+            width: 100%;
+        }
+        button{
+           padding: 1rem 3rem;
+        }
+        .mat-flat-button {
+            border-radius: 0.5rem;
+            transform: translateY(-1.25rem);
+
+            @media (max-width: $screen-mobile) {
+                margin: 10px 0px 10px 0px !important;
+            }
+        }
+        .provide-text {
+            margin-bottom: 1.25rem;
+            font-size: $font-normal;
+            font-family: $font-family-open-sans;
+            color: $slate;
+            font-weight: $fw-400;
+            margin-bottom: 1rem;
+        }
+
+        .email-continue-text {
+            margin-bottom: 1.25rem;
+            font-size: $font-normal;
+            font-family: $font-family-open-sans;
+            color: $slate;
+            font-style: italic;
+            font-weight: $fw-600;
+            margin-bottom: 1rem;
+        }
+
+        .skip-continue-text {
+            margin-bottom: 1.25rem;
+            font-size: $font-normal;
+            font-family: $font-family-open-sans;
+            color: $slate;
+            font-style: italic;
+            font-weight: $fw-600;
+            margin-bottom: 1rem;
+        }
+
+        .form-group {
+            top: 0px;
+            margin-left: 0rem;
+            margin-bottom: 0.875rem;
+
+            @media (max-width: $screen-mobile) {
+                margin-bottom: 4.375rem;
+            }
+
+        }
+
+        .floating-text{
+            font-size: $app-form-custom-label-font-size;
+            color: $app-dark-grey-font-color;
+            font-weight: $fw-600;
+            line-height: 130%;
+        }
+
+        .tooltip-container{
+            color: $app-text-color;
+            img{
+                width: 1rem;
+                height: 1rem;
+            }
+        }
+
+        .legal-discloser {
+            background-color: $bg-important;
+            padding: 0.875rem 29.32px;
+            font-size: $font-small;
+            font-family: $font-family-open-sans;
+            color: $text-important;
+            font-weight: $fw-600;
+            margin-bottom: 1.875rem;
+            @media (max-width: $screen-mobile) {
+                margin-top: 1.875rem;
+            }
+        }
+        .row {
+            margin-left: 0rem;
+            margin-right: 0rem;
+        }
+        .padding-left-15 {
+            padding-left: 0.9375rem;
+        }
+
+        .sign-mode-text {
+            font-style: italic;
+            width: 37rem;
+            color: $app-text-color !important;
+            font-weight: 400;
+            font-size: $font-small;
+            font-family: $font-family-open-sans;
+            line-height: 140%;
+            @media (max-width: $screen-mobile) {
+                width: 100%;
+            }
+        }
+
+        .input-container {
+            width: 100%;
+            @media (max-width: $screen-mobile) {
+                width: 100%;
+                height: 7.8125rem;
+            }
+        }
+
+        .input-container-authorization-option {
+            width: 100%;
+            @media (max-width: $screen-mobile) {
+                width: 100%;
+                height: 15.625rem;
+                margin-bottom: 1.875rem;
+            }
+        }
+
+        .legal-input-container{
+            width: 100%;
+            .floating-text{
+                font-family: $font-family-open-sans;
+                font-weight: $fw-600;
+                font-size: $font-normal;
+                color: $app-text-dark;
+                line-height: 1.375rem;
+            }
+            @media (max-width: $screen-mobile) {
+                width: 100%;
+            }
+        }
+
+        .patient-auth-and-pap-division{
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .pap-auth-title{
+            font-family: $font-family-open-sans;
+            font-weight: $fw-600;
+            font-size: $font-large;
+            line-height: 170%;
+            color: $slate;
+            margin-bottom: 0rem;
+            @media (max-width: $screen-mobile) {
+                font-weight: $fw-700 !important;
+            }
+        }
+
+        .pap-auth-subtext{
+            font-family: $font-family-open-sans;
+            font-weight: $fw-400;
+            font-size: $font-modal-body;
+            line-height: 30.6px;
+            color: $slate;
+            margin-bottom: $font-title-sm;
+            @media (max-width: $screen-mobile) {
+                font-size: $font-large;
+            }
+        }
+
+        .form-section{
+            width: 100%;
+            @media (max-width: $screen-mobile) {
+                width: 100%;
+                height: 83px;
+            }
+        }
+
+        .fcra-section{
+            width: 100%;
+            height: 3.125rem;
+            @media (max-width: $screen-mobile) {
+                width: 100%;
+                height: 5.625rem;
+            }
+        }
+
+        .signature-label{
+            width: 100%;
+            margin: 0rem;
+            bottom: -25px;
+            position: relative;
+            font-family: $font-family-open-sans;
+            font-size: 14px;
+            font-weight: 600;
+            color: $app-dark-grey-font-color;
+            @media (max-width: $screen-mobile) {
+                width: 100%;
+            }
+        }
+
+        .thick-hr-breakpoint{
+            border: none;
+            height: 3px;
+            background-color: $arx-primary;
+            position: relative;
+            width: 109px;
+            left: -41%;
+            bottom: -16px;
+            @media (max-width: $screen-mobile) {
+                width: 109px;
+                left: -32%;
+            }
+        }
+
+        .hr-breakpoint{
+            background-color: $app-form-checkbox-border;
+            height: 1px;
+        }
+
+        .signature-field{
+            width: 100%;
+            input{
+                width: 15.75rem !important;
+                border-radius: 0.125rem !important;
+                height: 2.125rem !important;
+                font-size: 0.875rem !important;
+                font-family: $font-family-open-sans;
+                font-weight: 400;
+                line-height: 130% !important;
+                border: 1px solid $app-form-checkbox-border;
+                @media (max-width: $screen-mobile) {
+                    width: 100%;
+                }
+            }
+
+            label{
+                margin-bottom: 0.5rem !important;
+                @media (max-width: $screen-mobile) {
+                    width: 100%;
+                }
+            }
+        }
+
+        .signature-field-body-patient{
+            width: 100%;
+            input{
+                font-size: 20px;
+            }
+
+            .signature-body {
+                background-color: white;
+                margin-bottom: 0.625rem;
+                width: 37.25rem;
+                height: 7.125rem;
+                border: 1px solid $app-form-checkbox-border;
+                @media (max-width: $screen-laptop) {
+                    width: 100%;
+                }
+
+                @media (max-width: $screen-mobile) {
+                    width: 100%;
+                    height: 13.75rem;
+                }
+
+                canvas {
+                    position: sticky;
+                    width: 25.875rem;
+                    height: 12.5rem;
+                    padding: 1.0625rem 0.1875rem 4.0625rem 2.375rem;
+                    @media (max-width: $screen-laptop) {
+                        width: 100%;
+                    }
+
+                    @media (max-width: $screen-mobile) {
+                        width: 100%;
+                        padding: 1.6594rem 0 0 1.4375rem;
+                    }
+                }
+            }
+
+            .sign-mode-text{
+                font-size: $font-smaller !important;
+                @media (max-width: $screen-laptop) {
+                    width: 100%;
+                }
+            }
+        }
+
+        .signature-field-body-legal{
+            width: 100%;
+            input{
+                font-size: 20px;
+            }
+
+            .signature-body {
+                background-color: white;
+                margin-bottom: 0.625rem;
+                width: 37.25rem;
+                height: 7.125rem;
+                border: 1px solid $app-form-checkbox-border;
+                @media (max-width: $screen-laptop) {
+                    width: 100%;
+                }
+
+                @media (max-width: $screen-mobile) {
+                    width: 100%;
+                    height: 13.75rem;
+                }
+
+                canvas {
+                    position: sticky;
+                    width: 25.875rem;
+                    height: 12.5rem;
+                    padding: 1.0625rem 0.1875rem 4.0625rem 2.375rem;
+                    @media (max-width: $screen-laptop) {
+                        width: 100%;
+                    }
+
+                    @media (max-width: $screen-mobile) {
+                        width: 100%;
+                        padding: 1.6594rem 0 0 1.4375rem;
+                    }
+                }
+            }
+
+            .sign-mode-text{
+                font-size: $font-small !important;
+                @media (max-width: $screen-laptop) {
+                    width: 100%;
+                }
+
+                @media (max-width: $screen-mobile) {
+                    font-size: $font-smaller !important;
+                }
+            }
+        }
+
+        .disclaimer-container{
+            width: 100%;
+            font-family: $font-family-open-sans;
+            font-weight: 400;
+            font-size: 0.75rem;
+            font-style: italic;
+        }
+
+        .scroll-required {
+            color: $error;
+        }
+
+        .terms-of-use-link{
+            width: 100%;
+            font-family: $font-family-open-sans;
+            font-size: 0.875rem;
+            font-weight: 400;
+            font-style: italic;
+            position: relative;
+            top: -1.5625rem;
+            left: 1.25rem;
+            text-decoration: underline;
+            @media (max-width: $screen-mobile) {
+                width: 100%;
+                top: -95%;
+            }
+            a{
+                color: $secondary;
+            }
+        }
+
+        .button-container{
+            @media (max-width: $screen-mobile) {
+                margin-top: 4.375rem;
+              }
+        }
+
+        .continueButton {
+            margin-right: - 0.0625rem;
+        }
+
+    }
+
+    .mat-flat-button {
+      @media (max-width: $screen-mobile) {
+        margin: 0px 0px 10px 0px !important;
+      }
+    }
+
+    .as_buttons {
+        display: flex;
+        justify-content: flex-end;
+        position: absolute;
+        bottom: 20px;
+        right: 0;
+        flex-direction: row;
+        align-items: center;
+        padding: 16px 48px;
+    }
+
+    .validation-feedback {
+        color: $primary;
+        font-size: $font-smaller-2;
+        margin-top: 0;
+    }
+
+    .or-text{
+        font-weight: $fw-700;
+        font-size: $font-large;
+        color: $slate;
+    }
+
+    .send-cont{
+        display: flex;
+        align-items: flex-end;
+    }
+
+    .send-now-btn{
+        display: flex;
+        align-items: center;
+        height: 100%;
+        button {
+            margin-top: 25%;
+            width: 134.15px;
+        }
+
+        @media (max-width: $screen-mobile) {
+            position: relative;
+            margin-bottom: 20px;
+            button{
+                width: auto;
+                margin-top: 0%;
+            }
+        }
+    }
+
+    .sent-btn {
+        padding: 1rem 0 !important;
+        background-color: $primary;
+        color: $white;
+    }
+
+    .patient-legal-text-container{
+        margin-top: 24px;
+        color: $slate;
+        .title{
+            font-size: 1.313rem;
+            font-weight: $fw-600;
+            margin-bottom: 10px;
+            font-family: $font-family-roboto;
+            font-style: normal;
+            letter-spacing: 0.5px;
+        }
+        .description{
+            font-size: 1rem;
+            font-weight: $fw-400;
+            line-height: 21.79px;
+            margin: 0;
+            color: $slate;
+        }
+    }
+
+    .content-label {
+      font-family: $font-family-open-sans;
+      font-style: normal;
+      font-weight: $fw-600;
+      font-size: $font-normal;
+      line-height: 140%;
+      color: $app-dark-grey-font-color;
+      margin-bottom: 0.625rem;
+    }
+
+    .first-content-label{
+      font-family: $font-family-open-sans;
+      font-style: normal;
+      font-weight: $fw-600;
+      font-size: $font-normal;
+      line-height: 140%;
+      color: $app-dark-grey-font-color;
+      margin-bottom: 0.625rem;
+      @media (max-width: $screen-mobile) {
+        margin-top: 1.875rem;
+    }
+    }
+
+    .last-content-label {
+      font-family: $font-family-open-sans;
+      font-style: normal;
+      font-weight: $fw-600;
+      font-size: $font-normal;
+      line-height: 140%;
+      color: $app-dark-grey-font-color;
+      margin-bottom: 0.625rem;
+      margin-top: 1.25rem;
+    }
+
+    .content {
+        max-height: 20vh;
+        border: 1px solid $app-program-box-description;
+        padding: 1em;
+        font-size: 0.813rem;
+        overflow-y: scroll;
+        font-family: $font-family-open-sans;
+        margin-bottom: 0.6875rem;
+        color: $app-text-color;
+    }
+
+    i {
+        transform: translateY(-0.115rem);
+    }
+}
+
+.services-main::ng-deep {
+    @media (max-width: $screen-mobile) {
+        margin-top: -12rem;
+    }
+
+    @media (max-width: $screen-laptop){
+        width: 54%;
+    }
+
+    @media (max-width: $screen-tablet){
+      width: 100%;
+    }
+
+    .services-rectangle{
+        padding: 2.5rem 4.3125rem 2.5rem 5.9375rem !important;
+        width: 100%;
+        height: 34.6875rem;
+        @media (max-width: $screen-tablet) {
+            width: 100%;
+          }
+        @media (max-width: $screen-mobile) {
+            padding: 1rem !important;
+            margin-top: 1.25rem !important;
+            width: 100% !important;
+            height: 41.25rem !important;
+        }
+        form {
+            margin-top: 0.5rem;
+        }
+
+        .form-group  {
+            div>div.custom-control.custom-radio-no-bg {
+                padding: 0 0 10px 0.495rem !important;
+            }
+
+            .group-label{
+                font-weight: $fw-600 !important;
+                line-height: 1.375rem !important;
+                color: $app-text-description-color-1 !important;
+                @media (max-width: $screen-mobile) {
+                    margin-top: 30px !important;
+                    margin-bottom: 1rem;
+                }
+            }
+
+            .custom-radio .custom-control-label{
+                line-height: 1.375rem !important;
+                font-weight: 400 !important;
+                @media (max-width: $screen-mobile) {
+                    width: 16.375rem !important;
+                }
+            }
+        }
+    }
+
+    .message-now{
+        margin-top: 1rem;
+    }
+    .form-container{
+        margin-top: 0rem;
+    }
+    .authorization::ng-deep{
+        .ng-star-inserted{
+            .custom-control-label{
+               padding: 0.25rem 0 0 0.625rem;
+            }
+
+            .custom-control-label::after{
+                width: 24px !important;
+                height:24px !important ;
+            }
+            .custom-control-label::before{
+                width: 24px !important;
+                height:24px !important ;
+
+            }
+
+        }
+        .custom-control.custom-radio{
+            padding: 0px 14px !important;
+        }
+    }
+
+    .content-checkboxes{
+        display: flex;
+        align-items: flex-start;
+        input{
+            height: 20px;
+            width: 20px;
+            accent-color: $primary;
+        }
+        .astrx-req{
+            margin-left: 0.5rem;
+            color: $error;
+            font-weight: $fw-800;
+        }
+        span{
+            margin-left: 0.5rem;
+            font-size: $font-small !important;
+            font-weight: $fw-400;
+        }
+    }
+    .witness-label{
+        color: $slate;
+        font-size: $font-normal;
+        font-weight: $fw-700;
+    }
+}
+.patient-authorization-step::ng-deep{
+    .description{
+        @media (max-width: $screen-mobile) {
+            font-size: $font-large !important;
+            width: 100%;
+        }
+    }
+}
+
+.mat-css-parent{
+  position: relative;
+  @media (max-width: $screen-mobile) {
+    width: 15.625rem;
+}
+}
+
+@media (max-width: $screen-desktop-md) {
+  .authorization-mat{
+    position: absolute;
+    top: 71px;
+    left: 455px;
+    z-index: 99999;
+  }
+
+  .fcra-mat{
+    position: absolute;
+    top: 2px;
+    left: 493px;
+  }
+}
+
+@media (max-width: $screen-mobile) {
+  .authorization-mat{
+    position: absolute;
+    top: 120px;
+    left: 240px;
+  }
+
+  .assistance-papa-mat{
+    position: absolute;
+    left: 15.625rem;
+  }
+
+  .fcra-mat{
+    position: absolute;
+    top: 0px;
+    left: 15.625rem;
+  }
+}
+
+::ng-deep .mat-tooltip {
+  height: unset !important;
+}
+
+
+
+.new-container{
+  background: #fff;
+  box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
+  border-radius: 5px;
+}
+
+.bot{
+  padding-bottom: 30px;
+  padding-right: 91px;
+}
+
+@media (max-width: $screen-desktop-md) {
+   .services-rectangle::ng-deep {
+    background-color: #FFFFFF;
+    box-shadow: none;
+    border-radius: none;
+    z-index: 0;
+    float: none;
+    height: 27.6875rem !important;
+  }
+}
+
+@media (max-width: $screen-desktop-mdv1) {
+  .services-rectangle::ng-deep {
+   background-color: #FFFFFF;
+   box-shadow: none;
+   border-radius: none;
+   z-index: 0;
+   float: none;
+   height: 27.6875rem !important;
+ }
+}
+
+

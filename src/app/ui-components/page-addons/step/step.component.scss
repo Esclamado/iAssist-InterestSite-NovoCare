@@ -1,0 +1,218 @@
+@import '../../../../assets/stylesheets/variables';
+
+.info-section {
+    margin-bottom: 2em;
+
+    @media (max-width: $screen-mobile) {
+      margin-bottom: 1.875rem;
+    }
+
+    .sub-title {
+        font-size: $font-title-sm;
+        text-transform: uppercase;
+        font-family: $font-family-open-sans;
+        font-weight: $fw-600;
+    }
+
+    // left column page title
+    .step-text-primary {
+        font-family: $font-family-open-sans;
+        font-size: $font-program-title;
+        margin-bottom: 40px;
+        font-weight: $fw-700;
+        color: $slate;
+        line-height: 130%;
+
+        @media (max-width: $screen-mobile) {
+            font-size: $font-large-2;
+            margin-bottom: 20px;
+            padding-right: 0rem !important;
+        }
+    }
+}
+
+// left column description
+.description {
+    width: 100%;
+    font-family: $font-family-open-sans;
+    font-style: normal;
+    font-weight: $fw-600;
+    font-size: $font-title-sm;
+    line-height: 160%;
+    color: $app-text-color;
+    letter-spacing: 0.006rem;
+
+    @media (max-width: $screen-desktop) {
+        width: 90%;
+    }
+
+    @media (max-width: $screen-tablet) {
+        width: 100%;
+    }
+
+    @media (max-width: $screen-mobile) {
+        width: 100% !important;
+        font-size: $font-large;
+        letter-spacing: 0.1px;
+        line-height: 140%;
+    }
+}
+
+.drug-link {
+    font-family: $font-family-open-sans;
+    font-weight: $fw-700;
+    font-size: 1.25rem;
+    line-height: 100%;
+
+    @media (max-width: $screen-tablet) {
+        display: none;
+    }
+
+    @media (max-width: $screen-mobile) {
+        display: none;
+    }
+}
+
+h6 {
+    font-size: $font-largest;
+    font-family: $font-family-open-sans;
+    margin-bottom: 20px;
+    font-weight: $fw-800;
+    color: $primary;
+
+    @media (max-width: $screen-mobile) {
+        font-size: $font-large-2;
+    }
+}
+
+p {
+    font-size: $font-title-sm;
+    margin-bottom: 1.5rem;
+    font-weight: $fw-600;
+
+    @media (max-width: $screen-mobile) {
+        font-size: $font-large;
+    }
+
+    &.important {
+        font-family: $font-family-open-sans;
+        font-style: normal;
+        font-weight: bold;
+        font-size: $font-large;
+        line-height: 100%;
+    }
+
+    &.required::before {
+        color: $app-form-required-asterisk;
+        content: '*';
+        margin-right: 1px;
+    }
+}
+
+.important {
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: $font-assistance-title;
+    line-height: 100%;
+    padding-top: 0px;
+
+    @media (max-width: $screen-mobile) {
+        font-size: $font-small;
+    }
+}
+
+.transform {
+    transform: rotate(-35deg);
+}
+
+.transform-135 {
+    transform: rotate(45deg) translateY(-0.2rem) scale(0.8);
+    color: $primary;
+    margin-left: 0.1rem;
+}
+
+.back-link{
+    position: absolute;
+    width: auto;
+    height: 20px;
+    padding: 0 0 0 10px;
+    font-size: $app-form-custom-label-font-size;
+    text-transform: uppercase;
+    font-family: $font-family-open-sans;
+    font-style: normal;
+    font-weight: $fw-700;
+    line-height: 1.25rem;
+    color: $app-text-color !important;
+}
+
+.back-text {
+    position: static;
+    height: 20px;
+    left: 29px;
+    top: 0px;
+
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: $fw-700;
+    font-size: $font-modal-body-1;
+    line-height: 20px;
+    /* identical to box height, or 143% */
+
+    color: $app-text-color !important;
+    margin-bottom: 40px;
+
+    span{
+        display: inline-block;
+        height: 18.51px;
+        width: auto;
+        .fa-arrow-left:before {
+            font-weight: $fw-700;
+            height: 18.51px;
+            width: 19px;
+            display: block;
+        }
+    }
+
+    @media (max-width: $screen-mobile) {
+        margin-bottom: 1.25rem !important;
+    }
+}
+
+.sub-description {
+    padding-top: 15px;
+    font-style: italic;
+}
+
+.support-sub-title {
+    color: $light-black !important;
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+i {
+    .text-required {
+        font-weight: $fw-400;
+        font-size: font-assistance-title;
+    }
+
+    .required {
+        color: $primary;
+    }
+}
+
+.docu-description-upload{
+  height: 9.5rem;
+}
+
+.hr{
+  width: 38.25rem;
+  margin-top: 2.5rem;
+
+  @media (max-width: $screen-mobile) {
+    width: 20rem;
+    margin-top: 2.5rem;
+  }
+}

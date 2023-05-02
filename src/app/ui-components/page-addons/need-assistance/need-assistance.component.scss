@@ -1,0 +1,81 @@
+@import '../../../../assets/stylesheets/variables';
+
+.need-assistance-container {
+  max-width: 38.25rem;
+
+  hr{
+    border-top: 2px solid $app-background-input;
+    margin-bottom: 20px;
+    @media screen and (max-width: $screen-mobile) {
+      margin-top: 1.875rem;
+    }
+  }
+
+  .need-assistance-title{
+    font-family: $font-family-open-sans;
+    font-size: $font-assistance-title;
+    font-style: normal;
+    font-weight: $fw-700;
+    line-height: 100%;
+    letter-spacing: 0px;
+    text-align: left;
+    color: $app-dark-grey-font-color;
+    margin: 18px 0px;
+
+    @media (max-width: $screen-desktop) {
+      font-size: $font-normal;
+    }
+    @media (max-width: $screen-mobile) {
+      font-size: $font-small;
+    }
+  }
+
+  .need-assistance-body::ng-deep {
+    font-family: $font-family-open-sans;
+    font-size: $font-assistance-title;
+    font-style: normal;
+    font-weight: $fw-600;
+    line-height: 25px;
+    letter-spacing: 0em;
+    text-align: left;
+
+    .my-way::ng-deep {
+      font-weight: $fw-700;
+    }
+
+    color: $app-mid-grey-font-color;
+    @media (max-width: $screen-desktop) {
+      font-size: $font-normal;
+    }
+  }
+
+  .need-assistance-footer {
+    font-family: $font-family-open-sans;
+    font-size: $font-normal;
+    font-style: normal;
+    font-weight: $fw-400;
+    line-height: 22px;
+    letter-spacing: 0em;
+    text-align: left;
+
+    color: $app-mid-grey-font-color;
+    @media (max-width: $screen-desktop) {
+      font-size: $font-smaller;
+      ;
+    }
+  }
+
+  .centered {
+    text-align: center;
+  }
+
+  .error-title {
+    @media (max-width: $screen-mobile) {
+      font-size: $font-normal;
+    }
+  }
+}
+
+.full-width {
+  width: 100%;
+}

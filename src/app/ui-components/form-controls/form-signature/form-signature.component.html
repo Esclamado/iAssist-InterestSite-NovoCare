@@ -1,0 +1,24 @@
+<div class="form-group" [formGroup]="formGroup">
+    <input class="form-control sign-input" type="text" [formControlName]="formItem.controlName" />
+
+    <div>
+        <app-signature-pad
+            #signaturePad
+            (onTextKeyup)="onTextKeyup($event)"
+            (onSignEnd)="onSignEnd()"
+            (onClear)="onClear()"
+            [name]="name"
+            [typeItText]="signatureContent?.typeItText"
+            [signItText]="signatureContent?.signItText"
+            [typeItPreviewText]="signatureContent?.typeItPreviewText"
+            [signItPreviewText]="signatureContent?.signItPreviewText"
+            [clearText]="signatureContent?.clearText"
+            [signItInstruction]="signatureContent?.signItInstruction"
+            [showSignTypeSelect]="signatureContent?.showSignTypeSelect"
+        >
+        </app-signature-pad>
+        <div *ngIf="isControlInvalid" class="invalid-feedback">
+            {{ formItem.errorMessage }}
+        </div>
+    </div>
+</div>

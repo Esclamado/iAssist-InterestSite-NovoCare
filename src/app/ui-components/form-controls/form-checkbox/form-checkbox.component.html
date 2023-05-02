@@ -1,0 +1,52 @@
+<!-- Left as custom-control-inline a hack to leverage inline flex to render checkbox, validation asterisk, and label side by side   -->
+
+<div class="form-group" [formGroup]="formGroup">
+    <label [innerHTML]="formItem.text">
+        <span class="tooltip-container" *ngIf="formItem.tooltip"
+            ><img
+                [matTooltip]="formItem.tooltip"
+                matTooltipPosition="above"
+                (click)="tooltip.toggle()"
+                (hover)="tooltip.toggle()"
+                #tooltip="matTooltip"
+                src="../../../../assets/images/icon-tooltip-info.svg" /></span
+    ></label>
+    <div *ngIf="formItem.optionalText" class="sub-label" [innerHTML]="formItem.optionalText"></div>
+
+    <div *ngIf="formItem.description" class="description-text-area text-muted" readonly="readonly" [innerHtml]="formItem.description"></div>
+
+    <div [formGroupName]="formItem.controlName">
+        <div *ngFor="let option of formItem.option; let i = index" class="with-background" >
+            <div class="custom-control custom-checkbox custom-control-inline" [ngClass]="{ 'withBackground': withBackground , 'customCheckboxTwo' : checkboxTwo}">
+                <input
+                    class="custom-control-input"
+                    [ngClass]="{ 'is-invalid': isControlInvalid }"
+                    type="checkbox"
+                    [id]="getUniqueIdentifier(i)"
+                    [formControlName]="option.valueString"
+                    [checked]="option.isChecked"
+                    (click)="didScroll"
+                    [attr.disabled]="disableCheckbox"
+                />
+                <span [ngClass]="{ required: formItem.required }"></span>
+                <label class="custom-control-label" [ngClass]="{'span-missing': !formItem.required && !withBackground}" [attr.for]="getUniqueIdentifier(i)" [innerHTML]="option.displayedString"> </label>
+                <span class="tooltip-container" *ngIf="option.tooltip">
+                    <img
+                        [matTooltip]="option.tooltip"
+                        matTooltipPosition="above"
+                        (click)="tooltip.toggle()"
+                        (hover)="tooltip.toggle()"
+                        #tooltip="matTooltip"
+                        src="../../../../assets/images/icon-tooltip-info.svg"
+                /></span>
+            </div>
+            <div class="mt-3" *ngIf="option.serviceTitle">
+                <p class="sub-description strong" [innerHTML]="option.serviceTitle"></p>
+                <p class="sub-description" [innerHTML]="option.subdescription"></p>
+            </div>
+        </div>
+        <div *ngIf="isControlInvalid" class="invalid-feedback">
+            {{ formItem.errorMessage }}
+        </div>
+    </div>
+</div>

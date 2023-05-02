@@ -1,0 +1,40 @@
+<div class="form-group" [formGroup]="formGroup">
+    <div class="select-row">
+        <label class="floating" [ngClass]="{ required: formItem.required }" [for]="formItem.controlName">
+            <span class="floating-text">
+                {{ formItem.text }}
+                <span *ngIf="formItem.optionalText" class="optional-text text-muted">
+                    {{ formItem.optionalText }}
+                </span>
+            </span>
+            <span class="tooltip-container" *ngIf="formItem.tooltip"
+                ><img
+                    [matTooltip]="formItem.tooltip"
+                    matTooltipPosition="above"
+                    (click)="tooltip.toggle()"
+                    (hover)="tooltip.toggle()"
+                    #tooltip="matTooltip"
+                    src="../../../../assets/images/icon-tooltip-info.svg"
+            /></span>
+        </label>
+    </div>
+    <div class="select-row">
+        <select
+            class="form-control text-muted"
+            [formControlName]="formItem.controlName"
+            [id]="formItem.controlName"
+            [ngClass]="{ 'is-invalid': isControlInvalid }"
+            [required]="formItem.required"
+        >
+            <option *ngIf="showEmptyStringOption()" [value]="''">{{ formItem.placeholder }}</option>
+            <option *ngIf="showNullOption()" [value]="null">{{ formItem.placeholder }}</option>
+            <option *ngIf="showUndefinedOption()" [value]="undefined">{{ formItem.placeholder }}</option>
+            <option [value]="option.valueString" *ngFor="let option of formItem.option" [disabled]="option.valueString === ''">
+                {{ option.displayedString }}
+            </option>
+        </select>
+        <div *ngIf="isControlInvalid" class="invalid-feedback">
+            {{formItem.errorMessage}}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,155 @@
+@import '../../../../assets/stylesheets/_variables.scss';
+
+.form-group {
+    position: relative;
+    top: -10px;
+    margin-bottom: 1.25rem;
+
+    >label {
+        display: block;
+        font-family: $font-family-open-sans;
+        font-size: $app-form-label-font-size;
+        color: $app-form-label-font-color;
+        font-weight: $fw-700;
+        margin-bottom: 0;
+
+    }
+
+    .custom-checkbox {
+        font-size: $app-form-custom-label-font-size !important;
+        margin-top: .5rem;
+
+        > .custom-control-label {
+            margin-right: 0.3125rem;
+            font-size: 0.875rem;
+            color: $app-text-color;
+            font-weight: $fw-400;
+
+            &::before {
+                left: -2.1rem;
+            }
+
+            &::after {
+                left: -2.1rem;
+            }
+        }
+    }
+
+    span.required::before {
+        color: $app-form-required-asterisk;
+        content: '*';
+        margin-left: 15px;
+        margin-right: 5px;
+    }
+
+    .invalid-feedback {
+        display: block;
+        font-size: $font-sm;
+        margin-top: 2px;
+    }
+
+    .customCheckboxTwo {
+        >.custom-control-label {
+            font-size: $font-normal;
+            color: $app-form-label-font-color;
+            font-weight: 600;
+            margin-left:26px;
+
+            &::before {
+                left: -26px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
+            &::after {
+                left: -26px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+        }
+    }
+
+    .customConsent {
+        font-size: $app-form-custom-label-font-size  !important;
+
+        >.custom-control-label {
+            font-size: $app-form-custom-label-font-size;
+            color: $app-form-label-font-color;
+            font-weight: $fw-400;
+            margin-left:26px;
+
+            &::before {
+                left: -26px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
+            &::after {
+                left: -26px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
+        }
+
+    }
+
+    .sub-label {
+        font-size: $font-smaller;
+        font-family: $font-family-open-sans;
+        font-style: italic;
+        line-height: 150%;
+        margin-top: 10px;
+        margin-bottom: 20px;
+    }
+
+    .withBackground {
+        background-color: $app-background-card;
+        margin-bottom: 5px;
+        border: 1px solid $app-background-input;
+        border-radius: 5px;
+        padding: 16px 20px;
+
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.21875rem;
+        height: 3.9375rem;
+    }
+}
+
+
+.span-missing {
+    left: 1.3rem !important;
+    &::before {
+        left: -1.3rem !important;
+    }
+
+    &::after {
+        left: -1.3rem !important;
+    }
+}
+
+.span-missing-with-background {
+    left: 1.3rem !important;
+    &::before {
+        left: -1.3rem !important;
+    }
+
+    &::after {
+        left: -1.3rem !important;
+    }
+}
+
+.custom-control {
+    padding-left: 0;
+}
+
+.description-text-area {
+    border: 1px solid $app-form-checkbox-border;
+    padding: 1em;
+    font-size: $font-smaller;
+    height: 190px;
+    overflow-y: scroll;
+    font-family: $font-family-open-sans;
+}

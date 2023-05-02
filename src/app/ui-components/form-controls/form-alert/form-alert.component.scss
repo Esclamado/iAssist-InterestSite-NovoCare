@@ -1,0 +1,25 @@
+.alert-container {
+    border-width: 1px 1px 1px 6px;
+    border-style: solid;
+    border-image: initial;
+    border-radius: 3px;
+    margin-bottom: 2em;
+    background-color: rgb(255, 255, 255);
+    color: rgb(127, 132, 138); display: block;
+    &.error-container {
+      border-color: rgb(219, 224, 231) rgb(219, 224, 231) rgb(219, 224, 231) rgb(219, 22, 22);
+    }
+    &.warning-container {
+      border-color: rgb(219, 224, 231) rgb(219, 224, 231) rgb(219, 224, 231) rgba(255, 198, 41);
+    }
+    &.success-container {
+      border-color: rgb(219, 224, 231) rgb(219, 224, 231) rgb(219, 224, 231) rgba(118, 191, 68);
+    }
+    .alert-text{
+      padding-top:  10px;
+      padding-bottom:  10px;
+      p {
+        padding-left: 10px;
+      }
+    }
+  }

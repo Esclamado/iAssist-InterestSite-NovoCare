@@ -1,0 +1,27 @@
+
+@import '../../../../assets/stylesheets/_variables.scss';
+
+.form-group {
+    margin-bottom: 0;
+
+    > select {
+        &.form-control {
+            appearance: none;
+            background: url(../../../../assets/images/header/caret-down-solid.svg) no-repeat right;
+            background-position-x: 65px;
+            background-size: 9px 12px;
+            font-family: $font-family-open-sans-regular;
+            font-size: $app-form-label-font-size;
+            color: $app-form-label-font-color;
+            font-weight: $fw-700;
+            width: 90px;
+            height: 34px;
+            padding-left: .5em;
+
+            &:focus {
+                border-color: $app-form-focus-color; // TODO: update in theme file
+                box-shadow: none;
+            }
+        }
+    }
+}

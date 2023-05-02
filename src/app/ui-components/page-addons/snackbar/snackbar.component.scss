@@ -1,0 +1,73 @@
+
+@import '../../../../assets/stylesheets/variables';
+
+.snackbar-container {
+  position: fixed;
+  top: 50px;
+  left: 50%;
+  background:  $error;
+  color: $app-text-light;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+  border-radius: 5px;
+  padding: 1em 0.8125em;
+  font-size: $font-normal;
+  animation: snackbarIn 0.5s;
+  transform: translateX(-50%);
+  min-width: 100px;
+  display: flex;
+  justify-content: space-between;
+  max-width: 512px;
+  font-family: $font-family-open-sans;
+  font-weight: $fw-700;
+  z-index: 51;
+
+  .snackbar-icon {
+    padding: 0.625rem;
+    align-items: center;
+    display: flex;
+  }
+
+  .snackbar-content {
+    padding: 0.3125rem;
+  }
+
+  .snackbar-button {
+    padding: 0.625rem;
+  }
+
+  @media (max-width: $screen-mobile) {
+    width: 87%;
+    top: 70px;
+  }
+}
+
+@keyframes snackbarIn {
+  from {
+    transform: translateX(-50%) translateY(-100px);
+    opacity: 0;
+  }
+  to {
+    ransform: translateX(-50%) translateY(100px);
+    opacity: 1;
+  }
+}
+
+@keyframes snackbarOut {
+  to {
+    transform: translateX(-50%) translateY(-100px);
+    opacity: 0;
+  }
+}
+
+* {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.snackbar-container button {
+  background: transparent;
+  border: none;
+  color: $slate;
+  cursor: pointer;
+  font-size: $font-smaller;
+  margin-left: 30px;
+}

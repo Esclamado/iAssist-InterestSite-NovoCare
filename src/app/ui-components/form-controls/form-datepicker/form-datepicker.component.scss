@@ -1,0 +1,99 @@
+@import '../../../../assets/stylesheets/_variables.scss';
+
+.form-group {
+    margin-bottom: 24px !important;
+
+    > div {
+        > label {
+            display: block;
+            font-family: $font-family-open-sans;
+            font-size: $app-form-label-font-size;
+            font-weight: $fw-600;
+            color: $app-text-dark;
+
+            &.required::before {
+                background-color: transparent;
+                color: $app-form-required-asterisk;
+                background-color: $app-background-light-1;
+                content: '*';
+            }
+
+            &.floating {
+                bottom: 1.6em;
+                left: 10px;
+                background-color: transparent;
+                z-index: 1;
+                line-height: 1.3em;
+                margin-bottom: 18px;
+
+                .floating-text {
+                    background-color: transparent;
+                }
+            }
+
+            span.optional-text {
+                font-size: $font-copyright;
+                font-family: $font-family-open-sans;
+            }
+        }
+
+        > input {
+            &.form-control {
+                height: auto;
+                font-size: $font-normal;
+                border-radius: 8px;
+                padding: 17px 16px;
+                line-height: 22px;
+                color: $app-form-placeholder !important;
+
+                &:focus {
+                    border-color: $app-form-focus-color;
+                    box-shadow: none;
+                }
+                > button {
+                    left: -50px !important;
+                }
+            }
+            &.is-invalid {
+              border: solid 2px $light-red;
+            }
+        }
+
+        .invalid-feedback {
+            font-size: $font-normal;
+            font-weight: $fw-600;
+            line-height: 22px;
+            color: $error;
+        }
+    }
+    .datepicker {
+        position: relative;
+    }
+
+    .picker-input {
+        display: block;
+        position: relative;
+        flex: auto;
+        min-width: 0;
+        width: 100%;
+    }
+
+    .mat-datepicker-toggle {
+        top: 10px;
+        right: 10px;
+        z-index: 9;
+        position: absolute;
+        float: right;
+        background: $white !important;
+    }
+
+    .errorMessage {
+        font-family: $font-family-open-sans;
+        color: $app-form-validation-message;
+        margin-top: 4px;
+        font-size: 16px;
+        font-weight: $fw-600;
+        line-height: 22px;
+        color: $error;
+    }
+}

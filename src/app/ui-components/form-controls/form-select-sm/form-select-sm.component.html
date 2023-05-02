@@ -1,0 +1,7 @@
+<div class="form-group" [formGroup]="formGroup">
+  <select class="form-control text-muted" [formControlName]="formItem.controlName">
+    <option [value]="option.valueString" *ngFor="let option of formItem.option">
+      {{ option.displayedString }}
+    </option>
+  </select>
+</div>

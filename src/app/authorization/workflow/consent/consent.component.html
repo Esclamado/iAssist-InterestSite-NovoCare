@@ -1,0 +1,56 @@
+<div class="consent-container">
+  <div class="consent-step">
+    <app-step [subTitle]="stepContent?.subHeader" [title]="stepContent?.header" [description]="stepContent?.description"
+      [requiredText]="stepContent?.required?.text" [backText]="stepContent?.back" [showBackLink]="true"></app-step>
+  </div>
+  <div class="consent-form">
+
+    <form [formGroup]="consentGroup" ngSubmit="submit();" novalidate>
+      <div class="row mb-3">
+        <div class="col-lg-6 col-md-6">
+          <app-form-radio [formItem]="authorizingConfig" [formGroup]="consentGroup" [inline]="false" (valueChanges)="onAuthorizingValueChange($event)">
+          </app-form-radio>
+        </div>
+      </div>
+
+      <div class="row mb-3" *ngIf="displayRelToPatient">
+        <div class="col-lg-6">
+          <app-form-input [formItem]="relToPatientConfig" [formGroup]="consentGroup">
+          </app-form-input>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-lg-12">
+          <app-form-checkbox [formItem]="agreeConsentConfig" [formGroup]="consentGroup">
+          </app-form-checkbox>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-6">
+          <app-form-input [formItem]="fullNameConfig" [formGroup]="consentGroup" (valueChanges)="onFullNameValueChange($event);">
+          </app-form-input>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-12">
+          <app-form-signature [formItem]="signatureConfig" [formGroup]="consentGroup" [name]="fullName">
+          </app-form-signature>
+        </div>
+      </div>
+
+
+      <button
+        mat-flat-button color="primary" type="button"
+        class="float-right"
+        (click)="submit()"
+        [disabled]="submitting">
+          {{actionContent?.submitBtn}}
+          <mat-spinner class="button-spinner" diameter="20" *ngIf="submitting"></mat-spinner>
+      </button>
+    </form>
+
+  </div>
+</div>

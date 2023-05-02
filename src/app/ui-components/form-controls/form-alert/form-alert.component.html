@@ -1,0 +1,6 @@
+<div class="alert-container" *ngIf="showAlert"
+        [ngClass]="{'error-container': isError, 'warning-container': isWarning, 'success-container': isSuccess}">
+    <div class="alert-text">
+        <p>{{alertContent}}</p>
+    </div>
+</div>

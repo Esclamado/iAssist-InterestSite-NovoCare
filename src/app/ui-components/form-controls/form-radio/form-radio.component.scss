@@ -1,0 +1,115 @@
+@import '../../../../assets/stylesheets/_variables.scss';
+
+.form-group {
+    position: relative;
+
+    .group-label {
+        font-family: $font-family-open-sans;
+        font-style: normal;
+        font-weight: $fw-700;
+        font-size: $font-normal;
+        line-height: 130%;
+        color: $slate;
+    }
+
+    >label {
+        display: block;
+        font-family: $font-family-open-sans;
+        font-size: $app-form-label-font-size;
+        color: $app-form-label-font-color;
+        font-weight: $fw-600;
+        margin-bottom: 1rem;
+
+        @media screen and (max-width: $screen-mobile) {
+            font-size: $font-normal;
+            font-weight: $fw-600;
+            margin-bottom: 10px;
+        }
+
+        &.required::before {
+            color: $app-form-required-asterisk;
+            content: '*';
+            margin-right: 3px;
+        }
+    }
+
+    .custom-radio {
+        padding: 16px 20px !important;
+        margin: 0 0 5px 0 !important;
+        position: relative;
+
+        .custom-control-label {
+            font-size: $font-normal;
+            color: $app-form-label-font-color;
+            font-weight: $fw-400;
+            left: 1.25rem;
+
+            @media screen and (max-width: $screen-mobile) {
+                line-height: 21px;
+            }
+
+            &::before {
+                left: -1.75rem;
+                height: 24px;
+                width: 24px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
+            &::after {
+                left: -1.75rem;
+                height: 24px;
+                width: 24px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+        }
+
+    }
+
+    .custom-radio-no-bg {
+        padding: 0.625rem 0 0 .47rem !important;
+        margin: 0 !important;
+        position: relative;
+
+        .custom-control-label {
+            font-size: $font-normal;
+            color: $app-form-label-font-color;
+            font-weight: $fw-400;
+            padding-left: 0.5rem;
+            line-height: 1.362rem;
+
+            &::before {
+                height: 1.5rem;
+                width: 1.5rem;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
+            &::after {
+                height: 1.5rem;
+                width: 1.5rem;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
+        }
+    }
+
+    .service-title {
+        font-size: $font-title-sm;
+        font-weight: bolder;
+    }
+
+    .invalid-feedback {
+        // bootstrap will not set this, because the element is not in the same level as the input
+        display: block;
+        // this can be overriden in the custom-bootstrap-variables file, use: $small-font-size
+        font-size: 0.6875rem;
+        margin-top: 0;
+    }
+
+    .strong {
+        color: $slate !important;
+    }
+}

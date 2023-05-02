@@ -1,0 +1,19 @@
+<div class="error-page-container"
+    fxLayoutAlign="center center"
+    fxLayout="column"
+    fxFlexFill
+>
+  <img src="../../../../assets/images/broken-link.svg" />
+  <h1>{{title}}</h1>
+  <p>{{description}}</p>
+  <app-need-assistance
+      [title]="translationService.needAssistanceView.title"
+      [body]="translationService.needAssistanceView.body"
+      [footer]="translationService.needAssistanceView.footer"
+      [isCentered]="true"
+      [isFullWidth]="true"
+      fxFlexFill
+      fxLayoutAlign="center center"
+  >
+  </app-need-assistance>
+</div>

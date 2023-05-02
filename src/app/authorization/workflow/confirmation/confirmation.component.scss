@@ -1,0 +1,326 @@
+@import '../../../../assets/stylesheets/variables';
+@import '../workflow.component.scss';
+@import '../../../ui-components/form-controls/form-radio/form-radio.component.scss';
+
+.confirmation-container {
+    display: flex;
+
+    @media (max-width: $screen-desktop) {
+        flex-direction: column;
+    }
+
+    .confirmation-step {
+      margin-right: 14.875rem;
+      max-width: 38.25rem;
+
+      @media (max-width: $screen-laptop){
+        max-width: 25.25rem;
+        margin-right: 0;
+      }
+
+      @media (max-width: $screen-desktop) {
+        width: auto;
+        margin-right: 0;
+        flex: 1;
+      }
+
+    @media (max-width: $screen-desktop) {
+      width: 100%;
+      margin-right: 0;
+      flex: 1;
+      max-width: none;
+      margin-top: 20px;
+    }
+
+  hr {
+    max-width: 38.25rem;
+  }
+    }
+
+    .as_buttons {
+        display: flex;
+        justify-content: flex-end;
+        position: absolute;
+        bottom: 20px;
+        right: 0;
+        flex-direction: row;
+        align-items: center;
+        padding: 16px 48px;
+    }
+
+    .validation-feedback {
+        color: $primary;
+        font-size: $font-smaller-2;
+        margin-top: 0;
+    }
+    .btn-download {
+      color: $secondary;
+      font-size: $app-form-custom-label-font-size;
+      border: none;
+      font-family: $font-family-open-sans;
+      font-weight: $fw-700;
+      line-height: 1.138rem;
+      padding: 0 0.22em 0 0;
+      background: transparent;
+    }
+
+    .navigation-btn-container {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      margin-top: 20px;
+
+      button {
+        height: 45px;
+        width: 120px;
+        font-size: $font-smaller;
+        font-weight: bolder;
+      }
+    }
+
+  .confirmation-complete {
+    width: 100%;
+    height: 31.242rem;
+    margin-right: 3.211rem;
+    background-size: contain;
+    background-image: url('/assets/images/confirmation-complete.svg');
+    background-repeat: no-repeat;
+
+    @media (max-width: $screen-mobile) {
+      background-image: url('/assets/images/confirmation-complete-mobile.svg');
+      width: 100%;
+      height: 272px;
+      margin-bottom: -20px;
+    }
+  }
+
+  .form-body::ng-deep {
+    .confirmation-note-bold {
+      font-family: $font-family-open-sans !important;
+      color: $slate;
+      font-weight: $fw-600 !important;
+      font-size: $font-larged;
+      font-style: normal;
+      line-height: 140%;
+      letter-spacing: 0.1px;
+      width: 40.25rem;
+      height: 3.375rem;
+      display: inherit;
+
+      @media (max-width: $screen-mobile) {
+        width: 18.8125rem;
+        height: 100%;
+        margin-top: 1.7925rem;
+        font-size: 16px;
+      }
+
+      @media (max-width: $screen-laptop){
+        display: inline;
+      }
+    }
+
+  }
+
+  .download-label::ng-deep {
+    color: $primary !important;
+    padding: 5px;
+  }
+
+  .download-text {
+    color: $primary !important;
+    padding: 5px;
+    font-family: $font-family-open-sans-regular;
+    font-style: normal;
+    font-weight: $fw-700;
+    font-size: $font-normal
+  }
+  .text-started {
+    color: $app-dark-grey-font-color;
+    margin: 1.125rem 0;
+    font-family: $font-family-open-sans-regular;
+    font-style: normal;
+    font-weight: $fw-700;
+    font-size: $font-large;
+    line-height: 100%;
+    outline: none;
+    border: none;
+    color: $app-primary-color-100;
+    background-color: transparent;
+    padding: 0rem;
+
+    @media (max-width: $screen-mobile) {
+      font-size: $font-normal;
+    }
+  }
+  .form-group {
+    position: relative;
+
+    >label {
+        display: block;
+        font-family: $font-family-open-sans-regular;
+        font-size: $app-form-label-font-size;
+        color: $app-form-label-font-color;
+        font-weight: $fw-700;
+        margin-bottom: 0;
+    }
+
+    .custom-control.custom-radio {
+      border: 1px solid $app-background-input;
+      box-sizing: border-box;
+      border-radius: 5px;
+      padding-left: 30px;
+      flex: none;
+      order: 0;
+      flex-grow: 0;
+      margin: 5px 0px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      background: $app-background-card;
+      position: static;
+      display: flex;
+      min-height: 35px;
+  }
+
+  .custom-control-label.text-muted {
+    font-family: Open Sans !important;
+    font-style: normal !important;
+    font-weight: $fw-600 !important;
+    color: $slate !important;
+    font-size: $font-normal !important;
+}
+
+    .custom-checkbox {
+        font-size: $app-form-custom-label-font-size  !important;
+
+        >.custom-control-label {
+            margin-right: 0.3125rem;
+            font-size: $app-form-custom-label-font-size;
+            color: $app-form-label-font-color;
+            font-weight: $fw-400;
+
+            &::before {
+              left: -2.3rem;
+          }
+
+          &::after {
+              left: -2.3rem;
+          }
+        }
+    }
+
+    .custom-checkbox-two {
+        >.custom-control-label {
+            font-size: $font-normal-2;
+            color: $app-form-label-font-color;
+            margin-left:28.56px;
+            font-weight: $fw-700;
+
+
+            &::before {
+              width: 17.568px;
+              height: 18px;
+              left: -26px;
+              top: 50%;
+              transform: translateY(-50%);
+          }
+
+          &::after {
+              width: 17.568px;
+              height: 18px;
+              left: -26px;
+              top: 50%;
+              transform: translateY(-50%);
+          }
+        }
+    }
+
+    span.required::before {
+        color: $app-form-required-asterisk;
+        content: '*';
+        margin-right: 5px;
+    }
+
+    .invalid-feedback {
+        // bootstrap will not set this, because the element is not in the same level as the input
+        display: block;
+        // this can be overriden in the custom-bootstrap-variables file, use: $small-font-size
+        font-size: $font-sm;
+        margin-top: 2px;
+    }
+
+    .sub-label {
+        font-size: $font-smaller;
+        font-family: $font-family-open-sans-regular;
+        font-style: italic;
+        line-height: 150%;
+        margin-top: 10px;
+        margin-bottom: 20px;
+    }
+
+    .with-background {
+        background-color: $app-background-card;
+        margin-top: 16px;
+        margin-bottom: 5px;
+        border: 1px solid $app-background-input;
+        border-radius: 5px;
+        padding: 16px 20px;
+
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        width: 38.0625rem;
+        height: 4.0625rem;
+
+        @media (max-width: $screen-mobile) {
+          width: fit-content;
+          padding: 16px 10px;
+        }
+
+        @media (max-width: $screen-laptop){
+          display: table-cell;
+        }
+    }
+}
+
+.confirmation-step::ng-deep{
+  .description{
+    height: 7.375rem;
+    margin-bottom: 2.5rem;
+      @media (max-width: $screen-mobile) {
+          font-size: $font-large !important;
+      }
+  }
+  .info-section{
+      margin-bottom: 0rem;
+  }
+}
+
+
+.custom-control {
+    padding-left: 0;
+}
+
+  .need-assistance-container {
+    width:100%;
+
+    @media (max-width: $screen-tablet) {
+      margin-top: 2rem;
+    }
+
+    app-need-assistance {
+      width:100%;
+      top: -1.25rem;
+      position: relative;
+    }
+  }
+}
+
+.services-main::ng-deep {
+  @media (max-width: $screen-laptop){
+      width: 54%;
+  }
+}
+
+

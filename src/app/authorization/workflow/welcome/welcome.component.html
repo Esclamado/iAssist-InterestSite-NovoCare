@@ -1,0 +1,59 @@
+<div class="consent-container" fxLayout.lt-lg="column">
+    <div fxLayoutAlign="center center" class="flex-container">
+        <div
+            class="header-text"
+            fxFlex.lt-md="100"
+            fxLayoutAlign="space-between start"
+            fxLayoutAlign.lt-lg="center start"
+            fxLayout="column"
+            fxLayout.lt-lg="column"
+        >
+            <div>
+                <div>
+                    <div [innerHTML]="translationService.welcomeView.body.pageHeader" class="page-header"></div>
+                    <div [innerHTML]="translationService.welcomeView.body.pageHeaderLineTwo" class="page-header-line-2"></div>
+                    <div [innerHTML]="translationService.welcomeView.body.pageDescription" class="description"></div>
+                </div>
+                <div class="care-assist-logo">
+                    <img src="../../../../assets/images/landing-page/care-assist-logo.png" />
+                </div>
+                <div fxHide fxShow.lt-lg class="mobile-main-image" fxLayoutAlign="center center">
+                    <img src="../../../../assets/images/landing-page/landing1.png" />
+                </div>
+                <div class="body-text">
+                    <div [innerHTML]="translationService.welcomeView.body.pageDetails"></div>
+                </div>
+                <button class="btn-download text-started" (click)="getStarted('1')">
+                    {{ translationService.welcomeView.body.provider }} <i class="fas fa-arrow-right"></i>
+                </button>
+                <button class="btn-download text-started">
+                    <a href="https://www.sanoficareassist.com/">{{ translationService.welcomeView.body.providerPatient }} <i class="fas fa-arrow-right"></i></a>
+                </button>
+                <button class="btn-download text-started" (click)="getStarted('5')">
+                    {{ translationService.welcomeView.body.documentUpload }} <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+            <div class="need-assistance-container" fxLayoutAlign="start end">
+              <app-need-assistance [title]="translationService.needAssistanceView.title" [body]="translationService.needAssistanceView.body" [footer]="translationService.needAssistanceView.footer"></app-need-assistance>
+            </div>
+        </div>
+        <div
+            fxLayout="row"
+            class="content-body-container"
+            fxHide
+            fxShow.gt-md
+            fxLayoutAlign.lt-lg="center end"
+        >
+            <div class="square-one"></div>
+            <div class="landing-page-one">
+                <div class="landing-one">
+                    <img class="left-top" src="../../../../assets/images/landing-page/landing1.png" />
+                </div>
+                <div class="landing-two">
+                    <img class="left-top" src="../../../../assets/images/landing-page/landing2.png" />
+                </div>
+            </div>
+            <div class="square-two"></div>
+        </div>
+    </div>
+  </div>

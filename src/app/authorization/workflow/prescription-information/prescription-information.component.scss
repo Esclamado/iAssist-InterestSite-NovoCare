@@ -1,0 +1,180 @@
+@import "../../../../assets/stylesheets/variables";
+@import "../workflow.component.scss";
+
+.patient-demographic-container {
+    display: flex;
+
+    @media (max-width: $screen-desktop) {
+        flex-direction: column;
+    }
+
+    .patient-demographic-step {
+        margin-right: 215px;
+        max-width: 570px;
+
+
+        @media (max-width: $screen-desktop) {
+            width: auto;
+            margin-right: 0;
+            flex: 1;
+        }
+
+        @media (max-width: $screen-tablet) {
+            width: 100%;
+            margin-right: 0;
+            flex: 1;
+            max-width: none;
+        }
+    }
+
+    .image {
+        position: static;
+        width: 106px;
+        height: 20px;
+        left: 29px;
+        top: 0px;
+
+        font-family: $font-family-open-sans;
+        font-style: normal;
+        font-weight: bold;
+        font-size: $font-copyright;
+        line-height: 20px;
+        /* identical to box height, or 143% */
+
+        text-transform: uppercase;
+
+        color: $app-text-color !important;
+        padding-bottom: 50px;
+
+    }
+
+    .checkboxconsent {
+        padding-left: 36px;
+    }
+
+    .as_buttons {
+        @media (max-width: $screen-mobile) {
+            margin-top: 20px;
+        }
+
+        .mat-flat-button {
+            @media (max-width: $screen-mobile) {
+                margin: 10px 0px 10px 0px !important;
+            }
+        }
+    }
+
+
+    .question {
+        color: $app-text-color;
+        font-family: $font-family-open-sans;
+        font-style: normal;
+        font-weight: $fw-600;
+        font-size: $font-smaller;
+        height: 25px;
+    }
+
+    .patient-demographic-result-box {
+        background: $app-background-card;
+        border: 1px solid $app-background-input;
+        box-sizing: border-box;
+        border-radius: 8px;
+        font-size: $font-smaller;
+        width: 100% !important;
+    }
+
+    .form-control .input {
+        width: 215%;
+    }
+
+    .patient-demographic {
+        flex-direction: column;
+    }
+
+    .validation-feedback {
+        color: $error;
+        font-size: $font-smaller-2;
+        margin-top: 0;
+    }
+
+    .services-rectangle {
+        @media (max-width: $screen-desktop) {
+            padding: 40px 95px 60px;
+        }
+
+        @media (max-width: $screen-tablet) {
+            min-height: 0;
+            padding: 12px 42px 31px 42px !important;
+        }
+
+        @media (max-width: $screen-mobile) {
+            min-height: 0;
+            padding: 18px 12px !important;
+        }
+    }
+
+    .services-rectangle::ng-deep {
+        .form-group {
+            >label,
+            span {
+                font-size: $font-normal !important;
+                margin-bottom: 1rem;
+                font-family: $font-family-open-sans;
+            }
+
+            .custom-control-label {
+                font-family: $font-family-open-sans;
+            }
+
+            div>div.custom-control {
+                padding: 0 0 10px 0.495rem !important;
+            }
+
+            >div>input {
+                border-radius: 0.5rem;
+                padding: 17px 16px;
+                background-color: $white;
+            }
+
+            >div+div.row {
+                height: 52.5px;
+            }
+        }
+    }
+
+    .faci-info-row {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-end;
+
+        @media (max-width: $screen-mobile) {
+            display: block;
+        }
+    }
+
+    .remove-radio-padding {
+        height: auto;
+    }
+
+    #productSelected.form-control:disabled {
+        background-color: $white;
+    }
+}
+
+.verbiage{
+    font-size: $font-small;
+    margin-bottom: 1.5rem !important;
+    font-weight: $fw-700 !important;
+    color: $slate;
+}
+
+.patient-demographic-step::ng-deep{
+    .description{
+        @media (max-width: $screen-mobile) {
+            font-size: $font-large !important;
+        }
+    }
+    .info-section{
+        margin-bottom: 0rem;
+    }
+}

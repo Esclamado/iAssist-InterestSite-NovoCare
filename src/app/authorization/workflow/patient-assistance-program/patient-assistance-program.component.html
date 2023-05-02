@@ -1,0 +1,53 @@
+<div class="patient-assistance-program-container" fxLayoutAlign="space-between start" fxLayoutAlign.lt-lg="center start" fxLayout="row" fxLayout.lt-md="column">
+    <div class="patient-assistance-program-step">
+        <app-step
+            [showBackLink]="true"
+            [showRequired]="true"
+            [backText]="stepContent?.back"
+            [title]="stepContent?.header"
+            [description]="stepContent?.description"
+            [requiredText]="stepContent?.requiredText"
+        >
+        </app-step>
+     </div>
+     <div class="services-main">
+        <div class="services-bg-block" fxHide fxShow.gt-sm></div>
+        <div class="services-rectangle patient-assistance-program-info">
+            <app-stepper [activeStep]="'pap'"></app-stepper>
+            <form [formGroup]="patientAssistanceProgramGroup">
+                <div>
+                    <app-form-radio [formItem]="patientAssistanceProgramConfig"
+                        [formGroup]="patientAssistanceProgramGroup" [inline]="false" (valueChanges)="onpatientAssistanceEligibility($event)">
+                    </app-form-radio>
+                </div>
+                <div *ngIf="showContinueNote" class="continue-note" [innerHTML]="translationService.patientAssistanceProgramView.ContinueNoteText"></div>
+                <div *ngIf="showPharmacyYesNoOption">
+                    <app-form-radio [formItem]="pharmacyYesNoConfig"
+                        [formGroup]="patientAssistanceProgramGroup" [inline]="false" (valueChanges)="onpharmacySelect($event)">
+                    </app-form-radio>
+                </div>
+                <div class="row">
+                    <div class="col-md-6" *ngIf="showSpecialityPharamcy">
+                        <app-form-select [formItem]="specialityPharmacyConfig"
+                            [formGroup]="patientAssistanceProgramGroup" (change)="showOtherPharmacyInput()">
+                        </app-form-select>
+                    </div>
+                    <div class="col-md-6" *ngIf="showOtherPharmacy">
+                        <app-form-input [formItem]="pharmacyIfOtherConfig"
+                            [formGroup]="patientAssistanceProgramGroup">
+                        </app-form-input>
+                    </div>
+                </div>
+                  <div fxLayout="row" fxLayout.lt-sm="column-reverse" fxLayoutAlign="end space-between" fxLayoutAlign.lt-sm="space-evenly stretch" fxFlexFill>
+                    <button mat-flat-button color="accent" type="button" (click)="cancelBtnClick();" >
+                      {{cancelButtonText}}
+                    </button>
+                    <button mat-flat-button color="primary" type="button" [disabled]="patientAssistanceProgramGroup.invalid" (click)="continueButtonClick();">
+                      {{continueButtonText}}
+                    </button>
+                  </div>
+            </form>
+        </div>
+
+    </div>
+  </div>

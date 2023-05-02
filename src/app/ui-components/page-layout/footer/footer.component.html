@@ -1,0 +1,90 @@
+<div class="container-main">
+    <div class="pc-screen">
+        <div class="sanofi-links-container">
+            <div class="content-container">
+                <strong>
+                    <span>
+                        <a class="footer-link pad-2" [href]="clientPrivacyLink" target="_blank">{{ privacyText }}</a> <span class="footer-divider">|</span>
+                    </span>
+                    <span>
+                        <a class="footer-link" [href]="clientContactUsLink" target="_blank">{{ contactUs }}</a> <span class="footer-divider">|</span>
+                    </span>
+                    <span>
+                        <a class="footer-link" [href]="clientNovoNordiskUsLink" target="_blank">{{ novoNordiskUs }}</a>
+                    </span>
+                </strong>
+                <div class="footer-text-left">
+                  <p class="p-text" [innerHTML]="newClientLine"></p>
+                </div>
+            </div>
+        </div>
+        <div class="novo-nordisk-logo">
+          <a [href]="clientNovoNordiskUsLink" target="_blank">
+            <img src="../../../../assets/images/logos/novo-nordisk-logo.png" class="" />
+          </a>
+        </div>
+        <div class="assistrx-links-container">
+            <img src="../../../../assets/images/logos/poweredbyarx.png" class="" />
+            <div class="content-container">
+                <div class="footer-privacy-right">
+                  <strong>
+                    <span>
+                        <a class="footer-link pad-2" [href]="privacyLink" target="_blank">{{ privacyText }}</a> <span class="footer-divider">|</span>
+                    </span>
+                    <span>
+                        <a class="footer-link" [href]="legalLink" target="_blank">{{ legalText }}</a>
+                    </span>
+                </strong>
+                </div>
+                <div class="footer-text-right">
+                  <p class="p-text" [innerHTML]="footerLineContent.firstLine"></p>
+                  <p [innerHTML]="footerLineContent.secondLine"></p>
+                  <p *ngIf="footerLineContent.thirdLine" [innerHTML]="footerLineContent.thirdLine"></p>
+                  <p [innerHTML]="footerLineContent.fourthLine"></p>
+                  <p [innerHTML]="footerLineContent.fifthLine"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mobile-screen">
+        <div class="logos">
+          <a [href]="clientNovoNordiskUsLink" target="_blank">
+            <img src="../../../../assets/images/logos/novo-nordisk-mobile-logo.png" class="novo-nordisk-logo-mobile"/>
+          </a>
+        </div>
+        <div class="content-container">
+            <div class="links">
+                <strong>
+                    <span>
+                        <a class="footer-link pad-2" [href]="clientPrivacyLink" target="_blank">{{ privacyText }}</a> <span class="footer-divider">|</span>
+                    </span>
+                    <span>
+                        <a class="footer-link" [href]="clientContactUsLink" target="_blank">{{ contactUs }}</a> <span class="footer-divider">|</span>
+                    </span>
+                    <span>
+                      <a class="footer-link" [href]="clientNovoNordiskUsLink" target="_blank">{{ novoNordiskUs }}</a>
+                    </span>
+                </strong>
+            </div>
+            <p class="p-text" [innerHTML]="clientLineMobile"></p>
+        </div>
+        <div class="logos1">
+          <img src="../../../../assets/images/logos/powered-by-mobile.png" class="powerd-by-arx-logo-mobile"/>
+        </div>
+        <div class="content-container1">
+          <div class="links">
+            <strong>
+                <span>
+                    <a class="footer-link pad-2" [href]="privacyLink" target="_blank">{{ privacyText }}</a> <span class="footer-divider1">|</span>
+                </span>
+                <span>
+                    <a class="footer-link" [href]="clientTermsConditionLink" target="_blank">{{ termsAndCondition }}</a>
+                </span>
+            </strong>
+          </div>
+          <p class="p-text1 text-white" [innerHTML]="footerLineContent.firstLine"></p>
+        </div>
+    </div>
+
+</div>

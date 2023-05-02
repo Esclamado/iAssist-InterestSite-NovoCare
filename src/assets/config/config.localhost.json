@@ -1,0 +1,14 @@
+{
+  "production": false,
+  "integrationFabricApiBaseAddress": "https://integrationfabricapi.dev.iassist.com/",
+  "transactionalApiBaseAddress": "https://transactionalapi.dev.iassist.com/",
+  "consentFaxNumber": "833-746-2277",
+  "hcpVerifyBaseAddress": "https://dev.hcpverify.com/",
+  "epaVerifyBaseAddress": "https://msexternalservicesapi.dev.iassist.com/",
+  "organizationalBaseAddress": "https://organizationalapi.dev.iassist.com/",
+  "iAssistLiteRegistrationAddress": "https://hcp.dev.iassist.com/",
+  "PESAddress": "https://xtandi.dev.iassist.com/hcp-landing",
+  "obesityFaxNumber": "1-407-269-8634",
+  "rarebloodFaxNumber": "1-407-434-0762",
+  "growthFaxNumber": "1-407-459-7023"
+}

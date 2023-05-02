@@ -1,0 +1,119 @@
+<div
+    class="insurance-information"
+    fxLayoutAlign="space-between start"
+    fxLayoutAlign.lt-lg="center start"
+    fxLayout="row"
+    fxLayout.lt-md="column"
+>
+    <div class="insurance-step">
+        <app-step
+            [showBackLink]="true"
+            [showRequired]="true"
+            [backText]="stepContent?.back"
+            [title]="stepContent?.header"
+            [description]="stepContent?.description"
+        >
+        </app-step>
+    </div>
+    <div class="services-main">
+        <div class="services-bg-block" fxHide fxShow.gt-sm></div>
+        <div class="services-rectangle">
+            <app-stepper [activeStep]="'insurance-information'"></app-stepper>
+            <form [formGroup]="insuranceInformationGroup">
+                <ng-container *ngIf="!failedEligibility">
+                    <div>
+                        {{ staticContent.foundInsuranceMessage }}
+                    </div>
+                    <div class="card mt-4 mb-4">
+                        <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="space-between start" fxFlexFill  class="card-body insurance-info-card">
+                            <div class="insurance-info-text" fxFlex>
+                                {{ staticContent.insuranceInfoText }}
+                            </div>
+                            <div fxFlex>
+                                <button type="button" class="btn btn-link view-info-text" (click)="viewInsuranceInfo()">
+                                    {{ staticContent.viewInfoText }}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="space-between start" fxFlexFill class="insurance-info">
+                        <div class="mr-2">
+                            <app-form-radio
+                                [formItem]="isInformationCorrectConfig"
+                                [formGroup]="insuranceInformationGroup"
+                                [inline]="false"
+                                (valueChanges)="isInformationCorrect($event)"
+                            >
+                            </app-form-radio>
+                        </div>
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="failedEligibility || informationCorrect === false">
+                    <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="start" class="insurance-info">
+                        <div class="mr-2">
+                            <app-form-radio 
+                                [formItem]="hasInsuranceConfig"
+                                [formGroup]="insuranceInformationGroup"
+                                [inline]="false"
+                                [radioNobg]="true"
+                                (valueChanges)="updateHasInsurance($event)"
+                            >
+                            </app-form-radio>
+                        </div>
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="hasInsurance">
+                    <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="space-between start" class="insurance-info">
+                        <div class="mr-2">
+                            <app-form-radio 
+                                [formItem]="wantToUploadConfig"
+                                [formGroup]="insuranceInformationGroup"
+                                [inline]="false"
+                                [radioNobg]="true"
+                                (valueChanges)="updateWantToUpload($event)"
+                            >
+                            </app-form-radio>
+                        </div>
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="wantToUpload">
+                    <app-upload-document
+                        [uploadDocumentContent]="staticContent.uploadedDocsInsurance"
+                        [formGroup]="insuranceInformationGroup"
+                    ></app-upload-document>
+                </ng-container>
+                <ng-container *ngIf=" hasInsurance && !upload" >
+                    <app-insurance-form idName="Primary" [parentFormGroup]="insuranceInformationGroup"> </app-insurance-form>
+                </ng-container>
+                <ng-container *ngIf=" wantToUpload || hasInsurance && !upload">
+                    <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="space-between start" class="insurance-info">
+                        <div class="mr-2">
+                            <app-form-radio
+                                [formItem]="hasSecondaryInsuranceConfig"
+                                [formGroup]="insuranceInformationGroup"
+                                [inline]="false"
+                                [radioNobg]="true"
+                                (valueChanges)="updateHasSecondaryInsurance($event)"
+                            >
+                            </app-form-radio>
+                        </div>
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="hasSecondaryInsurance">
+                    <app-insurance-form idName="Secondary" [parentFormGroup]="insuranceInformationGroup"> </app-insurance-form>
+                </ng-container>
+                <div *ngIf="showConfirmationMessage()" class="insurance-complete-text">
+                    {{ staticContent.completeMessage }}
+                </div>
+                <div fxLayout="row" fxLayout.lt-sm="column-reverse" fxLayoutAlign="end space-between" fxLayoutAlign.lt-sm="space-evenly stretch" fxFlexFill>
+                    <button mat-flat-button color="accent" type="button" (click)="cancelBtnClick()">
+                        {{ actionContent.cancelBtn }}
+                    </button>
+                    <button mat-flat-button color="primary" type="button" [disabled]="disableButton()" (click)="continueButtonClick()">
+                        {{ actionContent.submitBtn }}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

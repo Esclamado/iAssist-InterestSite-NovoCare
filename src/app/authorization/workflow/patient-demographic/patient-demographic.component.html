@@ -1,0 +1,174 @@
+<div class="patient-demographic-container"
+    fxLayoutAlign="space-between start"
+    fxLayoutAlign.lt-lg="center start"
+    fxLayout="row"
+    fxLayout.lt-md="column"
+>
+    <div class="patient-demographic-step" fxLayout="column" fxLayoutGap="0px">
+        <app-step [showBackLink]="showPrevious"
+                  [backText]="stepContent?.back"
+                  [title]="stepContent?.header"
+                  [description]="stepContent?.description"
+                  [requiredText] = "stepContent?.requiredText"
+                  [importantDrugUrl]= "drugUrl"
+                  [showRequired]= "false">
+        </app-step>
+        <div fxHide fxShow.gt-sm class="need-assistance-container" fxLayoutAlign="start end">
+            <app-need-assistance
+                [title]="translationService.needAssistanceView.title"
+                [body]="translationService.needAssistanceView.body"
+                [footer]="translationService.needAssistanceView.footer"
+                fxFlexFill
+            >
+            </app-need-assistance>
+        </div>
+    </div>
+
+    <div class="services-main">
+      <div class="new-container">
+          <div class="services-rectangle">
+              <app-stepper [activeStep]="'patient-demographics'"></app-stepper>
+              <div fxLayout="column" class="description-container">
+                  <div>{{patientDemographicsHeader}}</div>
+                  <p>{{patientDemographicsSubheader}}</p>
+              </div>
+              <div class="below-18" [innerHTML]="demographicsInformation"></div>
+              <form [formGroup]="patientDemographicsGroup" ngSubmit="submit();">
+                <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="16px" fxLayoutGap.lt-sm="0px">
+                  <div fxFlex="50">
+                      <div>
+                          <app-form-input [formItem]="patientDemographicFirstNameConfig"
+                              [formGroup]="patientDemographicsGroup">
+                          </app-form-input>
+                      </div>
+                  </div>
+                  <div fxFlex="50">
+                      <div>
+                          <app-form-input [formItem]="patientDemographicLastNameConfig"
+                              [formGroup]="patientDemographicsGroup">
+                          </app-form-input>
+                      </div>
+                  </div>
+                </div>
+                <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="16px" fxLayoutGap.lt-sm="0px">
+                  <div fxFlex="50">
+                      <div>
+                          <app-form-datepicker
+                              [formItem]="patientDemographicDOBConfig"
+                              [formGroup]="patientDemographicsGroup"
+                              (valueChanges)="onDateChange($event)"
+                          >
+                          </app-form-datepicker>
+                      </div>
+                  </div>
+                  <div fxFlex="50">
+                      <div>
+                          <app-form-input [formItem]="patientDemographicPhoneConfig"
+                              [formGroup]="patientDemographicsGroup">
+                          </app-form-input>
+                      </div>
+                  </div>
+                </div>
+                <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="16px" fxLayoutGap.lt-sm="0px">
+                  <div fxFlex="50">
+                      <div>
+                          <app-form-input [formItem]="patientDemographicZipCodeConfig"
+                              [formGroup]="patientDemographicsGroup">
+                          </app-form-input>
+                      </div>
+                  </div>
+                  <div fxFlex="50">
+                  </div>
+                </div>
+                <div>
+                  <div fxLayout="column" class="description-container">
+                      <div>{{caregiverHeader}}</div>
+                      <p>{{caregiverSubheader}}</p>
+                  </div>
+                  <div *ngIf="showCaregiverDescription" class="below-18" [innerHTML]="below18Information"></div>
+                  <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="16px" fxLayoutGap.lt-sm="0px">
+                      <div fxFlex="50">
+                          <div>
+                              <app-form-input [formItem]="caregiverFirstNameConfig"
+                                  [formGroup]="patientDemographicsGroup">
+                              </app-form-input>
+                          </div>
+                      </div>
+                      <div fxFlex="50">
+                          <div>
+                              <app-form-input [formItem]="caregiverLastNameConfig"
+                                  [formGroup]="patientDemographicsGroup">
+                              </app-form-input>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="16px" fxLayoutGap.lt-sm="0px">
+                      <div fxFlex="50">
+                          <div>
+                              <app-form-select [formItem]="caregiverRelationshipToPatientConfig"
+                                  [formGroup]="patientDemographicsGroup">
+                              </app-form-select>
+                          </div>
+                      </div>
+                      <div fxFlex="50">
+                        <div>
+                            <app-form-input [formItem]="caregiverPhoneConfig"
+                                [formGroup]="patientDemographicsGroup">
+                            </app-form-input>
+                        </div>
+                      </div>
+                  </div>
+                </div>
+              </form>
+
+              <div class="btn-container d-sm-block d-md-none d-lg-none">
+                <div fxLayout="row"
+                    fxLayout.lt-sm="column-reverse"
+                    fxLayoutAlign="end space-between"
+                    fxLayoutAlign.lt-sm="space-evenly stretch"
+                    fxFlexFill
+                >
+                    <button
+                      class='nav-btn'
+                      mat-flat-button
+                      color="primary"
+                      type="button"
+                      [disabled]="patientDemographicsGroup.invalid"
+                      (click)="submit();"
+                    >
+                    {{continueButtonText}}
+                  </button>
+                </div>
+              </div>
+          </div>
+
+            <div class="btn-container bot d-none d-md-flex d-lg-flex">
+              <div fxLayout="row"
+                  fxLayout.lt-sm="column-reverse"
+                  fxLayoutAlign="end space-between"
+                  fxLayoutAlign.lt-sm="space-evenly stretch"
+                  fxFlexFill
+              >
+                  <button
+                    class='nav-btn'
+                    mat-flat-button
+                    color="primary"
+                    type="button"
+                    [disabled]="patientDemographicsGroup.invalid"
+                    (click)="submit();"
+                  >
+                  {{continueButtonText}}
+                </button>
+              </div>
+            </div>
+        </div>
+    </div>
+    <div fxHide fxShow.lt-md class="need-assistance-container" fxLayoutAlign="start end">
+      <app-need-assistance
+        [title]="translationService.needAssistanceView.title"
+        [body]="translationService.needAssistanceView.body"
+        [footer]="translationService.needAssistanceView.footer">
+      </app-need-assistance>
+    </div>
+</div>

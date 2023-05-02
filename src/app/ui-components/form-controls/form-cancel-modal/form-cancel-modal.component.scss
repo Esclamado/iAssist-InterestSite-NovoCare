@@ -1,0 +1,86 @@
+@import "../../../../assets/stylesheets/_variables.scss";
+
+.cancel-modal-container {
+  background-color: $white;
+  padding: 42px 26px 26px;
+  border-radius: 6px;
+
+  @media (max-width: $screen-mobile) {
+    padding: 26px 0px 16px;
+    text-align: center;
+  }
+
+  .btn {
+    font-weight: $fw-600;
+    @media (max-width: $screen-mobile) {
+      margin-right: 0px !important;
+    }
+  }
+
+  .leave-btn {
+    color: $app-text-dark;
+    line-height: 22px;
+    margin-right: 27px;
+  }
+
+  .continue-btn{
+    line-height: 150%;
+    padding: 1rem 3rem;
+    border-radius: 8px;
+    @media (max-width: $screen-mobile) {
+      margin-bottom: 2.5rem;
+    }
+  }
+
+  .title {
+    margin-bottom: 1.25rem;
+    @media (max-width: $screen-mobile) {
+      margin-bottom: 2.5rem;
+      display: flex;
+      width: 100%;
+    }
+  }
+
+  .close{
+    height: 1.3931rem;
+    width: 1.3894rem;
+    background: url(../../../../assets/images/close-black.svg) no-repeat right;
+    margin-right: 5px;
+    position: relative;
+    top: -17px;
+    cursor: pointer;
+
+    @media (max-width: $screen-mobile) {
+      top: -27px;
+      right: -5px;
+    }
+  }
+}
+
+b {
+  font-family: $font-family-open-sans-regular;
+  font-size: $font-title-lg;
+  font-weight: $fw-700;
+  line-height: 64px;
+  font-feature-settings: 'pnum' on, 'lnum' on;
+  color: $app-text-dark;
+
+  @media (max-width: $screen-mobile) {
+    font-size: $font-larger;
+    width: 100%;
+  }
+}
+
+p {
+  font-family: $font-family-open-sans-regular;
+  font-size: $font-modal-body;
+  font-weight: $fw-400;
+  color: $app-mid-grey-font-color;
+  margin-bottom: 50px;
+
+  @media (max-width: $screen-mobile) {
+    font-size: $font-normal;
+    line-height: 140%;
+    margin-bottom: 40px;
+  }
+}

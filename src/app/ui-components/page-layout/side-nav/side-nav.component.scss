@@ -1,0 +1,97 @@
+@import '../../../../assets/stylesheets/variables';
+
+.side-nav-bar {
+  position: fixed;
+  z-index: 1001;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  .side-nav-bar-overlay {
+      background: rgba(0,0,0,0.5);
+      width: 100%;
+      height: 100%;
+  }
+
+  .side-nav-bar-menu-container {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      background: $white;
+      display: flex;
+      flex-direction: column;
+
+      .side-nav-bar-close {
+          display: inline-block;
+          font-size: $font-largest;
+          margin: 24px 0px 0px 24px;
+          cursor: pointer;
+      }
+  }
+
+  .side-nav-bar-content-container {
+      padding: 0rem;
+
+
+      .mat-list-base .mat-list-item {
+        color: $app-primary-color-100;
+        font-size: $font-title-sm;
+        @media screen and (max-width: $screen-mobile) {
+          font-size: $font-assistance-title;
+        }
+      }
+      .mat-list-base .mat-list-item .mat-list-item-content, .mat-list-base .mat-list-option .mat-list-item-content {
+        padding: 0rem;
+      }
+  }
+}
+
+.side-nav-bar-overlay-collapsed {
+  background: transparent !important;
+}
+
+.side-nav-bar-collapsed {
+  visibility: collapse !important;
+}
+
+.menu-dropdown-container {
+  .menu-dropdown-title {
+      font-family: $font-family-open-sans-regular;
+      font-style: normal;
+      font-weight: $fw-600;
+      font-size: $font-modal-body;
+      line-height: 25px;
+      text-align: center;
+      color: $app-text-color;
+
+      .caret-down-solid{
+        width: 0.8894rem;
+        margin-left: 0.625rem;
+      }
+  }
+}
+
+.list-containter {
+  padding-left: 0.9375rem;
+}
+
+.menu-section-title::ng-deep {
+  font-family: $font-family-open-sans-regular;
+  font-style: normal;
+  font-weight: $fw-600;
+  font-size: $font-normal;
+  line-height: 22px;
+  color: $slate;
+  margin-top: 0.3125rem;
+}
+
+.menu-item-link::ng-deep {
+  font-family: $font-family-open-sans-regular;
+  font-style: normal;
+  font-weight: $fw-400;
+  font-size: $font-normal;
+  line-height: 22px;
+  margin-top: 0.3125rem;
+  color: $primary;
+}

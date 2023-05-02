@@ -1,0 +1,27 @@
+@mixin border-alert-variant($color) {
+    border-left-color: $color;
+  
+    .fa {
+      color: $color;
+    }
+  }
+  
+  .alert {
+    border-left-width: 7px;
+  
+    &.alert-success {
+      @include border-alert-variant($success);
+    }
+    &.alert-warning {
+      @include border-alert-variant($warning);
+    }
+    &.alert-danger {
+      @include border-alert-variant($danger);
+    }
+    &.alert-light {
+      @include border-alert-variant($dark);
+    }
+    &.alert-dark {
+        @include border-alert-variant($dark)
+    }
+  }

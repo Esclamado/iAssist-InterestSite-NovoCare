@@ -1,0 +1,40 @@
+@import '../../../../assets/stylesheets/_variables.scss';
+.no-modal-main {
+    background-color: $white;
+    padding: 30px 30px 30px 30px;
+    border-radius: 0.375rem;
+    max-height: 80vh;
+
+    .no-modal-container {
+        max-height: 80vh;
+
+        .btn {
+            @media (max-width: $screen-mobile) {
+                margin-bottom: 10px !important;
+                margin-right: 0px !important;
+            }
+        }
+    }
+
+    b {
+        font-family: $font-family-open-sans-regular;
+        font-size: $font-title-lg;
+        font-weight: 700;
+        line-height: 64px;
+        font-feature-settings: 'pnum' on, 'lnum' on;
+
+        @media (max-width: $screen-mobile) {
+            font-size: $font-larger;
+        }
+    }
+
+    p {
+        font-family: $font-family-open-sans-regular;
+        font-size: $font-assistance-title;
+        overflow: auto;
+
+        @media (max-width: $screen-mobile) {
+            font-size: $font-normal;
+        }
+    }
+}

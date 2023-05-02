@@ -1,0 +1,165 @@
+@import '../../../../assets/stylesheets/variables';
+@import '../workflow.component.scss';
+
+.document-upload-container {
+    display: flex;
+
+    @media (max-width: $screen-desktop) {
+        flex-direction: column;
+    }
+
+    .document-upload-step {
+      margin-right: 8rem;
+      max-width: 38.25rem;
+
+        @media (max-width: $screen-desktop) {
+            width: auto;
+            margin-right: 0;
+            flex: 1;
+        }
+
+        @media (max-width: $screen-laptop){
+          max-width: 25.25rem;
+          margin-right: 0;
+        }
+    }
+
+    .document-upload-main::ng-deep {
+        .row {
+            margin-left: 0rem;
+            margin-right: 0rem;
+        }
+        .input-container {
+          width: 100%;
+
+          select {
+            width: 50%;
+          }
+
+          input {
+            width: 50%;
+          }
+
+          @media (max-width: $screen-mobile) {
+            select {
+              width: 100%;
+            }
+
+            input {
+              width: 100%;
+            }
+          }
+        }
+        select {
+          max-width: 100%;
+        }
+        .label {
+          font-size: $font-normal;
+        }
+    }
+
+    .mat-flat-button {
+      @media (max-width: $screen-mobile) {
+        margin: 0px 0px 10px 0px !important;
+      }
+    }
+
+    .as_buttons {
+        display: flex;
+        justify-content: flex-end;
+        position: absolute;
+        bottom: 20px;
+        right: 0;
+        flex-direction: row;
+        align-items: center;
+        padding: 16px 48px;
+    }
+
+    .validation-feedback {
+        color: $primary;
+        font-size: $font-smaller-2;
+        margin-top: 0;
+    }
+
+    .services-rectangle {
+      min-height: 30.938rem;
+      padding: 2.5rem 5.938rem 0 6rem !important;
+      max-width: 100%;
+      width: 100%;
+      @media (max-width: $screen-mobile) {
+        padding: 2.5rem 1rem !important;
+        margin: 0;
+      }
+    }
+
+}
+
+.document-upload-step::ng-deep{
+  .description{
+      @media (max-width: $screen-mobile) {
+          font-size: $font-large !important;
+      }
+  }
+  .info-section{
+      margin-bottom: 0rem;
+      @media (max-width: $screen-mobile) {
+          margin-bottom: 4.125rem !important;
+    }
+  }
+}
+
+.btn-continue{
+  @media (min-width: $screen-desktop-lg) {
+    margin-bottom: 5rem;
+  }
+  @media (min-width: $screen-tablet) {
+    margin-bottom: 5rem;
+  }
+  @media (max-width: $screen-mobile) {
+    margin-top: 2.8469rem;
+  }
+}
+
+
+.new-container{
+  background: #fff;
+  box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
+  border-radius: 5px;
+}
+
+.bot{
+  padding-bottom: 30px;
+  padding-right: 91px;
+}
+
+@media (max-width: $screen-desktop-md) {
+   .services-rectangle::ng-deep {
+    background-color: #FFFFFF;
+    box-shadow: none;
+    border-radius: none;
+    z-index: 0;
+    float: none;
+    height: 27.6875rem !important;
+  }
+}
+
+@media (max-width: $screen-desktop-mdv1) {
+  .services-rectangle::ng-deep {
+   background-color: #FFFFFF;
+   box-shadow: none;
+   border-radius: none;
+   z-index: 0;
+   float: none;
+   height: 27.6875rem !important;
+ }
+}
+
+.services-main::ng-deep {
+  @media (min-width: $screen-laptop){
+      width: 54%;
+  }
+
+  @media (max-width: $screen-tablet){
+    width: 100%;
+  }
+}

@@ -1,0 +1,27 @@
+@import '../../../../../assets/stylesheets/variables';
+
+.insurance-form-container > .row {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.insurance-form-container > .insurance-header-text {
+    color: $slate;
+    font-style: italic;
+    margin-bottom: 1em;
+    font-weight: $fw-600;
+}
+
+.insurance-form-container::ng-deep {
+    .row {
+        margin-left: 0rem;
+        margin-right: 0rem;
+    }
+
+    .input-container {
+        width: 45%;
+        @media (max-width: $screen-mobile) {
+            width: 100%;
+        }
+    }
+}

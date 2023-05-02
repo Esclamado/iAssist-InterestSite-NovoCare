@@ -1,0 +1,57 @@
+<div class="prescriber-certificate-container" fxLayoutAlign="space-between start" fxLayoutAlign.lt-lg="center start" fxLayout="row" fxLayout.lt-md="column">
+    <app-throbber *ngIf="isSubmitting"></app-throbber>
+    <div class="prescriber-certificate-step">
+        <app-step
+            [showBackLink]="true"
+            [showRequired]="true"
+            [backText]="stepContent?.back"
+            [title]="stepContent?.header"
+            [description]="stepContent?.description"
+            [requiredText]="stepContent?.requiredText"
+        >
+        </app-step>
+     </div>
+     <div class="services-main">
+        <div class="services-bg-block" fxHide fxShow.gt-sm></div>
+        <div class="services-rectangle prescriber-certificate-info">
+            <app-stepper [activeStep]="'prescriber-certification'"></app-stepper>
+            <form [formGroup]="prescriberCertificationGroup">
+                <div>
+                    <label class="prescriber-certificate-label" [innerHTML]="translationService.prescriberCertificationView.PrescriberCertificationStatement.label">
+                    </label>
+                    <div
+                        #consentLanguageDiv
+                        class="mat-typography content"
+                        infinite-scroll
+                        [innerHTML]="translationService.prescriberCertificationView.PrescriberCertificationStatement.content"
+                    ></div>
+                </div>
+                <div class="agree-checkbox">
+                    <input type="checkbox" (change)="onAgreeChange($event)"/>
+                    <span class="astrx-req">*</span>
+                    <span class="agree-label" [innerHTML]="agreeLabel"></span>
+                </div>
+                <div>
+                    <div class="full-name">
+                        <app-form-input [formItem]="prescriberCertificationFullNameConfig" [formGroup]="prescriberCertificationGroup" (valueChanges)="onFullNameValueChange($event)">
+                        </app-form-input>
+                </div>
+                <div class="full-name">
+                        <app-form-signature [formItem]="prescriberCertificationSignatureConfig" [formGroup]="prescriberCertificationGroup" [name]="fullName">
+                        </app-form-signature>
+                </div>
+                </div>
+
+                <div fxLayout="row" fxLayout.lt-sm="column-reverse" fxLayoutAlign="end space-between" fxLayoutAlign.lt-sm="space-evenly stretch" fxFlexFill>
+                    <button mat-flat-button color="accent" type="button" (click)="cancelBtnClick();" >
+                        {{cancelButtonText}}
+                    </button>
+                    <button mat-flat-button color="primary" type="button" [disabled]="prescriberCertificationGroup.invalid" (click)="continueButtonClick();">
+                        {{continueButtonText}}
+                    </button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+  </div>

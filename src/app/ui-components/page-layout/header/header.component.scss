@@ -1,0 +1,137 @@
+@import '../../../../assets/stylesheets/variables';
+
+.logo-container {
+    display: flex;
+    margin-bottom: 57.37px;
+     align-self: center;
+
+     @media (max-width: $screen-desktop) {
+      background-color: $primary;
+      margin-bottom: 0;
+      padding: 10px 10px 15px 30px;
+    }
+
+    @media (max-width: $screen-mobile) {
+      padding: 13px 10px 14px 10px;
+    }
+
+    .icon-display {
+      //transform: scale(1.5);
+    }
+
+    .mat-icon {
+      font-size: $font-largest-1;
+      height: 50px ;
+      width: 50px;
+      margin-right: 20px;
+      padding-top: 15px;
+      @media (max-width: $screen-mobile) {
+        margin-right: 0px;
+        padding-top: 0px;
+        font-size: $font-title-sm;
+        height: 24px ;
+        width: 24px;
+      }
+    }
+
+    .mat-icon-button {
+      height:70px;
+      width: 70px;
+      @media (max-width: $screen-mobile) {
+        height:40px;
+        width: 40px;
+      }
+    }
+
+    button {
+      color: $white;
+    }
+
+    .primary {
+      margin-top: 16px;
+      margin-left: -1px;
+      width: $app-logo-desktop-width;
+      height: $app-logo-desktop-height;
+        @media screen and (max-width: $screen-mobile) {
+          height: 24.98px;
+          width: 150px;
+          margin-top: 9px;
+        }
+    }
+
+    > .rectangle-pin {
+        /* Rectangle 2072 */
+        position: absolute;
+        width: 92.18px;
+        height: 33.71px;
+        left: 763.83px;
+        top: -20px;
+
+        /* Skobeloff */
+
+        border: 5px solid $light-white;
+        box-sizing: border-box;
+        border-radius: 24px;
+        transform: rotate(45deg);
+    }
+
+    > .rectangle-2073 {
+        /* Rectangle 2073 */
+        position: absolute;
+        width: 41.87px;
+        height: 31.53px;
+        left: 816.86px;
+        top: 8.34px;
+
+        /* Skobeloff */
+
+        background: $light-white;//#007178;
+        border-radius: 24px 1px 1px 24px;
+        transform: rotate(-135deg);
+    }
+
+    > .translate-container {
+        margin-left: auto;
+        display: flex;
+
+        > .globe {
+            padding-top: 1.75rem;
+            margin-bottom:5px;
+
+            .header-link {
+              font-size: $font-modal-body;
+              color: $primary;
+              font-weight: $fw-600;
+            }
+
+            .header-Nolink {
+              font-size: $font-modal-body;
+              font-weight: $fw-600;
+              line-height: 15px;
+              border-left: 3px solid $dark-gray;
+              padding-left: 10px;
+              margin-left: 10px;
+            }
+      }
+    }
+}
+
+.banner {
+  height: 2.5rem;
+  color: $app-text-light;
+  background-color: $app-dark-grey-font-color;
+  @media screen and (max-width: $screen-desktop) {
+    order: 2;
+  }
+}
+
+.welcome-container {
+    font-size: $app-form-custom-label-font-size;
+    font-family: $font-family-open-sans-regular;
+    max-width: 856px;
+    line-height: 1.6em;
+}
+
+hr {
+    margin: 25px 0 40px;
+}

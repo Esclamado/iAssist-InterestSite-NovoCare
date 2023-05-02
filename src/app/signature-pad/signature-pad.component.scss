@@ -1,0 +1,44 @@
+.signature-body {
+    background-color: white;
+    margin-bottom: 0.625rem; 
+
+    canvas {
+        width:100%;
+        padding: 1px 3px 1px 1px;
+        margin-bottom: -4px;
+    }
+}
+
+.canvas-helper {
+    height: 175px;
+    position: absolute;
+    left: -10000px;
+    font-size: 60px;
+    white-space: nowrap;
+}
+
+.btn-clear-signature {
+    margin-top: -60px;
+}
+
+.margin-top {
+    margin-top: 20px;
+}
+
+.input-full-name {
+    width: 255px;
+}
+
+label {
+    font-size: .875rem;
+}
+
+a {
+    color: #3E8FD7 !important;
+    font-size: .8125rem;
+    cursor: pointer;
+}
+
+.sign-mode-text {
+    font-size: .75rem;
+}

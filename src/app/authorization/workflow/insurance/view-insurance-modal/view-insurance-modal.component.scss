@@ -1,0 +1,65 @@
+@import '../../../../../assets/stylesheets/_variables.scss';
+
+.view-insurance-modal-container {
+    max-height: 80vh;
+    overflow: auto;
+
+    p {
+        font-family: $font-family-open-sans-regular;
+        font-size: $font-assistance-title;
+
+        @media (max-width: $screen-mobile) {
+            font-size: $font-normal;
+        }
+    }
+
+    background-color: $white;
+    padding: 1.875rem 1.875rem 4.375rem 1.875rem;
+    border-radius: 0.375rem;
+
+    @media (max-width: $screen-mobile) {
+        padding: 0rem;
+    }
+
+    .close-button {
+        float: right;
+        top: -24px;
+        right: -24px;
+        cursor: pointer;
+        color: $slate;
+    }
+
+    .row {
+        margin-bottom: 1em;
+    }
+
+    .header {
+        color: $app-mid-grey-font-color;
+        font-size: $font-normal;
+        font-weight: $fw-600;
+    }
+
+    .description {
+        color: $app-mid-grey-font-color;
+        font-size: $font-small;
+        font-weight: $fw-600;
+    }
+
+    .content-row {
+        margin: 0.9375rem 0 0.9375rem 0;
+    }
+
+    .title-content {
+        margin-bottom: 0.9375rem;
+        font-family: $font-family-open-sans-regular;
+        font-style: normal;
+        font-weight: $fw-700;
+        font-size: $font-title-lg;
+        line-height: 64px;
+
+        @media (max-width: $screen-mobile) {
+            font-size: $font-larger;
+            min-width: 80% !important;
+        }
+    }
+}

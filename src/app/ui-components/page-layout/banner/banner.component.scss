@@ -1,0 +1,23 @@
+@import '../../../../assets/stylesheets/variables';
+
+.banner-container{
+    text-align: center;
+    background-color: $app-dark-grey-font-color;
+    position: absolute;
+    top: 0%;
+    width: 100%;
+    margin: 0rem -8.75rem 0rem;
+    p{
+        font-size: $app-form-custom-label-font-size;
+        color: $white;
+        padding: 5px;
+        margin-bottom: 0rem;
+    }
+}
+
+@media screen and (max-width: $screen-tablet) {
+    .banner-container{
+        margin: 0rem;
+        position: relative;
+    }
+}

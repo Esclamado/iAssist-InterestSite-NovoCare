@@ -1,0 +1,57 @@
+<div
+    class="document-upload-container"
+    fxLayoutAlign="space-between start"
+    fxLayoutAlign.lt-lg="center start"
+    fxLayout="row"
+    fxLayout.lt-md="column"
+>
+    <app-throbber *ngIf="isSubmitting"></app-throbber>
+    <div class="document-upload-step">
+        <app-step
+            [showBackLink]="true"
+            [showRequired]="true"
+            [backText]="stepContent?.back"
+            [title]="stepContent?.header"
+            [description]="stepContent?.description">
+        </app-step>
+      <app-need-assistance fxHide fxShow.gt-lg
+        [title]="translateService.needAssistanceView.title"
+        [body]="translateService.needAssistanceView.body"
+        [footer]="translateService.needAssistanceView.footer"
+        fxFlexFill>
+      </app-need-assistance>
+    </div>
+    <div class="services-main">
+        <div class="services-bg-block" fxHide fxShow.gt-sm></div>
+        <div class="new-container">
+          <div class="p-2 services-rectangle">
+              <app-stepper [activeStep]="'document-upload'"></app-stepper>
+              <form [formGroup]="documentUploadGroup">
+                    <app-upload-document  (isDocumentFileInValid)="documentFile($event)" [uploadDocumentContent]="uploadDocumentContent" [formGroup]="documentUploadGroup">
+                    </app-upload-document>
+                  <div fxLayout="row" fxLayout.lt-sm="column-reverse" fxLayoutAlign="end space-between" fxLayoutAlign.lt-sm="space-evenly stretch" fxFlexFill class="btn-continue d-sm-block d-md-none d-lg-none">
+                      <button mat-flat-button color="accent" type="button" (click)="cancelBtnClick()">
+                        {{ displayRestrictionsError ? cancelButtonText : skipButtonText }}
+                      </button>
+                      <button mat-flat-button color="primary" type="button" [disabled]="uploadedDocuments || displayRestrictionsError" [disabled]="" (click)="continueBtnClick()">
+                          {{ continueButtonText }}
+                      </button>
+                  </div>
+              </form>
+          </div>
+          <div fxLayout="row" fxLayout.lt-sm="column-reverse" fxLayoutAlign="end space-between" fxLayoutAlign.lt-sm="space-evenly stretch" fxFlexFill class="btn-continue bot d-none d-md-flex d-lg-flex">
+            <button mat-flat-button color="accent" type="button" (click)="cancelBtnClick()">
+                {{ displayRestrictionsError ? cancelButtonText : skipButtonText }}
+            </button>
+            <button mat-flat-button color="primary" type="button" [disabled]="uploadedDocuments || !displayRestrictionsError" [disabled]="" (click)="continueBtnClick()">
+                {{ continueButtonText }}
+            </button>
+          </div>
+        </div>
+    </div>
+    <app-need-assistance fxHide fxShow.lt-sm
+        [title]="translateService.needAssistanceView.title"
+        [body]="translateService.needAssistanceView.body"
+        [footer]="translateService.needAssistanceView.footer">
+    </app-need-assistance>
+</div>

@@ -1,0 +1,43 @@
+<div class="form-group" [formGroup]="formGroup">
+    <div>
+        <label class="floating" [ngClass]="{ required: formItem.required }" [for]="formItem.controlName">
+            <span class="floating-text">
+                {{ formItem.text }}
+                <span *ngIf="formItem.optionalText" class="optional-text text-muted">
+                    {{ formItem.optionalText }}
+                </span>
+            </span> </label
+        ><span class="tooltip-container" *ngIf="formItem.tooltip"
+            ><img
+                [matTooltip]="formItem.tooltip"
+                matTooltipPosition="above"
+                (click)="tooltip.toggle()"
+                (hover)="tooltip.toggle()"
+                #tooltip="matTooltip"
+                src="../../../../assets/images/icon-tooltip-info.svg"
+        /></span>
+    </div>
+    <div class="datepicker">
+        <input
+            class="form-control text-muted"
+            onkeydown="this.value=this.value.replace(/^(\d\d)(\d)$/g,'$1/$2').replace(/^(\d\d\/\d\d)(\d+)$/g,'$1/$2').replace(/[^\d\/]/g,'')"
+            (keypress)="keyPressNumbers($event)"
+            (paste)="onPaste($event)"
+            [ngClass]="{ 'is-invalid': isControlInvalid }"
+            [formControlName]="formItem.controlName"
+            [id]="formItem.controlName"
+            [placeholder]="formItem.placeholder"
+            [required]="formItem.required"
+            [attr.maxLength]="maxLength"
+            [max]="maxDate"
+            [min]="minDate"
+            [matDatepicker]="basicDatepicker"
+        />
+        <mat-datepicker-toggle [for]="basicDatepicker"></mat-datepicker-toggle>
+        <mat-datepicker #basicDatepicker></mat-datepicker>
+
+        <div *ngIf="isControlInvalid" class="invalid-feedback">
+            {{ formItem.errorMessage }}
+        </div>
+    </div>
+</div>

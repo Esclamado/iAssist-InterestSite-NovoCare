@@ -1,0 +1,126 @@
+<div class="prescriber-container" fxLayoutAlign="space-between start" fxLayoutAlign.lt-lg="center start" fxLayout="row"
+    fxLayout.lt-md="column">
+    <div class="prescriber-step">
+        <app-step [showBackLink]="true" [backText]="stepContent?.back" [title]="stepContent?.header"
+            [description]="searchByNPI ? stepContent?.description: ''"
+            [descriptionline2]="!searchByNPI ? stepContent?.descriptionline2 : ''"
+            [requiredText]="stepContent?.requiredText" [importantDrugUrl]="drugUrl">
+        </app-step>
+    </div>
+
+    <div class="services-main">
+        <div class="services-bg-block" fxHide fxShow.gt-sm></div>
+        <div class="services-rectangle">
+            <form [formGroup]="prescriberNpiGroup" fxLayout="column" fxLayoutAlign="start none">
+                <div class="prescriber-npi">
+                    <app-stepper [activeStep]="'prescriber-npi'"></app-stepper>
+                    <div *ngIf="searchByNPI && searchAgain" class="field-container npi-number">
+                        <app-form-input [formItem]="prescriberNpiNumberConfig" [formGroup]="prescriberNpiGroup"
+                            (valueChanges)="onNpiChange($event)">
+                        </app-form-input>
+                        <ng-container error-message>
+                            <small class="invalid-feedback"
+                                *ngIf="prescriberNpiNumber.hasError('required') && prescriberNpiNumber.touched">
+                                {{validationMessage.required.english}}
+                            </small>
+                            <small class="invalid-feedback"
+                                *ngIf="prescriberNpiNumber.hasError('pattern') && prescriberNpiNumber.touched">
+                                {{validationMessage.npiInvalid.english}}
+                            </small>
+                        </ng-container>
+                    </div>
+
+                    <div class="prescriber-search-by-name" *ngIf="!searchByNPI">
+                        <div fxLayout.gt-sm="row" fxLayout.lt-sm="column" fxLayout.sm="row" fxLayout.sm="row"
+                            fxLayoutGap.gt-xs="16px">
+                            <div fxLayout="column" fxFlex>
+                                <app-form-input [formItem]="prescriberFirstnameConfig" [formGroup]="prescriberNpiGroup"
+                                    (valueChanges)="onFormDetailsChange($event)">
+                                </app-form-input>
+                                <ng-container error-message>
+                                </ng-container>
+                            </div>
+                            <div fxLayout="column" fxFlex>
+                                <app-form-input [formItem]="prescriberLastnameConfig" [formGroup]="prescriberNpiGroup"
+                                    (valueChanges)="onFormDetailsChange($event)">
+                                </app-form-input>
+                                <ng-container error-message>
+                                </ng-container>
+                            </div>
+                        </div>
+
+                        <div fxLayout.gt-sm="row" fxLayout.lt-sm="column" fxLayout.sm="row" fxLayoutGap.gt-xs="16px">
+                            <div fxLayout="column" fxFlex>
+                                <app-form-input [formItem]="prescriberZipConfig" [formGroup]="prescriberNpiGroup"
+                                    (valueChanges)="onFormDetailsChange($event)">
+                                </app-form-input>
+                                <ng-container error-message>
+                                </ng-container>
+                            </div>
+                            <div fxLayout="column" fxFlex>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <div class="row">
+                        <div class="link-text" *ngIf="searchByNPI && searchAgain">{{link.prescriberTextLink}}
+                            <a class="prescriber-name-link" (click)="changeFormClick()">{{link.prescriberNameLink}}</a>
+                        </div>
+                        <div class="link-text" *ngIf="!searchByNPI">
+                            <a class="prescriber-name-link"
+                                (click)="changeFormClick()">{{link.prescriberNpiTextLink}}</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row prescriber-npi pad-text" *ngIf="prescriberFromData.firstName">
+                    <div class="col-lg-12 prescriber-npi-search-message">
+                        <div class="question" *ngIf="prescriberFromData.firstName">{{prescriberSearchMsg}}</div>
+                        <div class="prescriber-info">
+                            <div>
+                                <app-form-radio [formItem]="prescriberSelectedConfig" [formGroup]="prescriberNpiGroup"
+                                    [inline]="false" (valueChanges)="onPrescriberSelected($event)">
+                                </app-form-radio>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <mat-spinner class="button-spinner" diameter="20" *ngIf="loading$ | async"></mat-spinner>
+                </div>
+
+                <div class="row validation-feedback"
+                    *ngIf="!resultFound && errorMessage?.npiValidation?.length > 0 && !searchAgain">
+                    <div [innerHtml]="errorMessage?.npiValidation"></div>
+                    <span class="search-again" (click)="resetSearch()"
+                        [innerHtml]="errorMessage?.npiSearchAgain"></span>
+                </div>
+
+                <div class="as_buttons" fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="end space-between"
+                    fxLayoutAlign.lt-sm="space-evenly stretch" fxFlexFill>
+
+                    <div class="make-pointer" fxLayout="row" fxFlexAlign.lt-sm=" center" *ngIf="!searchAgain" (click)="onSkipClick();">
+                        <img src="../../../../assets/images/circleplus.svg" />
+                        <p class="add-prescriber-link">Add Prescriber</p>
+                    </div>
+                    <div class="add-prescriber" fxFlexAlign.gt-sm="start" fxLayout="row" fxLayoutAlign.lt-sm="center">
+                    </div>
+                    <div fxLayout.lt-sm="column-reverse" fxLayoutAlign.lt-sm="space-evenly stretch">
+                        <button mat-flat-button color="accent" class="skip-button" type="button"
+                            (click)="onSkipClick();" [disabled]="!searchByNPI">
+                            {{skipLinkText}}
+                        </button>
+                        <button mat-flat-button color="primary" type="button"
+                            [disabled]="prescriberNpiGroup.invalid" (click)="continueBtnClick();">
+                            {{continueButtonText}}
+                        </button>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

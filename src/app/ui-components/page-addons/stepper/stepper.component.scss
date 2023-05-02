@@ -1,0 +1,43 @@
+@import '../../../../assets/stylesheets/variables';
+
+.container-stepper {
+    background: transparent;
+    width: 100%;
+    margin-bottom: 35px;
+
+    @media (max-width: $screen-mobile) {
+      margin-bottom: 20px;
+    }
+
+    .steps-title {
+        width: 46px;
+        height: 24px;
+        font-family: $font-family-open-sans;
+        font-style: normal;
+        font-weight: $fw-700;
+        font-size: $font-normal;
+        line-height: 150%;
+        text-transform: uppercase;
+        color: $black;
+    }
+
+    mat-icon {
+        font-size: $font-copyright;
+        height: 0.625rem;
+        width: 0.625rem;
+        margin-top: 0.625rem;
+        margin-right: 0.625rem;
+    }
+
+    .accent {
+        color: $app-background-input;
+    }
+
+    .accent-darker {
+        color: $app-mid-grey-font-color;
+    }
+
+    @media (max-width: $screen-mobile) {
+      margin-bottom: 0.9031rem !important;
+    }
+}

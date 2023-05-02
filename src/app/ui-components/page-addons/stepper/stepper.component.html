@@ -1,0 +1,8 @@
+<div class="container-stepper" fxFlex fxLayout="column">
+    <div class="steps-title">STEPS</div>
+    <div fxLayout="row">
+        <div *ngFor="let route of pesSteps; let i = index">
+            <mat-icon [ngClass]="route === activeStep ? 'accent-darker' : 'accent'">brightness_1</mat-icon>
+        </div>
+    </div>
+</div>

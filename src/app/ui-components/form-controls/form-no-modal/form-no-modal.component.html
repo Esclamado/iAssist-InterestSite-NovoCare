@@ -1,0 +1,19 @@
+
+<div class="no-modal-main">
+    <div class="no-modal-container">
+        <h1>
+            <b>{{ data.title }}</b>
+        </h1>
+        <br />
+        <p [innerHTML]="data.content">
+        </p>
+        <br />
+        <br />
+        <div fxLayout="row" fxLayout.lt-sm="column-reverse" fxLayoutAlign="end space-between" fxLayoutAlign.lt-sm="space-evenly stretch" fxFlexFill>
+            <button type="button" class="btn mr-3" (click)="onLeave()">{{ data.yesLeave }}</button>
+            <button type="button" class="btn btn-primary" (click)="onContinue()">
+                {{ data.noContinue }}
+            </button>
+        </div>
+    </div>
+</div>

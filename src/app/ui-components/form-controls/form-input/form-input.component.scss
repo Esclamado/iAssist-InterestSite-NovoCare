@@ -1,0 +1,73 @@
+@import '../../../../assets/stylesheets/_variables.scss';
+
+
+/**
+* TODO: make a label component to apply styles to other distinct components
+*/
+
+.form-group {
+    margin-bottom: 24px !important;
+    > div {
+
+        > label {
+            display: block;
+            font-family: $font-family-open-sans;
+            font-size: $app-form-label-font-size;
+            font-weight: $fw-600;
+            color: $app-text-dark;
+
+
+            &.required::before {
+                background-color: transparent;
+                color: $app-form-required-asterisk;
+                background-color: $app-background-light-1;
+                content: '*';
+            }
+
+            &.floating {
+                bottom: 1.6em;
+                left: 10px;
+                background-color: transparent;
+                z-index: 1;
+                line-height: 1.3em;
+                margin-bottom: 18px;
+
+                .floating-text {
+                  background-color: transparent;
+                }
+            }
+
+            span.optional-text {
+                font-size: $font-copyright;
+                font-family: $font-family-open-sans;
+            }
+        }
+
+        > input {
+
+            &.form-control {
+                height: auto;
+                font-size: $font-normal;
+                border-radius: 8px;
+                padding: 17px 16px;
+                line-height: 22px;
+                color: $app-form-placeholder !important;
+                &:focus {
+                    border-color: $app-form-focus-color; // TODO: update in theme file
+                    box-shadow: none;
+                }
+            }
+            &.is-invalid {
+              border: solid 2px $light-red;
+            }
+        }
+
+        .invalid-feedback {
+            font-size: $font-normal;
+            font-weight: $fw-600;
+            line-height: 22px;
+            color: $error;
+        }
+    }
+
+}

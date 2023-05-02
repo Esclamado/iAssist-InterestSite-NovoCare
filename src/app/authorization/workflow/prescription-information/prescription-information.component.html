@@ -1,0 +1,82 @@
+<div class="patient-demographic-container" fxLayoutAlign="space-between start" fxLayoutAlign.lt-lg="center start"
+    fxLayout="row" fxLayout.lt-md="column">
+    <div class="patient-demographic-step">
+        <app-step [showBackLink]="showPrevious" [backText]="stepContent?.back" [title]="stepContent?.header"
+            [description]="stepContent?.description"
+            [requiredText]="stepContent?.requiredText" [showRequired]="true">
+        </app-step>
+    </div>
+
+    <div class="services-main">
+        <div class="services-bg-block" fxHide fxShow.gt-sm></div>
+        <div class="p-2 services-rectangle">
+            <app-stepper activeStep="prescription-information"></app-stepper>
+            <form [formGroup]="prescriptionInformationGroup" ngSubmit="submit();">
+
+                <div fxLayout="column" fxLayoutGap="0px">
+
+                    <div fxLayout="column" fxFlex>
+                        <app-form-input [formItem]="prescriptionInformationProductSelectedConfig"
+                            [formGroup]="prescriptionInformationGroup">
+                        </app-form-input>
+                    </div>
+
+                    <p class="verbiage" [innerHTML]="verbiage"></p>
+
+                    <div fxLayout="column" fxFlex>
+                        <app-form-input [formItem]="prescriptionInformationIcd10CodeConfig"
+                            [formGroup]="prescriptionInformationGroup" (valueChanges)="toUpperCase($event)">
+                        </app-form-input>
+                    </div>
+
+                    <div fxLayout.gt-sm="row" fxLayout.lt-sm="column" fxLayout.sm="row" fxLayoutGap.sm="16px"
+                        fxLayoutGap.gt-sm="16px">
+                        <div fxLayout="column" fxFlex>
+                            <app-form-input [formItem]="prescriptionInformationDosageConfig"
+                                [formGroup]="prescriptionInformationGroup">
+                            </app-form-input>
+                        </div>
+                        <div fxLayout="column" fxFlex>
+                            <app-form-input [formItem]="prescriptionInformationQuantityConfig"
+                                [formGroup]="prescriptionInformationGroup">
+                            </app-form-input>
+                        </div>
+                    </div>
+
+                    <div fxLayout.gt-sm="row" fxLayout.lt-sm="column" fxLayout.sm="row" fxLayoutGap.sm="16px"
+                        fxLayoutGap.gt-sm="16px" *ngIf="showRefillInput">
+                        <div fxLayout="column" fxFlex>
+                            <app-form-input [formItem]="prescriptionInformationRefillsConfig"
+                                [formGroup]="prescriptionInformationGroup">
+                            </app-form-input>
+                        </div>
+                        <div fxLayout="column" fxFlex>
+                        </div>
+                    </div>
+
+                    <div fxLayout="column" fxFlex class="remove-radio-padding" *ngIf="showSpecialtyPharmacyOption">
+                        <app-form-radio [formItem]="prescriptionInformationSpecialtyPharmacyConfig" [radioNobg]="true"
+                            [formGroup]="prescriptionInformationGroup" [inline]="false"></app-form-radio>
+                    </div>
+
+                    <div fxLayout="column" fxFlex>
+                        <app-upload-document [uploadDocumentContent]="uploadDocumentContent"
+                            [formGroup]="prescriptionInformationGroup"></app-upload-document>
+                    </div>
+
+                </div>
+
+                <div class="as_buttons" fxLayout="row" fxLayout.lt-sm="column-reverse" fxLayoutAlign="end space-between"
+                    fxLayoutAlign.lt-sm="space-evenly stretch" fxFlexFill>
+                    <button mat-flat-button color="accent" type="button" (click)="cancelBtnClick();">
+                        {{cancelButtonText}}
+                    </button>
+                    <button mat-flat-button color="primary" type="button"
+                        [disabled]="prescriptionInformationGroup.invalid" (click)="submit();">
+                        {{continueButtonText}}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

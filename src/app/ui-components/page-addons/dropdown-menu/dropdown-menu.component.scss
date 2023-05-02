@@ -1,0 +1,38 @@
+@import '../../../../assets/stylesheets/variables';
+
+.menu-dropdown-container {
+    .menu-dropdown-title {
+        font-family: $font-family-open-sans-regular;
+        font-style: normal;
+        font-weight: $fw-600;
+        font-size: $font-modal-body;
+        line-height: 25px;
+        text-align: center;
+        color: $app-text-color;
+
+        .caret-down-solid{
+          width: 0.8894rem;
+          margin-left: 0.625rem;
+          margin-right: 1.594rem;
+        }
+    }
+}
+
+.menu-section-title::ng-deep {
+    font-family: $font-family-open-sans-regular;
+    font-style: normal;
+    font-weight: $fw-600;
+    font-size: $font-normal;
+    line-height: 22px;
+    color: $app-dark-grey-font-color;
+    margin-top: 0.3125rem;
+}
+
+.menu-item-link::ng-deep {
+    font-family: $font-family-open-sans-regular;
+    font-style: normal;
+    font-weight: $fw-400;
+    font-size: $font-normal;
+    line-height: 22px;
+    margin-top: 0.3125rem;
+}

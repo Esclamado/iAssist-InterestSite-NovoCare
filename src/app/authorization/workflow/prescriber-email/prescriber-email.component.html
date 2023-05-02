@@ -1,0 +1,49 @@
+<div class="prescriber-container" fxLayoutAlign="space-between start" fxLayoutAlign.lt-lg="center start" fxLayout="row" fxLayout.lt-md="column">
+  <div class="prescriber-step">
+    <app-step [showBackLink]="true"
+      [backText]="stepContent?.back"
+      [title]="stepContent?.header"
+      [description]="stepContent?.description"></app-step>
+  </div>
+
+  <div class="services-main">
+    <div class="services-bg-block" fxHide fxShow.gt-sm></div>
+    <div class="p-2 services-rectangle">
+      <form [formGroup]="prescriberEmailGroup">
+        <div class="row email-body">
+          <div>{{emailBodyText}}</div>
+        </div>
+
+        <div class="row prescriber-email">
+          <div class="col-md-12">
+            <app-form-input [formItem]="prescriberEmailConfig" [formGroup]="prescriberEmailGroup" (valueChanges)="onKeyDown($event)"></app-form-input>
+            <ng-container error-message>
+              <small class="validation-feedback-small" *ngIf="prescriberEmail.hasError('required') && prescriberEmail.touched">
+                {{validationMessage.required.english}}
+              </small>
+              <small class="validation-feedback-small" *ngIf="prescriberEmail.hasError('pattern') && prescriberEmail.touched">
+                {{validationMessage.emailInvalid.english}}
+              </small>
+              <div class="row validation-feedback-large" *ngIf="prescriberEmail.hasError('email') && prescriberEmail.touched && emailUnregisteredErrorText">
+                <div [innerHTML]="emailUnregisteredErrorText"></div>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+        <div class="navigation-buttons">
+          <div class="skip_link" *ngIf="showSkip">
+            <a (click)="onSkipClick()">{{skipLinkText}}</a>
+          </div>
+          <div class="as_buttons">
+            <button mat-flat-button color="accent" type="button" (click)="cancelButtonClick($event)">
+              {{cancelButtonText}}
+            </button>
+            <button mat-flat-button color="primary" type="button" [disabled]="!continue" (click)="continueButtonClick($event)">
+              {{continueButtonText}}
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+<div class="prescriber-container">
+
+    <div class="prescriber-step">
+        <app-step [showBackLink]="true"
+                  [backText]="stepContent?.back"
+                  [title]="stepContent?.header"
+                  [description]="stepContent?.description">
+        </app-step>
+    </div>
+
+    <div class="services-main">
+      <div class="services-bg-block" fxHide fxShow.gt-sm></div>
+      <div class="hcpVerify p-2 services-rectangle">
+        <iframe id="iframe" *ngIf="!!iframeUri" [src]="iframeUri" frameborder="0" (load)="onLoad()" style="height:100%; width:100%">
+        </iframe>
+      </div>
+    </div>
+</div>

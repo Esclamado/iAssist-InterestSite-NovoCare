@@ -1,0 +1,35 @@
+<div class="avse-container" 
+fxLayoutAlign="space-between start" 
+fxLayoutAlign.lt-lg="center start" 
+fxLayout="row"
+  fxLayout.lt-md="column">
+  <div class="avse-step">
+    <app-step [showBackLink]="true" [backText]="stepContent?.back" [title]="stepContent?.header"
+      [description]="stepContent?.description" [requiredText]="">
+    </app-step>
+  </div>
+  <div class="services-main">
+    <div class="services-bg-block" fxHide fxShow.gt-sm></div>
+    <div class="p-2 services-rectangle">
+      <form [formGroup]="availableServicesGroup">
+        <div class="medication-info">
+          <div class="avse-font-label">
+            <app-form-checkbox [formItem]="avseTypeConfig" [formGroup]="availableServicesGroup" [withBackground]="true" [checkboxTwo]="true">
+            </app-form-checkbox>
+          </div>
+        </div>
+
+        <div fxLayout="row" fxLayout.lt-sm="column-reverse" fxLayoutAlign="end space-between"
+          fxLayoutAlign.lt-sm="space-evenly stretch" fxFlexFill>
+          <button mat-flat-button color="accent" type="button" (click)="cancelBtnClick();">
+            {{cancelButtonText}}
+          </button>
+          <button mat-flat-button color="primary" type="button" (click)="continueButtonClick();"
+            [disabled]="availableServicesGroup.invalid">
+            {{continueButtonText}}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

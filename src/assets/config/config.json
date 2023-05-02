@@ -1,0 +1,13 @@
+{
+  "production": true,
+  "integrationFabricApiBaseAddress": "__IntegrationFabricApiBaseAddress__",
+  "transactionalApiBaseAddress": "__TransactionalApiBaseAddress__",
+  "consentFaxNumber": "__ConsentFaxNumber__",
+  "hcpVerifyBaseAddress": "__HCPVerifyAddress__",
+  "epaVerifyBaseAddress": "__EPAVerifyAddress__",
+  "organizationalBaseAddress": "__OrganizationalAddress__",
+  "PESAddress": "__PESAddress__",
+  "obesityFaxNumber": "__ObesityFaxNumber__",
+  "rarebloodFaxNumber": "__RareBloodFaxNumber__",
+  "growthFaxNumber": "__GrwothFaxNumber__"
+}

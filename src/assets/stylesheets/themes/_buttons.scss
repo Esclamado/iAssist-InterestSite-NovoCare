@@ -1,0 +1,27 @@
+// BOOTSTRAP 3 variables
+
+// TODO: migrate to BOOTSTRAP 4
+
+.btn {
+    &.btn-lg {
+        min-width: $btn-lg-min-width;
+        min-height: $btn-lg-height;
+        line-height: $btn-lg-line-height;
+        font-size: $btn-font-size-lg;
+    }
+    &.btn-md {
+        min-width: $btn-md-min-width;
+        min-height: $btn-md-height;
+        font-size: .9em;
+    }
+    &.btn-sm {
+        min-width: $btn-sm-min-width;
+        min-height: $btn-sm-height;
+        line-height: $btn-sm-line-height;
+        font-size: $btn-font-size-sm;
+    }
+    &.btn-xs {
+        line-height: $btn-xs-line-height;
+        font-size: $btn-font-size-xs;
+    }
+}

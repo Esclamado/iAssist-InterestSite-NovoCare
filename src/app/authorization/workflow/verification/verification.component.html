@@ -1,0 +1,104 @@
+<div class="p-container">
+    <div class="p-step">
+        <app-step
+            [subTitle]="stepContent?.subHeader"
+            [title]="stepContent?.header"
+            [description]="stepContent?.description"
+            [requiredText]="stepContent?.required?.text"
+        ></app-step>
+    </div>
+
+    <div class="services-main">
+        <div class="services-bg-block" fxHide fxShow.gt-sm></div>
+        <div class="services-rectangle">
+            <app-stepper [activeStep]="'patient'"></app-stepper>
+            <form [formGroup]="verificationGroup" ngSubmit="submit();" novalidate>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <app-form-input [formItem]="firstNameConfig" [formGroup]="verificationGroup"> </app-form-input>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <app-form-input [formItem]="lastNameConfig" [formGroup]="verificationGroup"> </app-form-input>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <app-form-radio [formItem]="genderConfig" [formGroup]="verificationGroup"> </app-form-radio>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <app-form-input [formItem]="dobConfig" [formGroup]="verificationGroup"> </app-form-input>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <app-form-input [formItem]="addressConfig" [formGroup]="verificationGroup"> </app-form-input>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <app-form-input [formItem]="addressLine2Config" [formGroup]="verificationGroup"> </app-form-input>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-4 col-md-4">
+                        <app-form-input [formItem]="cityConfig" [formGroup]="verificationGroup"> </app-form-input>
+                    </div>
+                    <div class="col-lg-4 col-md-4">
+                        <app-form-select [formItem]="stateConfig" [formGroup]="verificationGroup"> </app-form-select>
+                    </div>
+                    <div class="col-lg-4 col-md-4">
+                        <app-form-input [formItem]="zipCodeConfig" [formGroup]="verificationGroup"> </app-form-input>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                        <app-form-radio
+                            [formItem]="preferredMethodOfContactConfig"
+                            [formGroup]="verificationGroup"
+                            (valueChanges)="onRadioValueChange($event)"
+                        >
+                        </app-form-radio>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <app-form-input [formItem]="homeNumberConfig" [formGroup]="verificationGroup"> </app-form-input>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <app-form-input [formItem]="mobileNumberConfig" [formGroup]="verificationGroup"> </app-form-input>
+                    </div>
+                </div>
+
+                <div [className]="isLanguageSpanish ? 'row md-margin-top' : 'row sm-margin-top'">
+                    <div class="col-lg-6 col-md-6">
+                        <app-form-radio [formItem]="okToLeaveMessageConfig" [formGroup]="verificationGroup"> </app-form-radio>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <app-form-select [formItem]="bestTimeToContactConfig" [formGroup]="verificationGroup"> </app-form-select>
+                    </div>
+                </div>
+
+                <div class="row sm-margin-top">
+                    <div class="col-lg-6 col-md-6">
+                        <app-form-input [formItem]="emailAddressConfig" [formGroup]="verificationGroup"> </app-form-input>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <app-form-input [formItem]="dmdPrescriberNameConfig" [formGroup]="verificationGroup"> </app-form-input>
+                    </div>
+                </div>
+                <div class="alert-container" *ngIf="showAlert">
+                    <div class="alert-text">
+                        <p>{{ alertContent }}</p>
+                    </div>
+                </div>
+                <button class="float-right row" mat-flat-button color="primary" type="button" (click)="submit()">
+                    {{ actionContent?.submitBtn }}
+                    <mat-spinner class="button-spinner" diameter="20" *ngIf="isSubmitting"></mat-spinner>
+                </button>
+            </form>
+        </div>
+    </div>
+</div>

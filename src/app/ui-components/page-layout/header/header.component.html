@@ -1,0 +1,29 @@
+<!-- Use page-layout/header to render logo -->
+
+<div class="logo-container">
+    <a [href]="headerLogoLinkUrl" target="_blank">
+        <img fxHide fxShow.gt-sm class="primary" *ngIf="showCompanyLogo" src="../../../../assets/images/logos/header_logo.svg" />
+    </a>
+
+    <div fxHide fxShow.lt-md>
+        <!-- (click)="sidenav.toggle()" -->
+        <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="toggleSideNav()">
+            <mat-icon aria-label="Side nav toggle icon" class="icon-display">menu</mat-icon>
+        </button>
+
+        <div fxFlex fxHide fxShow.sm>
+            <img class="primary" src="../../../../assets/images/logos/header_logo_tablet.svg" />
+        </div>
+        <div fxFlex fxHide fxShow.xs>
+            <img class="primary" src="../../../../assets/images/logos/header_logo_mobile.svg" />
+        </div>
+    </div>
+
+    <div fxHide fxShow.gt-sm class="translate-container" *ngIf="isHeaderLinkVisible">
+        <div class="globe" fxLayoutAlign="center center">
+            <span fxLayout.gt-md="start start">
+                <a [href]="headerLinkUrl" class="header-link" target="_blank"> {{ translateContentService.header.headerLinkText }} <img src="../../../../assets/images/upper-right-arrow.svg" /></a>
+            </span>
+        </div>
+    </div>
+</div>

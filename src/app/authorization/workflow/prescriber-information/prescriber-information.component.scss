@@ -1,0 +1,70 @@
+@import '../../../../assets/stylesheets/variables';
+@import '../workflow.component.scss';
+
+.prescriber-container {
+    display: flex;
+
+    @media (max-width: $screen-desktop) {
+        flex-direction: column;
+    }
+
+    .prescriber-step {
+      margin-right: 14.875rem;
+      max-width: 35.625rem;
+
+        @media (max-width: $screen-desktop) {
+            width: auto;
+        }
+        @media (max-width: $screen-mobile) {
+          margin-right: 0rem;
+        }
+    }
+
+    .prescriber-information::ng-deep {
+        .row {
+            margin-left: 0rem;
+            margin-right: 0rem;
+        }
+        .input-container {
+          width: 45%;
+          @media (max-width: $screen-mobile) {
+            width: 100%;
+          }
+        }
+    }
+
+    .mat-flat-button {
+      @media (max-width: $screen-mobile) {
+        margin: 0px 0px 10px 0px !important;
+      }
+    }
+
+    .as_buttons {
+        display: flex;
+        justify-content: flex-end;
+        position: absolute;
+        bottom: 20px;
+        right: 0;
+        flex-direction: row;
+        align-items: center;
+        padding: 16px 48px;
+    }
+
+    .validation-feedback {
+        color: $primary;
+        font-size: $font-smaller-2;
+        margin-top: 0;
+    }
+
+}
+
+.prescriber-step::ng-deep{
+  .description{
+      @media (max-width: $screen-mobile) {
+          font-size: $font-large !important;
+      }
+  }
+  .info-section{
+      margin-bottom: 0rem;
+  }
+}

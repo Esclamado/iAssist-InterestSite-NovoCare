@@ -1,0 +1,204 @@
+@import "../../../../assets/stylesheets/variables";
+@import "../workflow.component.scss";
+.services-rectangle {
+    width: 100%;
+    height: 44.25em;
+    margin: auto;
+    padding: 40px 95px 42px !important;
+
+    @media (max-width: $screen-tablet) {
+      width: 100%;
+      height: 100%;
+    }
+
+    @media (max-width: $screen-mobile) {
+      padding: 31px 19px 9px !important;
+    }
+}
+
+.patient-demographic-container {
+    display: flex;
+
+    .patient-demographic-step {
+        margin-right: 8rem;
+        max-width: 38.25rem;
+
+        @media (max-width: $screen-desktop) {
+            width: auto;
+            margin-right: 0;
+            flex: 1;
+        }
+
+        @media (max-width: $screen-tablet) {
+          width: 100%;
+          margin-right: 0;
+          flex: 1;
+          max-width: none;
+        }
+
+        @media (max-width: $screen-laptop){
+          max-width: 25.25rem;
+          margin-right: 0;
+        }
+    }
+
+    .description-container {
+      font-size: $font-large;
+      font-weight: $fw-600;
+      font-family: $font-family-open-sans;
+      line-height: 170%;
+      color: $app-dark-grey-font-color;
+
+      p {
+        font-weight: $fw-400;
+        font-size: $font-modal-body;
+        line-height: 30.6px;
+      }
+    }
+
+    .image{
+        position: static;
+        width: 106px;
+        height: 20px;
+        left: 29px;
+        top: 0px;
+
+        font-family: Open Sans;
+        font-style: normal;
+        font-weight: bold;
+        font-size: $font-copyright;
+        line-height: 20px;
+        /* identical to box height, or 143% */
+
+        text-transform: uppercase;
+
+        color: $app-text-color !important;
+        padding-bottom: 50px;
+
+    }
+
+    .checkboxconsent {
+        padding-left: 36px;
+    }
+
+    .btn-container{
+      @media (max-width: $screen-mobile) {
+          margin-top: 20px;
+      }
+      button{
+          @media (max-width: $screen-mobile) {
+              margin-top: 0px !important;
+          }
+      }
+    }
+
+    .question{
+        color: $app-text-color;
+        font-family:open sans semibold;
+        font-style: normal;
+        font-weight: $fw-600;
+        font-size: $font-smaller;
+        height: 25px;
+    }
+
+    .patient-demographic-result-box {
+        background: $app-background-card;
+        border: 1px solid $app-background-input;
+        box-sizing: border-box;
+        border-radius: 8px;
+        padding: 8px !important;
+        font-size: $font-smaller;
+        width: 100% !important;
+    }
+
+    .form-control .input{
+        width: 215%;
+    }
+    .patient-demographic {
+        flex-direction: column;
+    }
+
+    .validation-feedback {
+        color: $error;
+        font-size: $font-smaller-2;
+        margin-top: 0;
+    }
+
+    .patient-demographic::ng-deep {
+        .form-group {
+            .custom-control.custom-checkbox{
+                padding-left: 15px !important;
+            }
+            .form-control{
+                width: 200%;
+            }
+            .custom-control-label{
+                font-family:"open sans semibold";
+            }
+        }
+    }
+    .nav-btn {
+      margin-top: 36px !important;
+    }
+
+    .mat-flat-button {
+      @media (max-width: $screen-mobile) {
+        margin-bottom: 20px !important;
+        margin-left: 0px !important;
+      }
+    }
+
+    .below-18 {
+      background-color: $app-background-discloser;
+      padding: 0.9375rem 27px;
+      font-size: $font-small;
+      font-family: $font-family-open-sans;
+      color: rgba(0, 0, 0, 0.56);
+      font-weight: $fw-600;
+      margin-bottom: 1.5rem;
+      line-height: 130%;
+    }
+}
+
+.new-container{
+  background: #fff;
+  box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
+  border-radius: 5px;
+}
+
+.bot{
+  padding-bottom: 30px;
+  padding-right: 91px;
+}
+
+@media (max-width: $screen-desktop-md) {
+   .services-rectangle::ng-deep {
+    background-color: #FFFFFF;
+    box-shadow: none;
+    border-radius: none;
+    z-index: 0;
+    float: none;
+    height: 27.6875rem !important;
+  }
+}
+
+@media (max-width: $screen-desktop-mdv1) {
+  .services-rectangle::ng-deep {
+   background-color: #FFFFFF;
+   box-shadow: none;
+   border-radius: none;
+   z-index: 0;
+   float: none;
+   height: 27.6875rem !important;
+ }
+}
+
+.services-main::ng-deep {
+  @media (min-width: $screen-laptop){
+      width: 54%;
+  }
+
+  @media (max-width: $screen-tablet){
+    width: 100%;
+  }
+}

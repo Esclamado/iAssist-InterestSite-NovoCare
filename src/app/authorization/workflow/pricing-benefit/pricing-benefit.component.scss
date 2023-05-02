@@ -1,0 +1,61 @@
+@import '../../../../assets/stylesheets/variables';
+@import '../workflow.component.scss';
+
+.pricing-benefit-container {
+  display: flex;
+
+  @media (max-width: $screen-desktop) {
+    flex-direction: column;
+  }
+
+  .pricing-benefit-step {
+    margin-right: 5rem;
+    width: 40%;
+
+    @media (max-width: $screen-desktop) {
+      width: auto;
+      margin-right: 0;
+      flex: 1;
+    }
+  }
+
+  .pricing-benefit-step::ng-deep {
+    h6 {
+      color: $light-black !important;
+      font-family: Open Sans;
+      font-style: normal;
+      font-weight: bold;
+      font-size: $font-large-2;
+    }
+    .description {
+      color: $app-text-color;
+      font-family: Open Sans;
+      font-style: normal;
+      font-weight: $fw-600;
+      font-size: $font-small !important;
+      width: 300px;
+      height: 50px;
+    }
+  }
+
+  .services-rectangle-abv-epa {
+    width: 100%;
+    overflow: auto;
+    background: $white;
+    box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
+    border-radius: 5px;
+    padding: 40px 40px 90px !important;
+    display: flex;
+    flex-direction: column;
+    margin: 30px 0 0 20px;
+    position: relative;
+  }
+
+  .flex-start-container {
+    margin-bottom: 30px;
+  }
+
+  .pricing-benefit-form {
+    flex: 1;
+  }
+}

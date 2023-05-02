@@ -1,0 +1,55 @@
+@import '../../../../assets/stylesheets/variables';
+
+.bottom-bar-container {
+
+    z-index: 2;
+    position: absolute;
+    min-width: 100%;
+    max-height: 100px;
+    padding: 10px 8.75rem 0 !important;
+    min-height: 100px;
+    z-index: 2;
+    background-color: $white;
+    overflow: hidden;
+    @media screen and (min-width: $screen-desktop) {
+      bottom: 0px;
+    }
+
+
+    .isi-title {
+        font-size: $font-large;
+        font-family: $font-family-open-sans-regular;
+        font-weight: $fw-700;
+        font-style: normal;
+        margin-bottom: 0;
+        color: $primary;
+    }
+
+    .isi-content {
+        font-size: $font-modal-body;
+        font-family: $font-family-open-sans-regular;
+        font-weight: $fw-600;
+        font-style: normal;
+        margin-bottom: 0;
+        color: $slate;
+    }
+
+    .isi-green {
+      color: $primary;
+    }
+
+    .icon-container {
+        float: right;
+    }
+
+    .information-content {
+        max-height: 80vh;
+        overflow: auto;
+    }
+
+    .mat-icon {
+        font-size: $font-large;
+        color: $primary;
+    }
+}
+

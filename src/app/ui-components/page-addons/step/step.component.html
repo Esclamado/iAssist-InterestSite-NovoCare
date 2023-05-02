@@ -1,0 +1,25 @@
+<!-- Remove the section element here, structural elements should exist in the layout -->
+
+<section class="info-section">
+  <div *ngIf="showBackLink" class="back-text">
+    <span><i class="fas fa-arrow-left"></i></span><button class="btn back-link" (click)="goBack()">{{backText}}</button>
+  </div>
+  <div class="sub-title">{{subTitle}}</div>
+  <div class="step-text-primary" [innerHTML]="title"></div>
+  <p class="description docu-description-upload" [innerHTML]="description">
+  </p>
+  <p *ngIf="descriptionline2" class="description" [innerHTML]="descriptionline2">
+  </p>
+  <a [href]="drugLinkUrl" class="drug-link" target="_blank">{{drugLink}} <span *ngIf="drugLink"><i class="fas fa-arrow-up transform-135"></i></span></a>
+  <a [href]="homeLinkUrl" class="drug-link">{{homeLink}} <span *ngIf="homeLink"><i class="fas fa-arrow-right"></i></span></a>
+  <div *ngIf="showRequired" class="important" [innerHTML]="requiredText"></div>
+  <div *ngIf="showSupportOption">
+    <hr>
+    <p class="support-sub-title">{{supportSubtitle}}</p>
+    <p class="support-description" [innerHTML]="supportDescription">
+      <div class="important">
+        <a [href]="supportLinkURL" target="_blank">{{supportLink}}</a> <span><i class="fas fa-arrow-right transform"></i></span>
+      </div>
+    <p class="sub-description" [innerHTML]="supportSubDescription">
+  </div>
+</section>

@@ -1,0 +1,28 @@
+<div class="form-group" [formGroup]="formGroup">
+    <label [ngClass]="{ required: formItem.required }" class="group-label" [innerHTML]="formItem.text">
+        <span class="tooltip-container" *ngIf="formItem.tooltip"><img [matTooltip]="formItem.tooltip"
+                matTooltipPosition="above" (click)="tooltip.toggle()" (hover)="tooltip.toggle()" #tooltip="matTooltip"
+                src="../../../../assets/images/icon-tooltip-info.svg" /></span>
+    </label>
+    <div *ngIf="formItem.optionalText" [innerHTML]="formItem.optionalText"></div>
+    <div [ngClass]="{ 'custom-control-inline': inline }" *ngFor="let option of formItem.option; let i = index">
+        <div class="custom-control custom-radio" [ngClass]="{'custom-radio-no-bg': radioNobg}">
+            <input class="custom-control-input" [ngClass]="{ 'is-invalid': isControlInvalid }" type="radio"
+                [id]="getUniqueIdentifier(i)" [formControlName]="formItem.controlName"
+                [attr.name]="formItem.controlName" [value]="option.valueString" [required]="formItem.required" 
+                [attr.disabled]="disable"/>
+
+            <label class="custom-control-label" [attr.for]="getUniqueIdentifier(i)"
+                [innerHTML]="option.displayedString">
+            </label>
+        </div>
+        <div class="mt-3" *ngIf="option.serviceTitle">
+            <p class="sub-description strong" [innerHTML]="option.serviceTitle"></p>
+            <p class="sub-description" [innerHTML]="option.subdescription"></p>
+        </div>
+    </div>
+
+    <div *ngIf="isControlInvalid" class="invalid-feedback">
+        {{ formItem.errorMessage }}
+    </div>
+</div>

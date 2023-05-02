@@ -1,0 +1,274 @@
+<div class="patient-information" fxLayoutAlign="space-between start" fxLayoutAlign.lt-lg="center start" fxLayout="row"
+    fxLayout.lt-md="column">
+    <app-throbber *ngIf="isSubmitting"></app-throbber>
+    <div class="patient-step">
+        <app-step
+            [showBackLink]="!isUploadDocumentationServiceOffering()"
+            [showRequired]="true"
+            [backText]="stepContent?.back"
+            [title]="stepContent?.header"
+            [description]="stepContent?.description"
+            [requiredText]="stepContent?.requiredText"
+        >
+        </app-step>
+        <div fxHide fxShow.gt-sm class="need-assistance-container" fxLayoutAlign="start end">
+          <app-need-assistance [title]="translateService.needAssistanceView.title" [body]="translateService.needAssistanceView.body" [footer]="translateService.needAssistanceView.footer"></app-need-assistance>
+        </div>
+    </div>
+    <div class="services-main">
+        <div class="services-bg-block" fxHide fxShow.gt-sm></div>
+        <div class="services-rectangle">
+            <app-stepper [activeStep]="'patient-information'"></app-stepper>
+            <form [formGroup]="patientInformationGroup">
+                <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="16px" fxLayoutGap.lt-sm="0px">
+                    <div fxFlex="50">
+                        <div>
+                            <app-form-input [formItem]="patientInformationFirstNameConfig"
+                                [formGroup]="patientInformationGroup">
+                            </app-form-input>
+                        </div>
+                    </div>
+                    <div fxFlex="50">
+                        <div>
+                            <app-form-input [formItem]="patientInformationLastNameConfig"
+                                [formGroup]="patientInformationGroup">
+                            </app-form-input>
+                        </div>
+                    </div>
+                </div>
+                <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="16px" fxLayoutGap.lt-sm="0px">
+                    <div class="date-container" fxFlex="50">
+                        <div>
+                            <app-form-datepicker
+                                [formItem]="patientInformationDOBConfig"
+                                [formGroup]="patientInformationGroup"
+                                (valueChanges)="onDateChange($event)"
+                            >
+                            </app-form-datepicker>
+                        </div>
+                    </div>
+                    <div class="patient-info patient-info-radio" fxFlex="50" fxLayoutGap.lt-sm="0px">
+                        <div>
+                            <app-form-radio [formItem]="patientInformationGenderConfig"
+                                [formGroup]="patientInformationGroup" [inline]="false" [radioNobg]="true">
+                            </app-form-radio>
+                        </div>
+                    </div>
+                </div>
+
+                <div fxLayout="row">
+                    <div fxFlex>
+                        <div >
+                            <app-form-input [formItem]="patientInformationAddressLine1Config"
+                                [formGroup]="patientInformationGroup">
+                            </app-form-input>
+                        </div>
+                    </div>
+                </div>
+                <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="16px" fxLayoutGap.lt-sm="0px">
+                    <div fxFlex="50">
+                        <div>
+                            <app-form-input [formItem]="patientInformationAddressLine2Config"
+                                [formGroup]="patientInformationGroup">
+                            </app-form-input>
+                        </div>
+                    </div>
+                    <div fxFlex="50">
+                        <div>
+                            <app-form-input [formItem]="patientInformationCityConfig"
+                                [formGroup]="patientInformationGroup">
+                            </app-form-input>
+                        </div>
+                    </div>
+                </div>
+
+                <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="16px" fxLayoutGap.lt-sm="0px">
+                    <div fxFlex="50">
+                        <div>
+                            <app-form-select [formItem]="patientInformationStateConfig"
+                                [formGroup]="patientInformationGroup">
+                            </app-form-select>
+                        </div>
+                    </div>
+                    <div fxFlex="50">
+                        <div>
+                            <app-form-input [formItem]="patientInformationZipCodeConfig"
+                                [formGroup]="patientInformationGroup">
+                            </app-form-input>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="phone-input-container" fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="16px" fxLayoutGap.lt-sm="0px">
+                    <div fxFlex="50">
+                        <div>
+                            <app-form-input [formItem]="patientInformationPrimaryPhoneConfig"
+                                [formGroup]="patientInformationGroup"
+                                class="phone-error"
+                                >
+                            </app-form-input>
+                        </div>
+                    </div>
+                    <div fxFlex="50" class="patient-info patient-info-checkbox preferred">
+                        <div>
+                            <input type="checkbox" (change)="onSetMobileAsPreferred($event)" [checked]="showOkToLeaveMessageMobile"/>
+                            <span>{{preferredText}}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div *ngIf="showOkToLeaveMessageMobile" fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="16px" fxLayoutGap.lt-sm="0px">
+                    <div fxFlex class="patient-info patient-info-checkbox">
+                        <div class="ok-message">
+                            <input type="checkbox" (change)="onOkToLeaveMessage($event)" />
+                            <span>{{okToMessageText}}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="phone-input-container" fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="16px" fxLayoutGap.lt-sm="0px">
+                    <div fxFlex="50">
+                        <div>
+                            <app-form-input [formItem]="patientInformationAltPhoneConfig"
+                                [formGroup]="patientInformationGroup" >
+                            </app-form-input>
+                        </div>
+                    </div>
+                    <div fxFlex="50" class="patient-info patient-info-checkbox preferred" >
+                        <div>
+                            <input type="checkbox" (change)="onSetHomeAsPreferred($event)" [checked]="showOkToLeaveMessageHome"/>
+                            <span>{{preferredText}}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div *ngIf="showOkToLeaveMessageHome" fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="16px" fxLayoutGap.lt-sm="0px">
+                    <div  class="patient-info patient-info-checkbox" fxFlex>
+                        <div class="ok-message">
+                            <input type="checkbox" (change)="onOkToLeaveMessage($event)" />
+                            <span>{{okToMessageText}}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="16px" fxLayoutGap.lt-sm="0px">
+                    <div fxFlex="50" >
+                        <div>
+                            <app-form-select [formItem]="patientInformationPreferredLanguageConfig"
+                                [formGroup]="patientInformationGroup">
+                            </app-form-select>
+                        </div>
+                    </div>
+                    <div fxFlex="50">
+                    </div>
+                </div>
+
+                <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="16px" fxLayoutGap.lt-sm="0px">
+                    <div fxFlex>
+                        <div>
+                            <app-form-input [formItem]="patientInformationPreferredEmailAddressConfig"
+                                [formGroup]="patientInformationGroup">
+                            </app-form-input>
+                        </div>
+                    </div>
+                </div>
+
+                <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="16px" fxLayoutGap.lt-sm="0px">
+                    <div class="patient-info-radio" fxFlex>
+                        <div>
+                            <app-form-radio [formItem]="patientInformationAltContactOrCaregiver"
+                                [formGroup]="patientInformationGroup" [inline]="false" [radioNobg]="true" (valueChanges)="onAltContactOrCaregiverChange($event)">
+                            </app-form-radio>
+                        </div>
+                    </div>
+                </div>
+
+                <div *ngIf="showCaregiverForm">
+                    <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="16px" fxLayoutGap.lt-sm="0px">
+                        <div fxFlex="50">
+                            <div>
+                                <app-form-input [formItem]="caregiverFirstName"
+                                    [formGroup]="patientInformationGroup">
+                                </app-form-input>
+                            </div>
+                        </div>
+                        <div fxFlex="50">
+                            <div>
+                                <app-form-input [formItem]="caregiverLastName"
+                                    [formGroup]="patientInformationGroup">
+                                </app-form-input>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="16px" fxLayoutGap.lt-sm="0px">
+                        <div fxFlex="50">
+                            <div>
+                                <app-form-select [formItem]="caregiverRelationshipToPatient"
+                                    [formGroup]="patientInformationGroup" (change)="onRelationshipChange($event)">
+                                </app-form-select>
+                            </div>
+                        </div>
+                        <div fxFlex="50">
+                            <div>
+                                <app-form-input [formItem]="caregiverEmail"
+                                    [formGroup]="patientInformationGroup">
+                                </app-form-input>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="16px" fxLayoutGap.lt-sm="0px">
+                        <div fxFlex="50">
+                            <div>
+                                <app-form-input [formItem]="caregiverPhone"
+                                    [formGroup]="patientInformationGroup">
+                                </app-form-input>
+                            </div>
+                        </div>
+                        <div fxFlex="50" class="patient-info patient-info-radio">
+                            <div>
+                                <app-form-radio [formItem]="caregiverPhoneType"
+                                    [formGroup]="patientInformationGroup" [inline]="false" [radioNobg]="true">
+                                </app-form-radio>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div *ngIf="contactRttp && greaterThanEighteen" fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="16px" fxLayoutGap.lt-sm="0px">
+                        <div fxFlex class="patient-info rttp-container">
+                            <div>
+                                <input type="checkbox" (change)="onChangeRttp($event)" [checked]="showOkToLeaveMessageHome"/>
+                                <p>{{consentText}} <span class="rttp">{{rttpText}}</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="btn-container">
+                  <div fxLayout="row" fxLayout.lt-sm="column-reverse" fxLayoutAlign="end space-between" fxLayoutAlign.lt-sm="space-evenly stretch" fxFlexFill>
+                      <button mat-flat-button color="accent" type="button" (click)="cancelBtnClick();">
+                        {{cancelButtonText}}
+                      </button>
+                      <button
+                        mat-flat-button
+                        color="primary"
+                        type="button"
+                        [disabled]="!(patientInformationGroup.valid&&hasAtleastOneNumberSelected) || hitContinue"
+                        (click)="continueButtonClick();"
+                      >
+                      {{continueButtonText}}
+                    </button>
+                  </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div fxHide fxShow.lt-md class="need-assistance-container" fxLayoutAlign="start end">
+      <app-need-assistance
+        [title]="translateService.needAssistanceView.title"
+        [body]="translateService.needAssistanceView.body"
+        [footer]="translateService.needAssistanceView.footer">
+      </app-need-assistance>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+<div class="cancel-modal-container">
+    <i (click)="onContinue()" class="close"></i>
+    <div class="title">
+        <b>{{ translateContentService.cancelModalView.title }}</b>
+    </div>
+    <p>
+        {{ translateContentService.cancelModalView.content }}
+    </p>
+    <div fxLayout="row" fxLayout.lt-sm="column-reverse" fxLayoutAlign="end space-between" fxLayoutAlign.lt-sm="space-evenly stretch" fxFlexFill>
+        <button type="button" class="btn leave-btn" (click)="onLeave()">{{ translateContentService.cancelModalView.yesLeave }}</button>
+        <button type="button" class="btn btn-primary continue-btn" (click)="onContinue()">
+            {{ translateContentService.cancelModalView.noContinue }}
+        </button>
+    </div>
+</div>

@@ -1,0 +1,71 @@
+@import '../../../../assets/stylesheets/_variables.scss';
+
+.form-group {
+    position: relative;
+    margin-bottom: 1.5rem;
+    .select-row {
+        margin: 0px !important;
+        label {
+          display: block;
+          font-family: $font-family-open-sans-regular;
+          font-size: $app-form-label-font-size;
+          color: $app-text-dark;
+          font-weight: $fw-600;
+
+        &.required::before {
+            color: $app-form-required-asterisk;
+            padding: 0 0 0 2px;
+            content: '*';
+        }
+
+        span.optional-text {
+            font-size: $font-copyright;
+            font-family: $font-family-open-sans-regular;
+        }
+      }
+    }
+    .floating {
+        bottom: 1.6em;
+        margin-bottom: 18px;
+        background-color: transparent;
+        z-index: 1;
+        line-height: 1.3em;
+        .floating-text {
+            font-weight: $fw-600;
+            font-size: $font-normal;
+            color: $app-text-dark;
+            font-family: $font-family-open-sans;
+        }
+    }
+
+    select {
+        appearance: none;
+        background-image: url("../../../../assets/images/arrow_down.svg");
+        background-repeat: no-repeat;
+        background-position: calc(100% - 1rem) center;
+
+        &.form-control {
+            height: auto;
+            font-size: $font-normal;
+            border-radius: 8px;
+            padding: 17px 16px;
+            line-height: 22px;
+            color: $app-form-placeholder !important;
+
+            &:focus {
+                border-color: $app-form-focus-color; // TODO: update in theme file
+                box-shadow: none;
+            }
+            &.is-invalid {
+              border: solid 2px $light-red;
+            }
+        }
+    }
+    .invalid-feedback {
+      font-size: $font-normal;
+      font-weight: $fw-600;
+      line-height: 22px;
+      color: $error;
+    }
+}
+

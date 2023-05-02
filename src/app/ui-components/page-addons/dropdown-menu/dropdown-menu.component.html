@@ -1,0 +1,13 @@
+<div class="menu-dropdown-container">
+    <button mat-button [matMenuTriggerFor]="beforeMenu" class="menu-dropdown-title">
+        {{ translateContentService.header.dropdownMenuContent.title }}<img class="caret-down-solid" src="../../../../assets/images/down-arrow.svg"/>
+    </button>
+    <mat-menu #beforeMenu="matMenu" xPosition="before">
+        <div *ngFor="let section of translateContentService.header.dropdownMenuContent.sections">
+            <div class="menu-section-title">{{ section.sectionTitle }}</div>
+            <div *ngFor="let link of section.links">
+                <a class="menu-item-link" [href]="link.link" target="_blank">{{ link.title }}</a>
+            </div>
+        </div>
+    </mat-menu>
+</div>

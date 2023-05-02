@@ -1,0 +1,22 @@
+<div id="chat-window-wrapper" style="display: none">
+  <span class="chat-header text-light bg-primary">
+    {{chatLabel.header}}
+      <a href="javascript:void(0)" class="color-white" (click)="toggleChat()">
+        <span class="fa fa-times pull-right" style="line-height: 100%"></span>
+      </a>
+  </span>
+  <iframe name="chat-window" id="chat-window" width="400" height="400"></iframe>
+</div>
+
+<div id="liveagent_wrapper" class="badge badge-pill badge-light border">
+  <a
+      id="liveagent_button_online_5730H000000fxWT"
+      href="javascript://Chat"
+      style="display: none"
+      (click)="startChat()">
+   <i class="fa fa-comments"></i> {{chatLabel.online}}
+  </a>
+  <div id="liveagent_button_offline_5730H000000fxWT" style="display: none">
+    <i class="fa fa-comments"></i> {{chatLabel.offline}}
+  </div>
+</div>

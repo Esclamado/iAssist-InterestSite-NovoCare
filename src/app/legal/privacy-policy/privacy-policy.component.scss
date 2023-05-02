@@ -1,0 +1,40 @@
+@import '../../../assets/stylesheets/_variables.scss';
+
+.view-layout {
+    margin: 109px 0 221px;
+    min-height: 770px;
+    padding: 3.125em 8.125em;
+
+    @media (max-width: $screen-desktop) {
+        padding: 3.125em 5em;
+    }
+
+    &.border {
+        border-width: 2px !important;
+    }
+
+    &.shadow {
+        box-shadow: 0 .1875rem .375rem rgba(0, 0, 0, 0.16) !important;
+    } 
+
+    > main {
+        min-height: 364px;
+    }
+}
+
+
+.privacy-policy {
+    // temporarily here until theme file is updated.
+    p, ul, li {
+        font-size: 0.875rem;
+    }
+
+    ul {
+        padding: 0;
+        list-style: none;
+    }
+
+    b {
+        font-size: 0.875rem;
+    }
+}

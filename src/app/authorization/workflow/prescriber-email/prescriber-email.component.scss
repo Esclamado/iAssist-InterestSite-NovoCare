@@ -1,0 +1,177 @@
+@import "../../../../assets/stylesheets/variables";
+@import "../workflow.component.scss";
+
+.prescriber-container {
+    display: flex;
+
+    @media (max-width: $screen-desktop) {
+        flex-direction: column;
+    }
+
+    .prescriber-step {
+        width: 50%;
+        @media (max-width: $screen-desktop) {
+            width: auto;
+            margin-right: 0;
+            flex: 1;
+        }
+    }
+
+    .image {
+        position: static;
+        width: 106px;
+        height: 20px;
+        left: 29px;
+        top: 0px;
+
+        font-family: Open Sans;
+        font-style: normal;
+        font-weight: bold;
+        font-size: $font-copyright;
+        line-height: 20px;
+        /* identical to box height, or 143% */
+
+        text-transform: uppercase;
+
+        color: $app-text-color !important;
+        padding-bottom: 50px;
+
+    }
+
+    .kba-text {
+        font-family: Open Sans;
+        font-style: normal;
+        font-weight: bold;
+        font-size: $font-smaller-2;
+        padding: 0;
+    }
+
+    .navigation-buttons {
+        @media (max-width: $screen-mobile) {
+          display: flex;
+          justify-content: flex-end;
+          flex-direction: column-reverse;
+          align-items: center;
+          position: absolute;
+          left: 50%;
+          bottom: 10px;
+          width: 65%;
+          -webkit-transform: translateX(-50%);
+          transform: translateX(-50%)
+        }
+    }
+
+    .as_buttons {
+        display: flex;
+        justify-content: flex-end;
+        position: absolute;
+        bottom: 20px;
+        right: 0;
+        flex-direction: row;
+        align-items: center;
+        padding: 16px 30px;
+
+        @media (max-width: $screen-mobile) {
+          position: relative;
+          bottom: 0;
+          right: 0;
+          padding: 0;
+          flex-direction: column-reverse;
+          width: 100%;
+
+          button {
+            width: 115%;
+            margin-bottom: 10px !important;
+          }
+        }
+    }
+
+    .skip_link {
+        display: flex;
+        justify-content: flex-end;
+        position: absolute;
+        bottom: 26px;
+        left: 10px;
+        flex-direction: row;
+        align-items: center;
+        padding: 16px 30px;
+
+        a {
+          color: $app-text-dark;
+          font-family: $font-family-open-sans-regular;
+          font-weight: $fw-600;
+          font-size: $font-normal;
+          cursor: pointer;
+        }
+
+        @media (max-width: $screen-mobile) {
+          position: relative;
+          bottom: 0;
+          left: 0;
+          padding-top: 0;
+          flex-direction: column;
+        }
+    }
+
+    .email-body {
+      color: $app-text-description-color-1;
+      font-family: $font-family-open-sans-regular;
+      font-size: $font-normal;
+    }
+
+    .form-control .input {
+        width: 215%;
+    }
+
+    .prescriber-email {
+        flex-direction: column;
+        padding-top: 1em;
+    }
+
+    .validation-feedback-small {
+        position: absolute;
+        display: block;
+        color: $error;
+        width: 100%;
+        font-size: $font-sm;
+        margin-top: 0;
+        top: 65px;
+        left: 0;
+    }
+
+    .validation-feedback-large {
+        position: relative;
+        color: $error;
+        font-family: $font-family-open-sans-semibold;
+        font-weight: $fw-600;
+        font-size: $font-normal;
+        margin-top: 0;
+        width: 100%;
+    }
+
+    .prescriber-email::ng-deep {
+        .form-group {
+            .custom-control.custom-checkbox {
+                padding-left: 15px !important;
+            }
+            .form-control {
+                width: 200%;
+            }
+            .form-control.is-invalid {
+                border-color: $error;
+            }
+            .custom-control-label {
+                font-family:"open sans semibold";
+            }
+        }
+
+        .email-unregistered-error {
+            display: block;
+            margin: 20px 0;
+
+            @media (max-width: $screen-mobile) {
+                min-height: 310px;
+            }
+        }
+    }
+}

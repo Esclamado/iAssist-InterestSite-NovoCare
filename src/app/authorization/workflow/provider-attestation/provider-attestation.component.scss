@@ -1,0 +1,73 @@
+@import "../../../../assets/stylesheets/variables";
+@import "../workflow.component.scss";
+
+.provider-attestation-container {
+    display: flex;
+    min-height: 1000px !important;
+    
+    @media (max-width: $screen-desktop) {
+        flex-direction: column;
+    }
+
+    .provider-step {
+        width: 246px;
+        margin-right: 101px;
+
+        @media (max-width: $screen-desktop) {
+            width: auto;
+            margin-right: 0;
+            flex: 1;
+        }
+    }
+
+    .provider-step::ng-deep {
+        h6 {
+          color: #221F1F !important;
+          font-family: Open Sans;
+          font-style: normal;
+          font-weight: bold;
+          font-size: 30px;
+        }
+        p {
+          color: #6F7276;
+          font-family: Open Sans;
+          font-style: normal;
+          font-weight: 600;
+          font-size: 0.8125rem !important;
+          width: 300px;
+          height: 50px;
+        }
+      }
+
+      .services-rectangle {
+        height: 730px !important;
+      }
+
+    .image {
+        position: static;
+        width: 106px;
+        height: 20px;
+        left: 29px;
+        top: 0px;
+        font-family: Open Sans;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 10px;
+        line-height: 20px;
+        text-transform: uppercase;
+        color: #6F7276 !important;
+        padding-bottom: 50px;
+
+    }
+
+    .as_buttons {
+      display: flex;
+      justify-content: flex-end;
+      position: absolute;
+      bottom: 0px;
+      right: 0;
+      flex-direction: row;
+      align-items: center;
+      padding: 16px 48px;
+    }
+}

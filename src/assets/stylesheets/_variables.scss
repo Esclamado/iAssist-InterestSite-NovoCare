@@ -1,0 +1,155 @@
+// Colors
+$primary: #001965;
+$primary-faded: rgba(82, 92, 163, .4);
+$primary-darker: rgba(82, 92, 163, 1.5);
+$slate: #414042 !default;
+$secondary: #3B97DE;
+$white: #FFFFFF;
+$black: #000000;
+$pink : #FF00C7;
+$error: #DB1616;
+$inactive: #ACACAC;
+$arx-primary: #007178;
+$arx-magenta: #FF33CC;
+$blue: #0460a9;
+$gray: #8e9499;
+$dark-gray: #7f848a;
+$light-blue: #525CA3;
+$red: #ff0000;
+$light-black: #221F1F;
+$light-white: #c7dedf;
+$light-red: #C0311A;
+$transparent: #ff000000;
+$light-green: #78bf4b;
+$light-gray: #bcbcbc;
+$text-important: rgba(0, 0, 0, 0.56);
+$bg-important: #EBEBEB;
+
+$app-contrast-light: #f8f9fb;
+$app-contrast-dark: #000000;
+
+$app-text-color: #6F7276;
+$app-text-muted: #505050;
+$app-text-title-color: #505E72;
+$app-text-description-color-1: #333333;
+
+$app-primary-color-100: #58A291;
+$app-primary-color-200: rgba(175, 221, 210, 0.3);
+$app-primary-color-300: #AFDDD2;
+$app-primary-color-400: #FBB034;
+$app-primary-color-500: #FFC629;
+$app-primary-color-A100: #000;
+
+$app-warn-color-50: #ef8787;
+$app-warn-color-500: #ff4040;
+
+$app-background-active: #D8D8D8;
+$app-background-dark: #093e52;
+$app-background-light-1: #F9F9F9;
+$app-background-light-2: #F9F9F9;
+
+$app-background-card: #F2F2F2;
+$app-background-input: #E0E0E0;
+$app-background-discloser: rgb(196, 196, 196, 0.33);
+
+$app-program-box-description: #ACACAC;
+$app-logo-desktop-width: 250px;
+$app-logo-desktop-height: 41.63px;
+
+$footer-height: 60px;
+
+$app-text-light: #FFFFFF;
+$app-text-dark: #333333;
+$app-empty-label-color: #c5cad1;
+$app-mid-grey-font-color: #6f7276;
+$app-dark-grey-font-color: #414042;
+$app-download-blue: #2171B8;
+
+$app-banner-height: 2.5rem;
+$app-padding-desktop: 1.875rem;
+$app-padding-desktop-wide: 8.75rem;
+$app-padding-tablet: 2.5rem;
+$app-padding-mobile: 1.5rem;
+
+$app-form-label-font-size: 1rem;
+$app-form-label-font-color: #414042;
+$app-form-custom-label-font-size: 0.875rem;
+$app-form-required-asterisk: $error;
+$app-form-validation-message: #FF5C65;
+$app-form-focus-color: #66afe9;
+$app-form-checkbox-border: #ACACAC;
+$app-form-placeholder: #999999;
+
+// Typography
+//
+// Font
+$OpenSansPath: "../node_modules/open-sans-fontface/fonts";
+$font-family-open-sans: "open sans";
+$font-family-open-sans-regular: "open sans regular";
+$font-family-open-sans-semibold: "open sans semibold";
+$font-family-open-sans-bold: "open sans bold";
+
+//Roboto
+$font-family-roboto: 'Roboto';
+
+//Barlow Condensed
+$BarlowCondensedPath: "../node_modules/@fontface/barlow-condensed/files";
+$BarlowCondensedVersion: "1.1.1" !default;
+$font-family-barlow-condensed-regular: "Barlow Condensed";
+$font-family-icon: 'Font Awesome 5 Free' !default;
+
+// Responsive breakpoints
+$screen-mobile: 480px;
+$screen-tablet: 768px;
+$screen-tablet-lg: 850px; //for Ipad Air
+$screen-desktop: 960px;
+$screen-desktop-lg: 1280px;
+$screen-laptop: 1440px;
+$screen-laptop-sm: 1336px;
+$screen-desktop-sm: 1600px;
+$screen-desktop-md: 1920px;
+$screen-desktop-mdv1: 2560px;
+
+// Font Sizes
+$font-largest-1: 3.125rem;      // 50px
+$font-largest: 2.5rem;          // 40px
+$font-larger: 2.25rem;          // 36px
+$font-large-2: 1.875rem;        // 30px
+$font-large: 1.25rem;           // 20px
+$font-larged: 1.188rem;         // 19.008px
+$font-normal: 1rem;             // 16px
+$font-normal-2: 1.0625rem;      // 17px
+$font-small: 0.875rem;          // 14px
+$font-mat-tooltip: 0.8125rem;   // 13px
+$font-smaller: 0.75rem;         // 12px
+$font-smaller-2: 0.8rem;        // 12.8px
+$font-smaller-3: 0.825rem;      // 13.2px
+$font-smallest: 0.5625rem;      // 9px
+
+$font-program-title: 3.75rem;   // 60px
+$font-title-lg: 3rem;           // 48px
+$font-title: 2.75rem;           // 44px
+$font-title-md: $font-larger;   // 36px
+$font-title-sm-2: 1.75rem;      // 28px
+$font-title-sm: 1.5rem;         // 24px
+$font-title1-sm: 1.438rem;      // 23.008px
+$font-box-title: 1.3125rem;     // 21px
+$font-assistance-title:1rem;    // 16px
+$font-footer: 0.688rem;         // 11px
+$font-copyright: 0.625rem;      // 10px
+$font-modal-body: 1.125rem;     // 18px
+$font-modal-body-1: 1.1569rem;  // 18.51px
+$font-tooltip: 0.8125rem;       // 13px
+$font-tooltip-1: 0.813rem;      // 13.008px
+$font-sm: 0.6875rem;            // 11px
+
+// Font Weight
+$fw-100: 100;
+$fw-200: 200;
+$fw-300: 300;
+$fw-400: 400;
+$fw-500: 500;
+$fw-600: 600;
+$fw-700: 700;
+$fw-800: 800;
+$fw-900: 900;

@@ -1,0 +1,36 @@
+<!-- HTML needs to be updated, quickly dev for utc deadline on 7/12/2019 -->
+
+<div>
+    <div #helperDivRef class="canvas-helper" aria-hidden="true"></div>
+
+    <div class="row" style="margin-bottom: 25px;" *ngIf="showSignTypeSelect">
+        <div>
+            <form [formGroup]="selectionFormGroup">
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input class="custom-control-input" type="radio" [value]="modes.type" formControlName="typeOrSign"
+                        id="inlineRadio1">
+                    <label class="custom-control-label text-muted" for="inlineRadio1">{{typeItText}}</label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input class="custom-control-input" type="radio" [value]="modes.sign" formControlName="typeOrSign"
+                        id="inlineRadio2">
+                    <label class="custom-control-label text-muted" for="inlineRadio2">{{signItText}}</label>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+        <div>
+            <div class="pull-right" *ngIf="currentMode === modes.sign">
+                <a class="btn btn-link" (click)="clear()">{{clearText}}</a>
+            </div>
+            <div class="form-group table table-bordered signature-body">
+                <canvas #canvasRef id="showSig" width="650" height="175" [style.cursor]="currentMode === modes.sign ? 'pointer' : 'not-allowed'"></canvas>
+            </div>
+            <div class="text-muted sign-mode-text" [innerHTML]="signItInstruction">
+            </div>
+        </div>
+    </div>
+</div>
+<div style="font-family:PhontPhreak-Handwriting; position: absolute;">&nbsp;</div>

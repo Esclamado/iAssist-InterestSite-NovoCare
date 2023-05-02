@@ -1,0 +1,235 @@
+@import "../../../../assets/stylesheets/variables";
+@import "../workflow.component.scss";
+@import "../../../ui-components/form-controls/form-radio/form-radio.component.scss";
+
+.product-container {
+  display: flex;
+
+  @media (max-width: $screen-desktop) {
+    flex-direction: column;
+  }
+
+  .avse-step {
+    margin-right: 237px;
+    max-width: 570px;
+
+    @media (max-width: $screen-desktop) {
+      width: auto;
+      margin-right: 0;
+      flex: 1;
+    }
+
+    @media (max-width: $screen-tablet) {
+      width: 100%;
+      margin-right: 0;
+      flex: 1;
+      max-width: none;
+  }
+  }
+
+  .row {
+    &.sm-margin-top {
+      margin-top: 0.6em;
+    }
+
+    &.md-margin-top {
+      margin-top: 1em;
+    }
+
+    font-weight: bold;
+  }
+
+  .avse-form {
+    flex: 1;
+  }
+
+  .invalid-feedback {
+    position: absolute;
+    font-size: $font-sm;
+    margin-top: 0;
+    display: block;
+  }
+
+  .mat-flat-button {
+    margin: 30px 0 0 20px !important;
+    border-radius: 8px;
+
+    @media (max-width: $screen-mobile) {
+      margin: 10px 0px 10px 0px !important;
+    }
+  }
+
+  .as_buttons {
+    display: flex;
+    justify-content: flex-end;
+    position: absolute;
+    bottom: 20px;
+    right: 0;
+    flex-direction: row;
+    align-items: center;
+    padding: 16px 48px;
+  }
+
+  .pagination {
+    padding-left: 15px !important;
+  }
+
+  .prescriber-note::ng-deep {
+    font-family: $font-family-open-sans;
+    font-style: normal;
+    font-weight: $fw-500;
+    color: $slate;
+    font-size: $font-normal;
+    margin-bottom: 2rem;
+
+    .note-bold {
+      font-weight: $fw-800 !important;
+      font-family: $font-family-open-sans !important;
+    }
+  }
+
+  .pagination_box {
+    display: inline-flex;
+    border-color: $gray;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 6px;
+    font-size: $font-footer;
+    height: 30px;
+    width: 30px;
+    align-items: center;
+    justify-content: center;
+    padding: 0 0px;
+  }
+
+  mat-button-toggle-group {
+    box-shadow: none;
+  }
+
+  mat-button-toggle {
+    align-items: center;
+    justify-content: center;
+    padding: 0px;
+  }
+
+  .mat-button-toggle-checked {
+    border: 1px $blue solid !important;
+    border-radius: 6px !important;
+    border-width: 2px !important;
+    background-color: $white !important;
+    padding: auto;
+  }
+
+  .custom-radio {
+    position: relative;
+    width: 380px;
+    height: 20px;
+    left: 0px;
+    top: 0px;
+  }
+
+  .product-info::ng-deep {
+    height: 100% !important;
+    .form-group {
+      margin-left: 0px;
+
+      .custom-control.custom-radio {
+        border: 1px solid $app-background-input;
+        box-sizing: border-box;
+        border-radius: 5px;
+        padding-left: 30px !important;
+        flex: none;
+        order: 0;
+        flex-grow: 0;
+        margin: 5px 0px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        background: $app-background-card;
+        position: static;
+        display: flex;
+        min-height: 75px;
+        font-weight: $fw-600 !important;
+      }
+
+      .custom-control-label.text-muted {
+        font-family: $font-family-open-sans !important;
+        font-style: normal !important;
+        font-weight: $fw-600 !important;
+        color: $slate !important;
+        font-size: $font-normal !important;
+      }
+
+      .required {
+        color: $slate !important;
+        font-family: $font-family-open-sans;
+        font-style: normal;
+        font-weight: bold;
+        font-size: $font-small;
+        padding-bottom: 6px;
+      }
+
+      .row::ng-deep {
+        margin-left: 0rem;
+        width: 100%;
+      }
+
+      .custom-radio {
+        padding: 16px 20px !important;
+        margin: 0 0 5px 0 !important;
+        position: relative;
+
+        .custom-control-label {
+            font-size: $font-normal;
+            color: $app-form-label-font-color;
+            font-weight: $fw-600;
+            left: 1.25rem;
+
+            @media screen and (max-width: $screen-mobile) {
+                line-height: 21px;
+            }
+
+            &::before {
+                left: -1.75rem;
+                height: 18px;
+                width: 18px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
+            &::after {
+                left: -1.75rem;
+                height: 18px;
+                width: 18px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+        }
+
+    }
+    }
+
+    .pagination_box::ng-deep {
+      .mat-button-toggle-group {
+        .mat-button-toggle-label-content {
+          padding: 0px 0px !important;
+        }
+      }
+    }
+  }
+
+  .services-rectangle {
+    padding: 38px 95px 60px 95px !important;
+
+    @media (max-width: $screen-tablet) {
+      margin: 0;
+      padding: 40px !important;
+    }
+
+    @media (max-width: $screen-mobile) {
+      margin: 0;
+      padding: 40px 13px !important;
+    }
+
+  }
+}

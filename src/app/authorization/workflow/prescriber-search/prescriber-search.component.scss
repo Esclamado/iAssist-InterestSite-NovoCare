@@ -1,0 +1,90 @@
+@import "../../../../assets/stylesheets/variables";
+@import "../workflow.component.scss";
+
+.prescriber-container {
+    display: flex;
+
+    @media (max-width: $screen-desktop) {
+        flex-direction: column;
+    }
+
+    .prescriber-step {
+      margin-right: 5em;
+
+        @media (max-width: $screen-desktop) {
+            width: auto;
+            margin-right: 0;
+            flex: 1;
+        }
+    }
+
+    .prescriber-step::ng-deep {
+        h6{
+          color: $light-black !important;
+          font-family: Open Sans;
+          font-style: normal;
+          font-weight: bold;
+          font-size: $font-large-2;
+        }
+        p{
+          color: $app-text-color;
+          font-family: Open Sans;
+          font-style: normal;
+          font-weight: $fw-600;
+          font-size: $font-small;
+          width: 300px;
+          height: 50px;
+        }
+      }
+
+    .image{
+        position: static;
+        width: 106px;
+        height: 20px;
+        left: 29px;
+        top: 0px;
+
+        font-family: Open Sans;
+        font-style: normal;
+        font-weight: bold;
+        font-size: $font-copyright;
+        line-height: 20px;
+        /* identical to box height, or 143% */
+
+        text-transform: uppercase;
+
+        color: $app-text-color !important;
+        padding-bottom: 50px;
+
+    }
+
+    .checkboxconsent {
+        padding-left: 36px;
+    }
+
+    .as_buttons{
+        display: flex;
+        justify-content: flex-end;
+        position: absolute;
+        bottom: 20px;
+        right: 0;
+        flex-direction: row;
+        align-items: center;
+        padding: 16px 48px;
+    }
+
+    .form-control .input{
+        width: 200%;
+    }
+
+    .prescriber-npi::ng-deep {
+        .form-group {
+            .custom-control.custom-checkbox{
+                padding-left: 15px !important;
+            }
+            .form-control{
+                width: 200%;
+            }
+        }
+    }
+}

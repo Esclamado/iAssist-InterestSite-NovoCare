@@ -1,0 +1,26 @@
+@import '../../../../assets/stylesheets/variables';
+
+.header-title {
+    display: flex;
+    margin-bottom: 39px;
+
+    img {
+        margin-right: 1.5625rem;
+        height: 39px;
+        width: 16px;
+    }
+
+    .h-title {
+        align-self: center;
+        padding-left: 1.5625em;
+
+        &.border-left {
+            border-color: $app-empty-label-color;
+        }
+
+        > span {
+            font-family: $font-family-open-sans-semibold;
+            font-size: $font-title-sm;
+        }
+    }
+}

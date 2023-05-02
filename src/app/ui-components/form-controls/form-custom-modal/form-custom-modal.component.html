@@ -1,0 +1,22 @@
+<div style="background-color: white; padding: 30px 30px 30px 30px; border-radius: 6px">
+    <div class="cancel-modal-container">
+        <i class="fas fa-xmark fa-regular close-icon" (click)="onLeave()"></i>
+        <h1>
+            <b>{{data.dialogTitle}}</b>
+        </h1>
+        <br />
+
+        <p>
+            {{data.dialogText}}
+        </p>
+        <br />
+        <br />
+        <div fxLayout="row" fxLayout.lt-sm="column-reverse" fxLayoutAlign="end space-between" fxLayoutAlign.lt-sm="space-evenly stretch" fxFlexFill>
+            <button type="button" class="btn mr-3" (click)="onContinue()">{{ data.continueText }}</button>
+            <button type="button" class="btn btn-primary" (click)="onLeave()">
+                {{ data.goBackText }}
+            </button>
+        </div>
+    </div>
+</div>
+

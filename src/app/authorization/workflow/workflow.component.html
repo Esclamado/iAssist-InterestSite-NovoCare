@@ -1,0 +1,29 @@
+<div fxLayout="column">
+    <app-side-nav [navWidth]="350" [duration]="0.5" fxHide fxShow.lt-md></app-side-nav>
+    <div class="nav-content-main">
+        <div class="container-main">
+            <div class="content-main">
+                <header>
+                    <app-header [isHeaderLinkVisible]="isHeaderLinkVisible" [showPills]="showPills"> </app-header>
+                </header>
+                <main>
+                    <router-outlet></router-outlet>
+                    <div class="side-pin">
+                        <div class="rectangle-2073" *ngIf="showPills"></div>
+                        <div class="rectangleside-2072" *ngIf="showPills"></div>
+                    </div>
+                </main>
+            </div>
+            <footer id="footer">
+                <app-footer
+                    [footerLineContent]="translateContentService.footer"
+                    [privacyLink]="translateContentService.footer.privacyLink"
+                    [privacyText]="translateContentService.footer.privacyText"
+                    [clientLegalText]="translateContentService.footer.clientLegalText"
+                    [legalLink]="translateContentService.footer.legalLink"
+                >
+                </app-footer>
+            </footer>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,98 @@
+@import '../../../../assets/stylesheets/variables';
+@import '../workflow.component.scss';
+
+.prescriber-container {
+    display: flex;
+    min-height: 1000px !important;
+
+    @media (max-width: $screen-desktop) {
+        flex-direction: column;
+    }
+
+    .prescriber-step {
+      margin-right: 5rem;
+      width: 40%;
+
+        @media (max-width: $screen-desktop) {
+            width: auto;
+            margin-right: 0;
+        }
+    }
+
+    .hcpVerify {
+        height: 1280.81px;
+        max-height: 825px;
+        margin-left: 40px;
+    }
+
+    .image {
+        position: static;
+        width: 106px;
+        height: 20px;
+        left: 29px;
+        top: 0px;
+
+        font-family: Open Sans;
+        font-style: normal;
+        font-weight: bold;
+        font-size: $font-copyright;
+        line-height: 20px;
+        /* identical to box height, or 143% */
+
+        text-transform: uppercase;
+
+        color: #6f7276 !important;
+        padding-bottom: 50px;
+    }
+
+    .checkboxconsent {
+        padding-left: 36px;
+    }
+
+    .as_buttons {
+        display: flex;
+        justify-content: flex-end;
+        position: absolute;
+        bottom: 20px;
+        right: 0;
+        flex-direction: row;
+        align-items: center;
+        padding: 16px 48px;
+    }
+
+    .question {
+        color: $app-text-color;
+        font-family: open sans semibold;
+        font-style: normal;
+        font-weight: $fw-600;
+        font-size: $font-smaller;
+        height: 40px;
+    }
+
+    .form-control .input {
+        width: 200%;
+    }
+    .prescriber-npi {
+        flex-direction: column;
+    }
+    .pad-text {
+        padding-right: 15px;
+    }
+    .gray {
+        background: $app-background-card;
+    }
+
+    .prescriber-npi::ng-deep {
+        .form-group {
+            .custom-control.custom-checkbox {
+                padding-left: 15px !important;
+            }
+            .form-control {
+                width: 200%;
+            }
+            .custom-control-label {
+                font-family: 'open sans semibold';
+            }
+        }
+    }
+}

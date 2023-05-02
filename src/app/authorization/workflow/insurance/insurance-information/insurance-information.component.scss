@@ -1,0 +1,101 @@
+@import '../../../../../assets/stylesheets/variables';
+@import '../../workflow.component.scss';
+@import '../../../../ui-components/form-controls/form-radio/form-radio.component.scss';
+@import '../../../../ui-components/form-controls/form-input/form-input.component.scss';
+
+.insurance-information {
+    display: flex;
+
+    .insurance-step {
+        margin-right: 14.875rem;
+        max-width: 35.625rem;
+
+        @media (max-width: $screen-desktop) {
+            width: auto;
+            margin-right: 0;
+            flex: 1;
+        }
+
+        @media (max-width: $screen-tablet) {
+            width: 100%;
+            margin-right: 0;
+            flex: 1;
+            max-width: none;
+        }
+    }
+
+    .insurance-info::ng-deep {
+        .form-group {
+            top: 0px;
+            bottom: 1rem;
+
+            >label {
+                font-family: $font-family-open-sans-regular;
+                font-size: $app-form-label-font-size;
+                font-weight: $fw-700;
+                line-height: 1.3rem;
+                color: $app-form-label-font-color;
+                margin-bottom: 0.25rem;
+            }
+
+            .custom-control-label.text-muted {
+                font-size: $font-smaller  !important;
+                color: $slate;
+            }
+        }
+    }
+
+    .insurance-complete-text {
+        color: $slate;
+        font-style: italic;
+        font-weight: bold;
+    }
+
+    .mat-flat-button {
+      @media (max-width: $screen-mobile) {
+        margin: 0px 0px 10px 0px !important;
+      }
+    }
+
+    .as_buttons {
+        display: flex;
+        justify-content: flex-end;
+        position: absolute;
+        bottom: 20px;
+        right: 0;
+        flex-direction: row;
+        align-items: center;
+        padding: 16px 48px;
+    }
+
+    .insurance-info-card {
+        background-color: $app-background-card;
+    }
+
+    .insurance-info-text {
+        padding: 0.375rem 0.75rem;
+        font-weight: $fw-600 !important;
+    }
+
+    .view-info-text {
+        color: $app-primary-color-100;
+        font-weight: $fw-600 !important;
+    }
+
+    .custom-radio {
+        padding: 16px 20px !important;
+        margin: 0 0 5px 0 !important;
+        position: relative;
+    }
+}
+
+.insurance-step::ng-deep{
+    .description{
+        @media (max-width: $screen-mobile) {
+            font-size: $font-large !important;
+        }
+    }
+    .info-section{
+        margin-bottom: 0rem;
+    }
+}
